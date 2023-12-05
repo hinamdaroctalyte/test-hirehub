@@ -8,11 +8,13 @@ function TableB({
     columns,
     data,
     filterBy,
+    actions,
     onViewClick,
     onEditClick,
     onDeleteClick,
     onMessageClick
 }) {
+    console.log("actions",actions)
     const newColumn = columns.map((value, index) => {
         let columnSorter;
         if (value.sorter === true) {
@@ -35,7 +37,7 @@ function TableB({
         return {
             ...value,
             render: (val, id) => {
-                if (value.dataIndex === "name" || value.dataIndex === "employerName") {
+                if (value.dataIndex === "name" || value.dataIndex === "employerName" || value.dataIndex === "companyName") {
                     return (
                         <>
                             {val?.img ?
@@ -72,21 +74,35 @@ function TableB({
                 else if (value.dataIndex === "action") {
                     return (
                         <Flex gap="small">
-                            <span className='cursor-pointer'
-                                onClick={() => onViewClick(id?.key)}
-                            >
-                                <Icon name="View" />
-                            </span>
-                            <span className='cursor-pointer'
-                                onClick={() => onEditClick(id?.key)}
-                            >
-                                <Icon name="Edit" />
-                            </span>
-                            <span className='cursor-pointer'
-                                onClick={() => onMessageClick(id?.key)}
-                            >
-                                <Icon name="Message" />
-                            </span>
+                            {actions.view &&
+                                <span className='cursor-pointer'
+                                    onClick={() => onViewClick(id?.id)}>
+                                    <Icon name="View" />
+                                </span>
+                            }
+                            {actions.edit &&
+                                <span className='cursor-pointer'
+                                    onClick={() => onEditClick(id?.id)}>
+                                    <Icon name="Edit" />
+                                </span>
+                            }
+                            {actions.delete &&
+                                <span className='cursor-pointer'
+                                    onClick={() => onMessageClick(id?.id)}>
+                                    <Icon name="Delete" />
+                                </span>
+                            }
+                            {actions.message &&
+                                <span className='cursor-pointer'
+                                    onClick={() => onMessageClick(id?.id)}>
+                                    <Icon name="Message" />
+                                </span>
+                            }
+                            {actions.date &&
+                                <span className='cursor-pointer'>
+                                    <Icon name="Calender1" />
+                                </span>
+                            }
                         </Flex>
                     )
                 }
@@ -104,7 +120,7 @@ function TableB({
         // You might want to update your data source or fetch new data here
         console.log(pagination); // Use pagination object to get current, pageSize, total, etc.
     };
-    
+
     return (
         <div class="flex flex-col bg-white rounded-[8px] overflow-hidden shadow-md">
             <div class="-m-1.5 overflow-x-auto">

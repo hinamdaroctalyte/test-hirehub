@@ -5,16 +5,16 @@ import employersData from '../../../../data/employersData.json';
 
 const breadcrumb = [
     { label: "Dashboard", link: "/admin/dashboard" },
-    { label: "Approved Employers", link: "/admin/approved-employers" },
+    { label: "Rejected Employers", link: "/admin/rejected-employers" },
     { label: "Details" },
 ];
 
-function ViewApprovedEmployers() {
-    const { tableData } = employersData;    
+function ViewRejectedEmployers() {
+    const { tableData } = employersData;
     return (
         <>
             <Breadcrumb
-                heading="Approved Employers Details"
+                heading="Rejected Employers Details"
                 breadcrumb={breadcrumb}
             />
             <Core.CompanyProfile data={tableData} pageType="view" />
@@ -22,4 +22,4 @@ function ViewApprovedEmployers() {
     );
 }
 
-export default ViewApprovedEmployers;
+export default ViewRejectedEmployers;

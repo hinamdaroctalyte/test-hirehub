@@ -10,7 +10,7 @@ import employersData from '../../../../data/employersData.json';
 const breadcrumb = [
     { label: "Dashboard", link: "/admin/dashboard" },
     { label: "Manage Employers", link: "/admin/manage-employers" },
-    { label: "Employer's Request" },
+    { label: "Rejected Employers" },
 ];
 
 const actions = {
@@ -19,7 +19,7 @@ const actions = {
     delete: true,
 };
 
-function MainEmployersRequest() {
+function MainRejectedEmployers() {
     const columns = [
         {
             title: 'Employer Name',
@@ -46,15 +46,13 @@ function MainEmployersRequest() {
         },
     ];
     const { tableData } = employersData;
-    const statusToFilter = 'pending';
+    const statusToFilter = 'rejected';
     const filteredData = tableData.filter(item => item.accountStatus === statusToFilter);
     const onViewClick = (id) => {
-        console.log("onViewClick", id)
-        window.location.href = `/admin/employers-request/view/${id}`;
+        window.location.href = `/admin/rejected-employers/view/${id}`;
     };
     const onEditClick = (id) => {
-        console.log("onEditClick", id)
-        window.location.href = `/admin/employers-request/edit/${id}`;
+        window.location.href = `/admin/rejected-employers/edit/${id}`;
     };
     const onMessageClick = (id) => {
         console.log("onMessageClick", id)
@@ -62,7 +60,7 @@ function MainEmployersRequest() {
     return (
         <>
             <Breadcrumb
-                heading="Employer's Request"
+                heading="Rejected Employers"
                 breadcrumb={breadcrumb}
             />
             <TableB
@@ -78,4 +76,4 @@ function MainEmployersRequest() {
     );
 }
 
-export default MainEmployersRequest;
+export default MainRejectedEmployers;

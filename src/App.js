@@ -13,8 +13,11 @@ import {
   ApprovedEmployers,
   ViewApprovedEmployers,
   MainEmployersRequest,
+  MainRejectedEmployers,
   EditEmployersRequest,
   ViewEmployersRequest,
+  EditRejectedEmployers,
+ViewRejectedEmployers,
   EditApprovedEmployers,
 } from "./pages/index";
 import { AdminLayout, EmployerLayout } from "./components";
@@ -33,16 +36,20 @@ function App() {
           <Route path="manage-candidates" element={<ManageCandidates />} />
 
           <Route path="manage-employers" element={<ManageEmployers />} />
-          <Route path="manage-employers/view" element={<ViewEmployers />} />
-          <Route path="manage-employers/edit" element={<EditEmployers />} />
+          <Route path="manage-employers/view/:id" element={<ViewEmployers />} />
+          <Route path="manage-employers/edit/:id" element={<EditEmployers />} />
 
-          <Route path="approved-employees" element={<ApprovedEmployers />} />
-          <Route path="approved-employees/edit" element={<EditApprovedEmployers />} />
-          <Route path="approved-employees/view" element={<ViewApprovedEmployers />} />
+          <Route path="approved-employers" element={<ApprovedEmployers />} />
+          <Route path="approved-employers/edit/:id" element={<EditApprovedEmployers />} />
+          <Route path="approved-employers/view/:id" element={<ViewApprovedEmployers />} />
 
           <Route path="employers-request" element={<MainEmployersRequest />} />
-          <Route path="employers-request/edit" element={<EditEmployersRequest />} />
-          <Route path="employers-request/view" element={<ViewEmployersRequest />} />
+          <Route path="employers-request/edit/:id" element={<EditEmployersRequest />} />
+          <Route path="employers-request/view/:id" element={<ViewEmployersRequest />} />
+
+          <Route path="rejected-employers" element={<MainRejectedEmployers />} />
+          <Route path="rejected-employers/edit/:id" element={<EditRejectedEmployers />} />
+          <Route path="rejected-employers/view/:id" element={<ViewRejectedEmployers />} />
         </Route>
 
         <Route path="employer/" element={<EmployerLayout />} >

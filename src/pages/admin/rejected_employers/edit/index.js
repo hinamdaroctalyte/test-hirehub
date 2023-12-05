@@ -5,21 +5,19 @@ import employersData from '../../../../data/employersData.json';
 
 const breadcrumb = [
     { label: "Dashboard", link: "/admin/dashboard" },
-    { label: "Approved Employers", link: "/admin/approved-employers" },
+    { label: "Rejected Employers", link: "/admin/rejected-employers" },
     { label: "Edit" },
 ];
-
-function EditApprovedEmployers() {
+function EditRejectedEmployers() {
     const { tableData } = employersData;
     const dropdownOptions = [
         'approved',
-        'pending',
-        'rejected',
+        'pending', 
     ];
     return (
         <>
             <Breadcrumb
-                heading="Edit Approved Employers"
+                heading="Edit Rejected Employers"
                 breadcrumb={breadcrumb}
             />
             <Core.CompanyProfile data={tableData} dropdownOptions={dropdownOptions} pageType="edit" />
@@ -27,4 +25,4 @@ function EditApprovedEmployers() {
     );
 }
 
-export default EditApprovedEmployers;
+export default EditRejectedEmployers;

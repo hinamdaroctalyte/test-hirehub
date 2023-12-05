@@ -10,9 +10,12 @@ import ViewApprovedEmployers from "./admin/approved_employers/view";
 import EditApprovedEmployers from "./admin/approved_employers/edit";
 
 import MainEmployersRequest from "./admin/employers_request/main";
-import EditEmployersRequest from "./admin/employers_request/view";
-import ViewEmployersRequest from "./admin/employers_request/edit";
+import EditEmployersRequest from "./admin/employers_request/edit";
+import ViewEmployersRequest from "./admin/employers_request/view";
 
+import MainRejectedEmployers from "./admin/rejected_employers/main";
+import EditRejectedEmployers from "./admin/rejected_employers/edit";
+import ViewRejectedEmployers from "./admin/rejected_employers/view";
 
 import ManageEmployers from "./admin/manage_employers/main";
 import ViewEmployers from "./admin/manage_employers/view";
@@ -42,6 +45,10 @@ export {
     MainEmployersRequest,
     EditEmployersRequest,
     ViewEmployersRequest,
+
+    MainRejectedEmployers,
+    EditRejectedEmployers,
+    ViewRejectedEmployers,
 
     RegisterPage,
     // ------------ Employer ------------

@@ -6,8 +6,8 @@ import Icon from '../../../../components/icon';
 import TableB from '../../../../components/table/TableB';
 
 const breadcrumb = [
-    { label: "Dashboard", link: "/dashboard" },
-    { label: "Manage Employers" },
+    { label: "Dashboard", link: "/admin/dashboard" },
+    { label: "Manage Employers"},
 ];
 
 function ManageEmployers() {

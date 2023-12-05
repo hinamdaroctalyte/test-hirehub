@@ -2,8 +2,48 @@ import React from 'react';
 import { Table } from '../../../../components';
 import { Breadcrumb, StatsGroup } from '../../../../components/core';
 import avatar1 from "../../../../assets/images/avatars/2.png";
+import TableB from '../../../../components/table/TableB';
 
-const columns = ["name", "jobTitle", "employer", "eligibility", "experience", "salary", "stage", "status", "action"];
+// const columns = ["name", "jobTitle", "employer", "eligibility", "experience", "salary", "stage", "status", "action"];
+const columns = [
+    {
+        title: 'Name',
+        key: 'name',
+        dataIndex: 'name',
+    }, {
+        title: 'Job Title',
+        key: 'jobTitle',
+        dataIndex: 'jobTitle',
+    }, {
+        title: 'Employer',
+        key: 'employer',
+        dataIndex: 'employer',
+    }, {
+        title: 'Eligibility',
+        key: 'eligibility',
+        dataIndex: 'eligibility',
+    }, {
+        title: 'Experience',
+        key: 'experience',
+        dataIndex: 'experience',
+    }, {
+        title: 'Salary',
+        key: 'salary',
+        dataIndex: 'salary',
+    }, {
+        title: 'Stage',
+        key: 'stage',
+        dataIndex: 'stage',
+    }, {
+        title: 'Status',
+        key: 'status',
+        dataIndex: 'status',
+    }, {
+        title: 'Action',
+        key: 'action',
+        dataIndex: 'action',
+    },
+];
 const candidates = [
     {
         id: "1",
@@ -13,7 +53,7 @@ const candidates = [
         },
         jobTitle: "Software Engineer",
         employer: "Tesla",
-        eligibility: true,
+        eligibility: "Paid",
         experience: "3.6 years",
         salary: "20,000",
         stage: "New Application",
@@ -27,7 +67,7 @@ const candidates = [
         },
         jobTitle: "Software Engineer",
         employer: "Wells Fargo",
-        eligibility: true,
+        eligibility: "Paid",
         experience: "10 Years",
         salary: "1000 ",
         stage: "Screening",
@@ -41,7 +81,7 @@ const candidates = [
         },
         jobTitle: "Software Engineer",
         employer: "Amazon",
-        eligibility: false,
+        eligibility: "Unpaid",
         experience: "7 Years",
         salary: "12,000",
         stage: "Job Offer",
@@ -55,7 +95,7 @@ const candidates = [
         },
         jobTitle: "Software Engineer",
         employer: "The Home Depot",
-        eligibility: false,
+        eligibility: "Unpaid",
         experience: "6 years",
         salary: "6500",
         stage: "Hire",
@@ -69,7 +109,7 @@ const candidates = [
         },
         jobTitle: "Software Engineer",
         employer: "Tesla",
-        eligibility: true,
+        eligibility: "Unpaid",
         experience: "3.6 years",
         salary: "20,000",
         stage: "New Application",
@@ -83,7 +123,7 @@ const candidates = [
         },
         jobTitle: "Software Engineer",
         employer: "Wells Fargo",
-        eligibility: true,
+        eligibility: "Unpaid",
         experience: "10 Years",
         salary: "1000 ",
         stage: "Screening",
@@ -98,7 +138,7 @@ const actions = {
 };
 
 const breadcrumb = [
-    { label: "Dashboard", link: "/dashboard" },
+    { label: "Dashboard", link: "/admin/dashboard" },
     { label: "Manage Candidates" },
 ];
 
@@ -159,7 +199,7 @@ function ManageCandidates() {
                 heading="Manage Candidates"
                 breadcrumb={breadcrumb}
             />
-            <Table
+            <TableB
                 // actionButton={{
                 //     name: "Add Department",
                 //     link: "/departments/add",

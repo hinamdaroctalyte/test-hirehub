@@ -3,7 +3,7 @@ import { Breadcrumb } from '../../../components/core';
 import { Core, Employer } from '../../../components';
 
 const breadcrumb = [
-    { label: "Dashboard", link: "/dashboard" },
+    { label: "Dashboard", link: "/admin/dashboard" },
     { label: "Create an employer account" },
 ];
 

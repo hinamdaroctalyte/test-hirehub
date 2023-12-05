@@ -34,8 +34,8 @@ function Sidebar({ isSidebarOpen, toggleSidebar, menu }) {
             `}
         >
             <div className="flex flex-col justify-start h-[86%]">
-                <div className="relative pt-6 pb-6 px-2">
-                    <img src={logo} className='max-w-[200 px]' alt="logo" />
+                <div className="relative flex justify-center items-center pt-6 pb-6 px-2">
+                    <img src={logo} className='max-w-[200px]' alt="logo" />
                     <span className={`absolute top-[18px] right-[-13px] ${isSidebarOpen ? 'block' : 'hidden'}  md:hidden text-white text-[20px] cursor-pointer border-[5px] border-white rounded-full bg-purple-1`}
                         onClick={toggleSidebar}>
                         <Icons.GoChevronLeft />

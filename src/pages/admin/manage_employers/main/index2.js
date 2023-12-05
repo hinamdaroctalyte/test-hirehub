@@ -68,7 +68,7 @@ const actions = {
 };
 
 const breadcrumb = [
-    { label: "Dashboard", link: "/dashboard" },
+    { label: "Dashboard", link: "/admin/dashboard" },
     { label: "Manage Employers" },
 ];
 
