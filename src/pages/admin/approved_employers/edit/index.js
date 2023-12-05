@@ -3,7 +3,7 @@ import { Breadcrumb, StatsGroup } from '../../../../components/core';
 import { Core, } from '../../../../components';
 import companylogo1 from "../../../../assets/images/company-logos/logo4.png";
 import video1 from "../../../../assets/videos/1.mp4";
-import video2 from "../../../../assets/videos/2.mp4";
+// import video2 from "../../../../assets/videos/2.mp4";
 import video3 from "../../../../assets/videos/clip.mp4";
 
 const breadcrumb = [
