@@ -10,7 +10,6 @@ const store = configureStore({
     // other reducers
   },
   // middleware: [thunk],
-  
 });
 
 export default store;
