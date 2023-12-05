@@ -26,7 +26,7 @@ function App() {
   return (
     <BrowserRouter>
       <Routes>
-        <Route path="login" index element={<LoginPage />} />
+        <Route path="/" index element={<LoginPage />} />
         <Route path="forgot-password" element={<ForgotPasswordPage />} />
         <Route path="register" element={<RegisterPage />} />
 
