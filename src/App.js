@@ -23,7 +23,7 @@ function App() {
   return (
     <BrowserRouter>
       <Routes>
-        <Route path="login" exact element={<LoginPage />} />
+        <Route path="login" index element={<LoginPage />} />
         <Route path="forgot-password" element={<ForgotPasswordPage />} />
         <Route path="register" element={<RegisterPage />} />
 
