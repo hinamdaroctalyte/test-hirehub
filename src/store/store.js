@@ -1,6 +1,7 @@
 import { configureStore } from '@reduxjs/toolkit';
 import userReducer from '../reducers/UserReducer';
-import {thunk} from 'redux-thunk';
+import thunk from 'redux-thunk';
+
 
 
 const store = configureStore({
@@ -9,6 +10,7 @@ const store = configureStore({
     // other reducers
   },
   middleware: [thunk],
+  
 });
 
 export default store;
