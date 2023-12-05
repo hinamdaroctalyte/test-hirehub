@@ -9,7 +9,7 @@ const store = configureStore({
     user: userReducer,
     // other reducers
   },
-  middleware: [thunk],
+  // middleware: [thunk],
   
 });
 
