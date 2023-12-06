@@ -1,10 +1,57 @@
-import React from 'react';
+import React, { useState } from 'react';
 import { NavLink } from "react-router-dom";
 import { AuthLayout, Core } from '../../../components';
 import image from "../../../assets/images/logo/logo.png";
 import { Switch } from 'antd';
+import { login } from '../../../Slices/authSlice';
+import { useDispatch } from "react-redux"
+import { useNavigate } from 'react-router-dom';
 
 function LoginPage() {
+    const [credentials, setCredentials] = useState({
+        email: "",
+        password: "",
+    });
+    const dispatch = useDispatch();
+    const navigate = useNavigate();
+
+    const handleInputChange = (e) => {
+        console.log(credentials);
+        setCredentials({
+            ...credentials,
+            [e.target.name]: e.target.value,
+        });
+    };
+
+    const handleSubmit = (e) => {
+        e.preventDefault();
+        console.log({credentials});
+        dispatch(login(credentials)).unwrap().then(res => {
+            const {user} = res.data
+            console.log({user});
+            if(!user){
+                alert("Invalid Credentials")
+            }
+            else{
+                switch (user?.Role) {
+                    case 'admin':
+                      navigate('/admin/dashboard');
+                      break;
+                    case 'candidate':
+                      navigate('/candidate/dashboard');
+                      break;
+                    case 'employer':
+                      navigate('/employer/dashboard');
+                      break;
+                    default:
+                      navigate('/');
+                      break;
+                  }
+            }
+        }).catch(err => console.log(err));
+    };
+
+
     const onChange = (checked) => {
         console.log(`switch to ${checked}`);
     };
@@ -15,13 +62,18 @@ function LoginPage() {
                 Welcome to  Hirehub, <br />
                 Sign in to Continue
             </h1>
-            <form className="flex flex-col gap-y-14 max-w-[600px] mb-3">
+            <form className="flex flex-col gap-y-14 max-w-[600px] mb-3" onSubmit={handleSubmit}>
                 <div>
                     <div className="mb-3">
-                        <Core.InputWithLabel label name="email" className="py-5" bgGray />
+                        <Core.InputWithLabel type="text"
+                            name="email"
+                            value={credentials.email}
+                            onChange={handleInputChange} label className="py-5" bgGray />
                     </div>
                     <div className="mb-3">
-                        <Core.InputWithLabel label name="password" className="py-5" bgGray />
+                        <Core.InputWithLabel
+                            value={credentials.password}
+                            onChange={handleInputChange} label name="password" className="py-5" bgGray />
                     </div>
                     <div className="flex justify-between items-center pt-1">
                         <div className='flex justify-start items-center gap-x-1'>

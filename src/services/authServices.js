@@ -8,7 +8,8 @@ const authService = {
 
             const response = await api.post('/auth/login', credentials);
             if (response && response.data && response.status === 200) {
-                return response;
+                console.log("starttttttttttt");
+                return response.data;
             }
         } catch (error) {
             console.log(error);

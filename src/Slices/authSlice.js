@@ -3,6 +3,8 @@ import { createAsyncThunk, createSlice } from '@reduxjs/toolkit';
 import authService from '../services/authServices';
 
 
+
+
 export const login = createAsyncThunk('auth/login', async (credentials, { dispatch }) => {
     try {
         const user = await authService.login(credentials);
@@ -36,32 +38,14 @@ const authSlice = createSlice({
     },
     extraReducers: (builder) => {
         builder.addCase(login.fulfilled, (state, action) => {
-            if (!action.meta.arg.rememberMe) {
-                localStorage.removeItem("token");
-            }
-            else {
-                localStorage.setItem("token", JSON.stringify(action.payload))
-                state.user = action.payload.user
-                state.role = action.payload.user.Role
-                state.isAuthenticated = true
-                state.error = null
-                console.log(action.payload, "payloaddddd");
-                switch (action.payload.user.Role) {
-                    case "admin":
-                        // Redirect to admin dashboard
-                        break;
-                    case "candidate":
-                        // Redirect to candidate dashboard
-                        break;
-                    case "employer":
-                        // Redirect to employer dashboard
-                        break;
-                    default:
-                        // Redirect to a default route
-                        break;
-                }
 
-            }
+            localStorage.setItem("token", JSON.stringify(action.payload.data))
+            const data = action.payload.data
+            console.log(data.user.Role, "payloaddddd");
+            state.user = data.user
+            state.role = data.user.Role
+            state.isAuthenticated = true
+            state.error = null
 
         })
             .addCase(login.rejected, (state, action) => {
@@ -74,5 +58,6 @@ const authSlice = createSlice({
 });
 
 export const { setUser, logout } = authSlice.actions;
+
 
 export default authSlice.reducer;

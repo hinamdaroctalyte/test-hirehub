@@ -6,6 +6,7 @@ import { useSelector } from "react-redux";
 const PrivateRoute = ({ children, roles }) => {
     const isAuthenticated = useSelector((state) => state.auth.isAuthenticated);
     const userRole = useSelector((state) => state.auth.role);
+    console.log({userRole, isAuthenticated});
 
 
 

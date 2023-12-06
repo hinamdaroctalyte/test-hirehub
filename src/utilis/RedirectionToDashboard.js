@@ -1,18 +1,15 @@
+import { Navigate } from "react-router-dom";
+
 export const redirectToDashboard = (role) => {
-    const history = useHistory();
-    switch (role) {
-      case 'admin':
-        history.push('/admin/dashboard');
-        break;
-      case 'candidate':
-        history.push('/candidate/dashboard');
-        break;
-      case 'employer':
-        history.push('/employer/dashboard');
-        break;
-      default:
-        // Redirect to a default route
-        history.push('/');
-        break;
-    }
-  };
+  switch (role) {
+    case 'admin':
+      return <Navigate to='/admin/dashboard' />;
+    case 'candidate':
+      return <Navigate to='/candidate/dashboard' />;
+    case 'employer':
+      return <Navigate to='/employer/dashboard' />;
+    default:
+      // Redirect to a default route
+      return <Navigate to='/' />;
+  }
+};
