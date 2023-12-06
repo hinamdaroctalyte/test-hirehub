@@ -17,10 +17,11 @@ import {
   EditEmployersRequest,
   ViewEmployersRequest,
   EditRejectedEmployers,
-ViewRejectedEmployers,
+  ViewRejectedEmployers,
   EditApprovedEmployers,
 } from "./pages/index";
 import { AdminLayout, EmployerLayout } from "./components";
+import PrivateRoute from "./utilis/PrivateRoute";
 
 function App() {
   return (
@@ -30,34 +31,46 @@ function App() {
         <Route path="forgot-password" element={<ForgotPasswordPage />} />
         <Route path="register" element={<RegisterPage />} />
 
-        <Route path="admin/" element={<AdminLayout />} >
-          <Route path="dashboard" element={<AdminDashboard />} />
+        // Admin Routes
 
-          <Route path="manage-candidates" element={<ManageCandidates />} />
+        <Route path="admin/*" element={<PrivateRoute roles={['admin']}><AdminLayout /></PrivateRoute>} >
+          <Route path="dashboard" element={<PrivateRoute roles={['admin']}><AdminDashboard /></PrivateRoute>} />
 
-          <Route path="manage-employers" element={<ManageEmployers />} />
-          <Route path="manage-employers/view/:id" element={<ViewEmployers />} />
-          <Route path="manage-employers/edit/:id" element={<EditEmployers />} />
+          <Route path="manage-candidates" element={<PrivateRoute roles={['admin']}><ManageCandidates /></PrivateRoute>} />
 
-          <Route path="approved-employers" element={<ApprovedEmployers />} />
-          <Route path="approved-employers/edit/:id" element={<EditApprovedEmployers />} />
-          <Route path="approved-employers/view/:id" element={<ViewApprovedEmployers />} />
+          <Route path="manage-employers" element={<PrivateRoute roles={['admin']}><ManageEmployers /></PrivateRoute>} />
+          <Route path="manage-employers/view/:id" element={<PrivateRoute roles={['admin']}><ViewEmployers /></PrivateRoute>} />
+          <Route path="manage-employers/edit/:id" element={<PrivateRoute roles={['admin']}><EditEmployers /></PrivateRoute>} />
 
-          <Route path="employers-request" element={<MainEmployersRequest />} />
-          <Route path="employers-request/edit/:id" element={<EditEmployersRequest />} />
-          <Route path="employers-request/view/:id" element={<ViewEmployersRequest />} />
+          <Route path="approved-employers" element={<PrivateRoute roles={['admin']}><ApprovedEmployers /></PrivateRoute>} />
+          <Route path="approved-employers/edit/:id" element={<PrivateRoute roles={['admin']}><EditApprovedEmployers /></PrivateRoute>} />
+          <Route path="approved-employers/view/:id" element={<PrivateRoute roles={['admin']}><ViewApprovedEmployers /></PrivateRoute>} />
 
-          <Route path="rejected-employers" element={<MainRejectedEmployers />} />
-          <Route path="rejected-employers/edit/:id" element={<EditRejectedEmployers />} />
-          <Route path="rejected-employers/view/:id" element={<ViewRejectedEmployers />} />
+          <Route path="employers-request" element={<PrivateRoute roles={['admin']}><MainEmployersRequest /></PrivateRoute>} />
+          <Route path="employers-request/edit/:id" element={<PrivateRoute roles={['admin']}><EditEmployersRequest /></PrivateRoute>} />
+          <Route path="employers-request/view/:id" element={<PrivateRoute roles={['admin']}><ViewEmployersRequest /></PrivateRoute>} />
+
+          <Route path="rejected-employers" element={<PrivateRoute roles={['admin']}><MainRejectedEmployers /></PrivateRoute>} />
+          <Route path="rejected-employers/edit/:id" element={<PrivateRoute roles={['admin']}><EditRejectedEmployers /></PrivateRoute>} />
+          <Route path="rejected-employers/view/:id" element={<PrivateRoute roles={['admin']}><ViewRejectedEmployers /></PrivateRoute>} />
         </Route>
 
-        <Route path="employer/" element={<EmployerLayout />} >
-          <Route path="dashboard" element={<EmployerDashboard />} />
-          <Route path="manage-profile" element={<ManageProfile />} />
+        // Employer Routes
+
+        <Route path="employer/" element={<PrivateRoute roles={['employer']}><EmployerLayout /></PrivateRoute>} >
+          <Route path="dashboard" element={<PrivateRoute roles={['employer']}><EmployerDashboard /></PrivateRoute>} />
+          <Route path="manage-profile" element={<PrivateRoute roles={['employer']}><ManageProfile /></PrivateRoute>} />
         </Route>
-        
+
+        <Route path="*"
+          element={
+            <main style={{ padding: '1rem' }}>
+              <p>There was a problem with the link you clicked on. Please try again.</p>
+            </main>
+          }
+        />
       </Routes>
+
     </BrowserRouter>
   );
 }
