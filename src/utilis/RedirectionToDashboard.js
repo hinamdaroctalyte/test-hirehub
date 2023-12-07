@@ -1,15 +1,22 @@
-import { Navigate } from "react-router-dom";
 
-export const redirectToDashboard = (role) => {
+
+export const redirectToDashboard = (role, navigate) => {
+  console.log("startttttttttttttttt");
+ 
+
   switch (role) {
     case 'admin':
-      return <Navigate to='/admin/dashboard' />;
+      navigate('/admin/dashboard');
+      break;
     case 'candidate':
-      return <Navigate to='/candidate/dashboard' />;
+      navigate('/candidate/dashboard');
+      break;
     case 'employer':
-      return <Navigate to='/employer/dashboard' />;
+      console.log("employerer");
+      navigate('/employer/dashboard');
+      break;
     default:
       // Redirect to a default route
-      return <Navigate to='/' />;
+      navigate('/');
   }
 };

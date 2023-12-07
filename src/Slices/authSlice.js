@@ -1,6 +1,7 @@
 // authSlice.js
 import { createAsyncThunk, createSlice } from '@reduxjs/toolkit';
 import authService from '../services/authServices';
+import { handleApiError } from '../utilis/errorHandling';
 
 
 
@@ -12,15 +13,15 @@ export const login = createAsyncThunk('auth/login', async (credentials, { dispat
         return user
     } catch (error) {
         // Handle login error
-        console.log(error);
+        handleApiError(error)
     }
 });
 
 const authSlice = createSlice({
     name: 'auth',
     initialState: {
-        user: null,
-        isAuthenticated: false,
+        user: JSON.parse(localStorage.getItem('user')),
+        isAuthenticated: JSON.parse(localStorage.getItem('user')) ? true: false,
         role: null,
         error: null,
     },
@@ -32,18 +33,19 @@ const authSlice = createSlice({
         logout: (state) => {
             state.user = null;
             state.isAuthenticated = false;
-            localStorage.removeItem("token")
+            localStorage.removeItem("user")
+            
         },
 
     },
     extraReducers: (builder) => {
         builder.addCase(login.fulfilled, (state, action) => {
 
-            localStorage.setItem("token", JSON.stringify(action.payload.data))
+            localStorage.setItem("user", JSON.stringify(action.payload.data))
             const data = action.payload.data
-            console.log(data.user.Role, "payloaddddd");
-            state.user = data.user
-            state.role = data.user.Role
+            console.log(data, "payloaddddd");
+            state.user = data
+            state.role = data.Role
             state.isAuthenticated = true
             state.error = null
 
@@ -51,7 +53,7 @@ const authSlice = createSlice({
             .addCase(login.rejected, (state, action) => {
                 state.user = null;
                 state.isAuthenticated = false;
-                localStorage.removeItem("token")
+                localStorage.removeItem("user")
                 state.error = action.error.message;
             });
     }

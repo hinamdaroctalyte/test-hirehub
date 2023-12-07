@@ -1,4 +1,3 @@
-// authService.js
 import api from '../api/api';
 // import localStorageUtils from '../utils/localStorage';
 
@@ -12,7 +11,7 @@ const authService = {
                 return response.data;
             }
         } catch (error) {
-            console.log(error);
+            throw error;
         }
     },
 };

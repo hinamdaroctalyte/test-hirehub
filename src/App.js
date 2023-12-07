@@ -1,4 +1,4 @@
-import { BrowserRouter, Routes, Route } from "react-router-dom";
+import { BrowserRouter, Routes, Route, Navigate } from "react-router-dom";
 import {
   AdminDashboard,
   LoginPage,
@@ -23,7 +23,17 @@ import {
 import { AdminLayout, EmployerLayout } from "./components";
 import PrivateRoute from "./utilis/PrivateRoute";
 
+
+
 function App() {
+  
+
+
+  
+
+
+
+
   return (
     <BrowserRouter>
       <Routes>
