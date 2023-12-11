@@ -3,6 +3,7 @@ import Icon from '../icon';
 import { Button, InputWithLabel, Badge } from '../core';
 import { Pagination, Table, Space, Flex } from 'antd';
 import '../../assets/css/table.css'
+import { Core } from '..';
 
 function TableB({
     columns,
@@ -12,9 +13,15 @@ function TableB({
     onViewClick,
     onEditClick,
     onDeleteClick,
-    onMessageClick
+    onMessageClick,
+    setName,
+    setTitle,
+    setEmployer,
+    setEligibility,
+    setAppliedDate,
+    setCandidateStage,
+    setUserStatus,
 }) {
-    console.log("actions",actions)
     const newColumn = columns.map((value, index) => {
         let columnSorter;
         if (value.sorter === true) {
@@ -43,7 +50,7 @@ function TableB({
                             {val?.img ?
                                 <div className='flex justify-start items-center gap-x-2 min-w-[140px]'>
                                     <img className="inline-block h-[30px] w-[30px] rounded-full" src={val?.img} alt="profile image" />
-                                    <span className='whitespace-nowrap'>{val?.name}</span>
+                                    <span className='whitespace-nowrap font-semibold'>{val?.name}</span>
                                 </div> :
                                 <span>{val}</span>
                             }
@@ -63,6 +70,12 @@ function TableB({
                             <Badge>{id.account}</Badge>
                         </div>
                     )
+                }
+                else if (value.dataIndex === "stage") {
+                    return <div className='w-full text-center'><Badge>{id.stage}</Badge></div>;
+                }
+                else if (value.dataIndex === "status") {
+                    return <div className='w-full text-center'><Badge>{id.status}</Badge></div>;
                 }
                 else if (value.dataIndex === "accountStatus") {
                     return (
@@ -107,7 +120,7 @@ function TableB({
                     )
                 }
                 else {
-                    return val;
+                    return <span className='text-gray-6'>{val}</span>;
                 }
             },
             sorter: columnSorter,
@@ -120,7 +133,24 @@ function TableB({
         // You might want to update your data source or fetch new data here
         console.log(pagination); // Use pagination object to get current, pageSize, total, etc.
     };
+    const UserStatusdropdownOptions = [
+        'new',
+        'attempted to contact',
+        'Connected',
+        'On Hold',
+        'Qualified',
+        'Not Interested',
+        'Unqualified',
+    ];
 
+    const CandidateStagedropdownOptions = [
+        'New Application ',
+        'Screening',
+        'Interview',
+        'Selection',
+        'Job Offer',
+        'Hire',
+    ]; 
     return (
         <div class="flex flex-col bg-white rounded-[8px] overflow-hidden shadow-md">
             <div class="-m-1.5 overflow-x-auto">
@@ -130,9 +160,63 @@ function TableB({
                             <span className='text-black-2 text-[18px] leading-[28px] font-medium'>Filters</span>
                             <div className='flex justify-end items-center gap-1'>
                                 {filterBy?.map(value => {
-                                    return (
-                                        <InputWithLabel name={value} sm />
-                                    )
+                                    // SearchByAppliedDate
+                                    // SearchByStage
+                                    // SearchByUserStatus
+                                    let set = null
+                                    switch (value) {
+                                        case 'SearchByName':
+                                            set = setName;
+                                            break;
+                                        case 'SearchByTitle':
+                                            set = setTitle;
+                                            break;
+                                        case 'SearchByEmployer':
+                                            set = setEmployer;
+                                            break;
+                                        case 'SearchByEligibility':
+                                            set = setEligibility;
+                                            break;
+                                        default:
+                                            break;
+                                    }
+                                    let inputWidth = 'auto'
+                                    switch (value) {
+                                        case 'SearchByName':
+                                            inputWidth = 'w-[160px]';
+                                            break;
+                                        case 'SearchByTitle':
+                                            inputWidth = 'w-[150px]';
+                                            break;
+                                        case 'SearchByEmployer':
+                                            inputWidth = 'w-[100px]';
+                                            break;
+                                        case 'SearchByEligibility':
+                                            inputWidth = 'w-[100px]';
+                                            break;
+                                        default:
+                                            break;
+                                    }
+                                    if (value === "SearchByAppliedDate") {
+                                        return (
+                                            <InputWithLabel name={'calender'} setValue={setAppliedDate} sm />
+                                        )
+                                    }
+                                    if (value === "SearchByUserStatus") {
+                                        return (
+                                            <Core.Dropdown2 options={UserStatusdropdownOptions} setState={setUserStatus} defaultTitle="Status" menuWidth={'w-[190px]'} />
+                                        )
+                                    }
+                                    if (value === "SearchByCandidateStage") {
+                                        return (
+                                            <Core.Dropdown2 options={CandidateStagedropdownOptions} setState={setCandidateStage} defaultTitle="Stage" />
+                                        )
+                                    }
+                                    else {
+                                        return (
+                                            <InputWithLabel name={value} setValue={set} sm className={inputWidth} />
+                                        )
+                                    }
                                 })}
                                 <div className='flex justify-end items-center gap-1'>
                                     <Button sm type="narrow" >Search</Button>

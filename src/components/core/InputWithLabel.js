@@ -3,7 +3,7 @@ import { NavLink } from "react-router-dom";
 import { Icons } from '..';
 
 
-function InputWithLabel({ label, name, forgotPassword, required, helperText, className, sm, bgGray }) {
+function InputWithLabel({ label, name, setValue, forgotPassword, required, helperText, className, sm, bgGray }) {
 
     const [passwordVisible, setPasswordVisible] = useState(false);
     const [inputType, setInputType] = useState('text');
@@ -27,6 +27,10 @@ function InputWithLabel({ label, name, forgotPassword, required, helperText, cla
                 return "Your Phone Number";
             case "name":
                 return "Name";
+            case "SearchByEmployer":
+                return "Employer";
+            case "SearchByEligibility":
+                return "Eligibility";
 
             case "fullName":
                 return "Full Name";
@@ -71,6 +75,10 @@ function InputWithLabel({ label, name, forgotPassword, required, helperText, cla
                 return "+34 526 952 689";
             case "name":
                 return "Pete Jones";
+            case "SearchByEmployer":
+                return "Employer";
+            case "SearchByEligibility":
+                return "Eligibility";
 
 
             case "fullName":
@@ -100,6 +108,8 @@ function InputWithLabel({ label, name, forgotPassword, required, helperText, cla
             case "phoneNumber":
             case "SearchByName":
             case "SearchByTitle":
+            case "SearchByEmployer":
+            case "SearchByEligibility":
                 return "text";
             case "password":
             case "newPassword":
@@ -135,8 +145,15 @@ function InputWithLabel({ label, name, forgotPassword, required, helperText, cla
                         {helperText}
                     </p>
                 }
-                <input type={name === "password" ? inputType : type(name)} className={`w-full text-[14px] font-regular leading-[20px] text-gray-700 ${bgGray ? 'bg-gray-3' : 'bg-white'} border border-gray-300 rounded-lg focus:outline-none focus:border-blue-500 px-3 ${sm ? 'py-[9px]' : 'py-[14px]'} ${className}`} id={name} name={name}
-                    placeholder={placeholder(name)} autofocus />
+                <input
+                    type={name === "password" ? inputType : type(name)}
+                    className={`w-full text-[14px] font-regular leading-[20px] text-gray-700 ${bgGray ? 'bg-gray-3' : 'bg-white'} border border-gray-300 rounded-lg focus:outline-none focus:border-blue-500 px-3 ${sm ? 'py-[9px]' : 'py-[14px]'} ${className}`}
+                    id={name}
+                    name={name}
+                    placeholder={placeholder(name)}
+                    autofocus
+                    onChange={(e) => setValue(e.target.value)} 
+                />
                 {(name === "password" || name === "newPassword" || name === "confirmPassword") &&
                     <span className="absolute right-3 top-3 text-gray-1 text-[18px] cursor-pointer" onClick={togglePasswordVisibility}>
                         {passwordVisible ? <Icons.IoEyeOutline /> : <Icons.IoEyeOffOutline />}

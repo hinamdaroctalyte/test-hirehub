@@ -5,8 +5,7 @@ import {
   ForgotPasswordPage,
   ManageEmployers,
   ViewEmployers,
-  EditEmployers,
-  ManageCandidates,
+  EditEmployers, 
   ManageProfile,
   RegisterPage,
   EmployerDashboard,
@@ -17,8 +16,12 @@ import {
   EditEmployersRequest,
   ViewEmployersRequest,
   EditRejectedEmployers,
-ViewRejectedEmployers,
+  ViewRejectedEmployers,
   EditApprovedEmployers,
+  MainCandidates,
+  EditCandidates,
+  ViewCandidates,
+  ScheduleCandidates
 } from "./pages/index";
 import { AdminLayout, EmployerLayout } from "./components";
 
@@ -32,8 +35,6 @@ function App() {
 
         <Route path="admin/" element={<AdminLayout />} >
           <Route path="dashboard" element={<AdminDashboard />} />
-
-          <Route path="manage-candidates" element={<ManageCandidates />} />
 
           <Route path="manage-employers" element={<ManageEmployers />} />
           <Route path="manage-employers/view/:id" element={<ViewEmployers />} />
@@ -50,13 +51,18 @@ function App() {
           <Route path="rejected-employers" element={<MainRejectedEmployers />} />
           <Route path="rejected-employers/edit/:id" element={<EditRejectedEmployers />} />
           <Route path="rejected-employers/view/:id" element={<ViewRejectedEmployers />} />
+
+          <Route path="manage-candidates" element={<MainCandidates />} />
+          <Route path="manage-candidates/edit/:id" element={<EditCandidates />} />
+          <Route path="manage-candidates/view/:id" element={<ViewCandidates />} />
+          <Route path="manage-candidates/schedule/:id" element={<ScheduleCandidates />} />
         </Route>
 
         <Route path="employer/" element={<EmployerLayout />} >
           <Route path="dashboard" element={<EmployerDashboard />} />
           <Route path="manage-profile" element={<ManageProfile />} />
         </Route>
-        
+
       </Routes>
     </BrowserRouter>
   );

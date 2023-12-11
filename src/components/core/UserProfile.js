@@ -4,7 +4,7 @@ import { Core } from '..';
 import imgUrgentlyRequired from "../../assets/images/urgently-required.png";
 import { useParams } from 'react-router-dom';
 
-function CompanyProfile({ data, pageType, dropdownOptions }) {
+function UserProfile({ data, pageType, dropdownOptions }) {
     const [status, setStatus] = useState("");
     const { id, } = useParams();
     const extractedData = data?.find(item => item.id === id);
@@ -136,4 +136,4 @@ function CompanyProfile({ data, pageType, dropdownOptions }) {
     )
 }
 
-export default CompanyProfile
+export default UserProfile

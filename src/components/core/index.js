@@ -10,6 +10,7 @@ import SelectWithLabel from "./SelectWithLabel";
 import StatsGroup from "./stats_group/StatsGroup";
 import TextAreaWithLabel from "./TextAreaWithLabel";
 import UploadFile from "./UploadFile";
+import UserProfile from "./UserProfile";
 import VideoPlayer from "./VideoPlayer";
 
 export {
@@ -25,6 +26,6 @@ export {
     StatsGroup,
     TextAreaWithLabel,
     UploadFile,
+    UserProfile,
     VideoPlayer,
-
 }

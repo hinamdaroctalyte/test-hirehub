@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useState } from 'react';
 import { Table } from '../../../../components';
 import { Breadcrumb, StatsGroup } from '../../../../components/core';
 import avatar1 from "../../../../assets/images/avatars/2.png";
@@ -10,6 +10,7 @@ const columns = [
         title: 'Name',
         key: 'name',
         dataIndex: 'name',
+        sorter: true,
     }, {
         title: 'Job Title',
         key: 'jobTitle',
@@ -34,6 +35,7 @@ const columns = [
         title: 'Stage',
         key: 'stage',
         dataIndex: 'stage',
+        sorter: true,
     }, {
         title: 'Status',
         key: 'status',
@@ -53,7 +55,7 @@ const candidates = [
         },
         jobTitle: "Software Engineer",
         employer: "Tesla",
-        eligibility: "Paid",
+        eligibility: "Yes",
         experience: "3.6 years",
         salary: "20,000",
         stage: "New Application",
@@ -66,8 +68,8 @@ const candidates = [
             name: "Handmade Pouch",
         },
         jobTitle: "Software Engineer",
-        employer: "Wells Fargo",
-        eligibility: "Paid",
+        employer: "Citi Group",
+        eligibility: "Yes",
         experience: "10 Years",
         salary: "1000 ",
         stage: "Screening",
@@ -81,7 +83,7 @@ const candidates = [
         },
         jobTitle: "Software Engineer",
         employer: "Amazon",
-        eligibility: "Unpaid",
+        eligibility: "No",
         experience: "7 Years",
         salary: "12,000",
         stage: "Job Offer",
@@ -95,7 +97,7 @@ const candidates = [
         },
         jobTitle: "Software Engineer",
         employer: "The Home Depot",
-        eligibility: "Unpaid",
+        eligibility: "No",
         experience: "6 years",
         salary: "6500",
         stage: "Hire",
@@ -109,7 +111,7 @@ const candidates = [
         },
         jobTitle: "Software Engineer",
         employer: "Tesla",
-        eligibility: "Unpaid",
+        eligibility: "No",
         experience: "3.6 years",
         salary: "20,000",
         stage: "New Application",
@@ -123,7 +125,7 @@ const candidates = [
         },
         jobTitle: "Software Engineer",
         employer: "Wells Fargo",
-        eligibility: "Unpaid",
+        eligibility: "No",
         experience: "10 Years",
         salary: "1000 ",
         stage: "Screening",
@@ -142,56 +144,32 @@ const breadcrumb = [
     { label: "Manage Candidates" },
 ];
 
-function ManageCandidates() {
-    const statsData = [
-        {
-            title: "Approved Employers",
-            count: "20",
-            iconName: "People",
-        },
-        {
-            title: "Employer’s Request",
-            count: "50",
-            iconName: "Users",
-        },
-        {
-            title: "Rejected Employers",
-            count: "10",
-            iconName: "ProfileDelete",
-        },
-    ];
+function MainCandidates() {
+    const [name, setName] = useState("");
+    const [title, setTitle] = useState("");
+    const [employer, setEmployer] = useState("");
+    const [eligibility, setEligibility] = useState("");
+    const [appliedDate, setAppliedDate] = useState("");
+    const [candidateStage, setCandidateStage] = useState("");
+    const [userStatus, setUserStatus] = useState("");
 
     const onViewClick = (id) => {
-        console.log("onViewClick", id)
-        // push(
-        //   {
-        //     pathname: "/departments/view",
-        //     // query: { type: "view", id },
-        //     query: { id },
-        //   },
-        //   undefined,
-        //   {
-        //     shallow: true,
-        //   }
-        // );
+        window.location.href = `/admin/manage-candidates/view/${id}`;
     };
     const onEditClick = (id) => {
-        console.log("onEditClick", id)
-        // push(
-        //   {
-        //     pathname: "/departments/edit",
-        //     // query: { type: "edit", id },
-        //     query: { id },
-        //   },
-        //   undefined,
-        //   {
-        //     shallow: true,
-        //   }
-        // );
+        window.location.href = `/admin/manage-candidates/edit/${id}`;
     };
-    const onDeleteClick = (id) => {
-        console.log("onDeleteClick", id)
+    const onMessageClick = (id) => {
+        window.location.href = `/admin/manage-candidates/schedule/${id}`;
     };
+
+    console.log("name", name);
+    console.log("title", title);
+    console.log("employer", employer);
+    console.log("eligibility", eligibility);
+    console.log("appliedDate", appliedDate);
+    console.log("candidateStage", candidateStage);
+    console.log("userStatus", userStatus);
 
     return (
         <>
@@ -207,11 +185,26 @@ function ManageCandidates() {
                 // id="employees-listing"
                 data={candidates}
                 columns={columns}
-                filterBy={["SearchByName", "SearchByTitle"]}
+                filterBy={[
+                    "SearchByName",
+                    "SearchByTitle",
+                    "SearchByEmployer",
+                    "SearchByEligibility",
+                    "SearchByAppliedDate",
+                    "SearchByCandidateStage",
+                    "SearchByUserStatus",
+                ]}
+                setName={setName}
+                setTitle={setTitle}
+                setEmployer={setEmployer}
+                setEligibility={setEligibility}
+                setAppliedDate={setAppliedDate}
+                setCandidateStage={setCandidateStage}
+                setUserStatus={setUserStatus}
                 actions={actions}
                 onViewClick={onViewClick}
                 onEditClick={onEditClick}
-                onDeleteClick={onDeleteClick}
+                onMessageClick={onMessageClick}
             // shadow
             // title="Manage Roles"
             // setTableFilters={setTableFilters}
@@ -223,4 +216,4 @@ function ManageCandidates() {
     );
 }
 
-export default ManageCandidates;
+export default MainCandidates;
