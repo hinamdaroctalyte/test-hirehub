@@ -2,8 +2,20 @@ import { Menu, Transition } from '@headlessui/react'
 import { Fragment, } from 'react'
 import { Icons } from '..'
 import avatar from "../../assets/images/avatars/8.png"
+import { NavLink, useNavigate } from 'react-router-dom';
+import { logout } from '../../Slices/authSlice';
+import { useDispatch } from "react-redux"
 
 export default function Dropdown() {
+    const dispatch = useDispatch();
+    const navigate = useNavigate();
+
+
+
+    const handleLogOut = () => {
+        dispatch(logout())
+        navigate("/")
+    }
     return (
         <Menu as="div" className="relative inline-block text-left -ml-3">
             <div>
@@ -50,24 +62,27 @@ export default function Dropdown() {
                         </Menu.Item>
                         <Menu.Item>
                             {({ active }) => (
-                                <button
-                                    className={`${active ? 'bg-violet-500 text-white' : 'text-gray-900'
-                                        } group flex w-full items-center rounded-md px-2 py-2 text-sm`}
-                                >
-                                    {active ? (
-                                        <Icons.BsCardText className="mr-2 h-5 w-5 text-white" />
-                                    ) : (
-                                        <Icons.BsCardText className="mr-2 h-5 w-5 text-[purple]" />
-                                    )}
-                                    Change Password
-                                </button>
+                                <NavLink to="change-password"> 
+                                    <button
+                                        className={`${active ? 'bg-violet-500 text-white' : 'text-gray-900'
+                                            } group flex w-full items-center rounded-md px-2 py-2 text-sm`}
+                                    >
+                                        {active ? (
+                                            <Icons.BsCardText className="mr-2 h-5 w-5 text-white" />
+                                        ) : (
+                                            <Icons.BsCardText className="mr-2 h-5 w-5 text-[purple]" />
+                                        )}
+                                        Change Password
+                                    </button>
+                                </NavLink>
                             )}
                         </Menu.Item>
-                    </div>                     
+                    </div>
                     <div className="px-1 py-1">
                         <Menu.Item>
                             {({ active }) => (
                                 <button
+                                    onClick={handleLogOut}
                                     className={`${active ? 'bg-violet-500 text-white' : 'text-gray-900'
                                         } group flex w-full items-center rounded-md px-2 py-2 text-sm`}
                                 >

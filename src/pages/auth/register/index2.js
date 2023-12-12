@@ -38,7 +38,7 @@ function RegisterPage() {
                     <p className="text-gray-1 text-center mt-3">
                         <span>Already have an account?</span>
                         <a className='text-purple-1'>
-                            <NavLink to="/login"> Login</NavLink>
+                            <NavLink to="/"> Login</NavLink>
                         </a>
                     </p>
                 </form>

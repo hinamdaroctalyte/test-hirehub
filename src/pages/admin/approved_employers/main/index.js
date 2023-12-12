@@ -1,6 +1,5 @@
 import React from 'react';
-import { Breadcrumb, } from '../../../../components/core';
-import { Table } from '../../../../components';
+import { Core, Table } from '../../../../components';
 import avatar1 from "../../../../assets/images/avatars/2.png";
 import TableB from '../../../../components/table/TableB';
 import employersData from '../../../../data/employersData.json';
@@ -67,7 +66,7 @@ function ApprovedEmployers() {
     };
     return (
         <>
-            <Breadcrumb
+            <Core.Breadcrumb
                 heading="Approved Employers"
                 breadcrumb={breadcrumb}
             />

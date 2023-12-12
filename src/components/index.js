@@ -2,6 +2,7 @@
 import AuthLayout from "./layout/AuthLayout";
 import AdminLayout from "./layout/AdminLayout";
 import AuthCard from "./auth/AuthCard";
+import ChangePasswordForm from "./change_password/ChangePasswordForm";
 import Header from "./layout/Header";
 import Sidebar from "./layout/Sidebar";
 import Table from "./table/Table";
@@ -18,6 +19,7 @@ export {
     AuthLayout,
     AuthCard,
     AdminLayout,
+    ChangePasswordForm,
     Header,
     Sidebar,
     Table,
