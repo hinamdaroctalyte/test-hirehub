@@ -4,6 +4,10 @@ import { Table } from '../../../../components';
 import avatar1 from "../../../../assets/images/avatars/2.png";
 import TableB from '../../../../components/table/TableB';
 import employersData from '../../../../data/employersData.json';
+import { useDispatch, useSelector } from 'react-redux';
+import { useNavigate } from "react-router-dom"
+
+
 
 const breadcrumb = [
     { label: "Dashboard", link: "/admin/dashboard" },
@@ -17,6 +21,10 @@ const actions = {
 };
 
 function ApprovedEmployers() {
+    const employersTableData = useSelector((state) => state?.admin?.employersDataTable);
+    const navigate = useNavigate()
+
+
     const columns = [
         {
             title: 'Name',
@@ -53,14 +61,17 @@ function ApprovedEmployers() {
         },
     ];
     const { tableData } = employersData;
-    const statusToFilter = 'approved';
-    const filteredData = tableData.filter(item => item.accountStatus === statusToFilter);
+    const statusToFilter = 'Approved';
+    const filteredData = employersTableData.filter(item => item.isVerified === statusToFilter);
 
     const onViewClick = (id) => {
-        window.location.href = `/admin/approved-employers/view/${id}`;
+
+        navigate(`/admin/approved-employers/view/${id}`);
+
     };
     const onEditClick = (id) => {
-        window.location.href = `/admin/approved-employers/edit/${id}`;
+
+        navigate(`/admin/approved-employers/edit/${id}`);
     };
     const onMessageClick = (id) => {
         console.log("onMessageClick", id)

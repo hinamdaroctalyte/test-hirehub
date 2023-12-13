@@ -3,13 +3,17 @@ import { Fragment, } from 'react'
 import { Icons } from '..'
 import avatar from "../../assets/images/avatars/8.png"
 import { useNavigate } from 'react-router-dom';
-import { logout } from '../../Slices/authSlice';
-import { useDispatch } from "react-redux"
+import { logout } from '../../Slices/Auth/authSlice';
+import { useDispatch ,useSelector} from "react-redux";
+
+
 
 
 export default function Dropdown() {
     const dispatch = useDispatch(); 
     const navigate = useNavigate();
+    const user = useSelector((state) => state.auth.user);
+    console.log(user, "user header");
 
 
 
@@ -26,8 +30,8 @@ export default function Dropdown() {
                         <span class="absolute bottom-0 end-0 block h-2.5 w-2.5 rounded-full ring-2 ring-white bg-green-1"></span>
                     </div>
                     <div className='flex flex-col items-start'>
-                        <span className='text-black-1 text-[14px] leading-[20px] font-medium'>Wells Fargo</span>
-                        <span className='text-gray-6 text-[12px] leading-[18px]'>Admin</span>
+                        <span className='text-black-1 text-[14px] leading-[20px] font-medium'>{user?.name}</span>
+                        <span className='text-gray-6 text-[12px] leading-[18px]'>{user?.Role}</span>
                     </div>
                     <Icons.GoChevronDown
                         className="ml-1 h-5 w-5 text-gray-1 hover:text-violet-100"

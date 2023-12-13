@@ -6,6 +6,9 @@ import companyLogo2 from "../../../../assets/images/company-logos/4.png";
 import companyLogo3 from "../../../../assets/images/company-logos/7.png";
 import TableB from '../../../../components/table/TableB';
 import employersData from '../../../../data/employersData.json';
+import { useDispatch, useSelector } from 'react-redux';
+import {useNavigate} from "react-router-dom"
+
 
 const breadcrumb = [
     { label: "Dashboard", link: "/admin/dashboard" },
@@ -20,6 +23,10 @@ const actions = {
 };
 
 function MainEmployersRequest() {
+    const  employersTableData  = useSelector((state) => state?.admin?.employersDataTable);
+    const navigate = useNavigate()
+
+
     const columns = [
         {
             title: 'Employer Name',
@@ -35,8 +42,8 @@ function MainEmployersRequest() {
         },
         {
             title: 'Account Status',
-            dataIndex: 'accountStatus',
-            key: 'accountStatus',
+            dataIndex: 'account',
+            key: 'account',
             sorter: true,
         },
         {
@@ -46,15 +53,16 @@ function MainEmployersRequest() {
         },
     ];
     const { tableData } = employersData;
-    const statusToFilter = 'pending';
-    const filteredData = tableData.filter(item => item.accountStatus === statusToFilter);
+    const statusToFilter = 'Pending';
+    const filteredData = employersTableData.filter(item => item.isVerified === statusToFilter);
     const onViewClick = (id) => {
         console.log("onViewClick", id)
-        window.location.href = `/admin/employers-request/view/${id}`;
+        navigate(`/admin/employers-request/view/${id}`);
+        
     };
     const onEditClick = (id) => {
         console.log("onEditClick", id)
-        window.location.href = `/admin/employers-request/edit/${id}`;
+        navigate(`/admin/employers-request/edit/${id}`);
     };
     const onMessageClick = (id) => {
         console.log("onMessageClick", id)

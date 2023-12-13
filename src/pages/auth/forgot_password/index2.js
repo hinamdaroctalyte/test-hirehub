@@ -1,13 +1,19 @@
-import React from 'react';
+import React, { useState } from 'react';
 import { AuthCard, AuthLayout, Core, Icons } from '../../../components';
 import "../../../assets/css/login";
 import { NavLink } from 'react-router-dom';
 
+
 function ForgotPasswordPage() {
+    const [emai, setEmail] = useState("")
+
+    const handleSubmit = (e) => {
+        
+    }
     return (
         <AuthLayout>
             <AuthCard>
-                <form>
+                <form onSubmit={handleSubmit}>
                     <div className="flex justify-content-start">
                         <h6 className='text-[22px] font-medium'>Forgot Password?</h6>
                         <span className='text-black text-[20px] mt-[6px] ml-1'>

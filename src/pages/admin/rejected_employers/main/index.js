@@ -6,6 +6,10 @@ import companyLogo2 from "../../../../assets/images/company-logos/4.png";
 import companyLogo3 from "../../../../assets/images/company-logos/7.png";
 import TableB from '../../../../components/table/TableB';
 import employersData from '../../../../data/employersData.json';
+import { useDispatch, useSelector } from 'react-redux';
+import {useNavigate} from "react-router-dom"
+
+
 
 const breadcrumb = [
     { label: "Dashboard", link: "/admin/dashboard" },
@@ -20,6 +24,10 @@ const actions = {
 };
 
 function MainRejectedEmployers() {
+    const  employersTableData  = useSelector((state) => state?.admin?.employersDataTable);
+    const navigate = useNavigate()
+
+
     const columns = [
         {
             title: 'Employer Name',
@@ -35,8 +43,8 @@ function MainRejectedEmployers() {
         },
         {
             title: 'Account Status',
-            dataIndex: 'accountStatus',
-            key: 'accountStatus',
+            dataIndex: 'account',
+            key: 'account',
             sorter: true,
         },
         {
@@ -46,13 +54,13 @@ function MainRejectedEmployers() {
         },
     ];
     const { tableData } = employersData;
-    const statusToFilter = 'rejected';
-    const filteredData = tableData.filter(item => item.accountStatus === statusToFilter);
+    const statusToFilter = 'Rejected';
+    const filteredData = employersTableData.filter(item => item.isVerified === statusToFilter);
     const onViewClick = (id) => {
-        window.location.href = `/admin/rejected-employers/view/${id}`;
+        navigate(`/admin/rejected-employers/view/${id}`);
     };
     const onEditClick = (id) => {
-        window.location.href = `/admin/rejected-employers/edit/${id}`;
+       navigate(`/admin/rejected-employers/edit/${id}`);
     };
     const onMessageClick = (id) => {
         console.log("onMessageClick", id)
