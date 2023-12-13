@@ -123,7 +123,7 @@ function LoginPage() {
                             </a>
                         </div>
                     </div>
-                    <Core.Button type='submit' className='text-[18px] leading-[20px] rounded-full py-[18px]'>
+                    <Core.Button type='submit' className='text-[18px] leading-[20px] py-[18px]'>
                         Sign in
                     </Core.Button>
                     <p className='text-gray-6 text-[18px] leading-[24px]'>

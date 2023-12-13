@@ -2,12 +2,12 @@ import React from 'react';
 import { NavLink } from "react-router-dom";
 import { AuthLayout, Core } from '../../../components';
 import image from "../../../assets/images/logo/logo.png";
-import { Switch } from 'antd';
+// import { Switch } from 'antd';
 
 function ForgotPasswordPage() {
-    const onChange = (checked) => {
-        console.log(`switch to ${checked}`);
-    };
+    // const onChange = (checked) => {
+    //     console.log(`switch to ${checked}`);
+    // };
     return (
         <AuthLayout>
             <img src={image} className='w-[360px]' />
@@ -23,7 +23,7 @@ function ForgotPasswordPage() {
                         <Core.InputWithLabel label name="email" className="py-5" bgGray />
                     </div>
                 </div>
-                <Core.Button className="text-[18px] leading-[20px] rounded-full py-[18px]">Send Reset Link</Core.Button>
+                <Core.Button className="text-[18px] leading-[20px] py-[18px]">Send Reset Link</Core.Button>
                 <p className='text-gray-6 text-[18px] leading-[24px]'>
                     <a><NavLink to="/register"> Back to login </NavLink></a>
                 </p>

@@ -1,5 +1,7 @@
+import FourZeroFour from "./error/404";
 // ------------ Auth ------------
-import ForgotPasswordPage from "./auth/forgot_password";
+import ForgotPasswordPage from "./auth/forgot_password/ForgotPasswordPage";
+import NewPasswordPage from "./auth/forgot_password/NewPasswordPage";
 import LoginPage from "./auth/login";
 import RegisterPage from "./auth/register";
 // ------------ Admin ------------
@@ -32,9 +34,11 @@ import EmployerDashboard from "./employer/dashboard";
 import ManageProfile from "./employer/manage_profile";
 
 export {
+    FourZeroFour,
     // ------------ Auth ------------
     RegisterPage,
     ForgotPasswordPage,
+    NewPasswordPage,
     LoginPage,
     // ------------ Admin ------------
     AdminDashboard,

@@ -22,28 +22,22 @@ import {
   MainCandidates,
   EditCandidates,
   ViewCandidates,
-  ScheduleCandidates
+  ScheduleCandidates,
+  NewPasswordPage,
+  FourZeroFour
 } from "./pages/index";
 import { AdminLayout, EmployerLayout } from "./components";
 import PrivateRoute from "./utilis/PrivateRoute";
 
-
-
 function App() {
-
-
-
-
-
-
-
-
   return (
     <BrowserRouter>
       <Routes>
         <Route path="/" index element={<LoginPage />} />
         <Route path="forgot-password" element={<ForgotPasswordPage />} />
+        <Route path="new-password" element={<NewPasswordPage />} />
         <Route path="register" element={<RegisterPage />} />
+        <Route path="404" element={<FourZeroFour />} />
 
         {/* // Admin Routes */}
         <Route path="admin/*" element={<PrivateRoute roles={['admin']}><AdminLayout /></PrivateRoute>} >
@@ -71,7 +65,7 @@ function App() {
           <Route path="rejected-employers" element={<PrivateRoute roles={['admin']}><MainRejectedEmployers /></PrivateRoute>} />
           <Route path="rejected-employers/edit/:id" element={<PrivateRoute roles={['admin']}><EditRejectedEmployers /></PrivateRoute>} />
           <Route path="rejected-employers/view/:id" element={<PrivateRoute roles={['admin']}><ViewRejectedEmployers /></PrivateRoute>} />
-          
+
           <Route path="change-password" element={<PrivateRoute roles={['admin']}><ChangePassword /></PrivateRoute>} />
         </Route >
 

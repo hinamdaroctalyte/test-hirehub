@@ -5,7 +5,7 @@ import { Icons } from '..';
 function InputWithLabel({ onChange, label, name, forgotPassword, required, helperText, className, sm, bgGray, value, setValue }) {
 
     const [passwordVisible, setPasswordVisible] = useState(false);
-    const [inputType, setInputType] = useState('text');
+    const [inputType, setInputType] = useState('password');
 
     const togglePasswordVisibility = () => {
         setPasswordVisible(!passwordVisible);
@@ -161,7 +161,7 @@ function InputWithLabel({ onChange, label, name, forgotPassword, required, helpe
                 {/* <input type={name === "password" ? inputType : type(name)} value={value} onChange={onChange} className={`w-full text-[14px] font-regular leading-[20px] text-gray-700 ${bgGray ? 'bg-gray-3' : 'bg-white'} border border-gray-300 rounded-lg focus:outline-none focus:border-blue-500 px-3 ${sm ? 'py-[9px]' : 'py-[14px]'} ${className}`} id={name} name={name}
                     placeholder={placeholder(name)} autofocus /> */}
                 {(name === "password" || name === "newPassword" || name === "confirmPassword" || name === "oldPassword") &&
-                    <span className="absolute right-3 top-3 text-gray-1 text-[18px] cursor-pointer" onClick={togglePasswordVisibility}>
+                    <span className="absolute right-3 top-4 text-gray-1 text-[20px] cursor-pointer" onClick={togglePasswordVisibility}>
                         {passwordVisible ? <Icons.IoEyeOutline /> : <Icons.IoEyeOffOutline />}
                     </span>
                 }
