@@ -3,7 +3,7 @@ import { NavLink } from 'react-router-dom';
 import { AuthLayout, Core } from '../../../components';
 import image from '../../../assets/images/logo/logo.png';
 import { Switch } from 'antd';
-import { login } from '../../../Slices/authSlice';
+import { login } from '../../../Slices/Auth/authSlice';
 import { useDispatch, useSelector } from 'react-redux';
 import { useNavigate } from 'react-router-dom';
 import { redirectToDashboard } from '../../../utilis/RedirectionToDashboard';

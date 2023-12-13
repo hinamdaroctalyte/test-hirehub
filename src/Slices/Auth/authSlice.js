@@ -1,7 +1,8 @@
 // authSlice.js
 import { createAsyncThunk, createSlice } from '@reduxjs/toolkit';
-import authService from '../services/authServices';
-import { handleApiError } from '../utilis/errorHandling';
+
+import { handleApiError } from '../../utilis/errorHandling';
+import authService from '../../services/Auth/authServices';
 
 
 
@@ -17,11 +18,33 @@ export const login = createAsyncThunk('auth/login', async (credentials, { dispat
     }
 });
 
+export const register = createAsyncThunk('auth/register', async (credentials, { dispatch }) => {
+    try {
+        const data = await authService.register(credentials);
+        return data
+    } catch (error) {
+        // Handle login error
+        handleApiError(error)
+    }
+});
+
+export const forgetPassword = createAsyncThunk('auth/forget-password', async (credentials, { dispatch }) => {
+    try {
+        const data = await authService.forgetPassword(credentials);
+        return data
+    } catch (error) {
+        // Handle login error
+        console.log(error);
+        handleApiError(error)
+    }
+});
+
+
 const authSlice = createSlice({
     name: 'auth',
     initialState: {
         user: JSON.parse(localStorage.getItem('user')),
-        isAuthenticated: JSON.parse(localStorage.getItem('user')) ? true: false,
+        isAuthenticated: JSON.parse(localStorage.getItem('user')) ? true : false,
         role: null,
         error: null,
     },
@@ -34,7 +57,7 @@ const authSlice = createSlice({
             state.user = null;
             state.isAuthenticated = false;
             localStorage.removeItem("user")
-            
+
         },
 
     },
@@ -50,12 +73,21 @@ const authSlice = createSlice({
             state.error = null
 
         })
-            .addCase(login.rejected, (state, action) => {
+            builder.addCase(login.rejected, (state, action) => {
                 state.user = null;
                 state.isAuthenticated = false;
                 localStorage.removeItem("user")
                 state.error = action.error.message;
             });
+            builder.addCase(register.fulfilled, (state, payload) => {
+                state.error = null
+                console.log(payload, "payloadddddddddd from registerrrr");
+            })
+            builder.addCase(forgetPassword.fulfilled, (state, payload) => {
+                console.log(payload, "payloadd from forgot password");
+            })
+            
+            
     }
 });
 

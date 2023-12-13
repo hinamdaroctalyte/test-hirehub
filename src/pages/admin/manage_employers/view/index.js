@@ -3,6 +3,7 @@ import { Breadcrumb, } from '../../../../components/core';
 import { Core, } from '../../../../components';
 import employersData from '../../../../data/employersData.json';
 
+
 const breadcrumb = [
     { label: "Dashboard", link: "/admin/dashboard" },
     { label: "Manage Employers", link: "/admin/manage-employers" },
@@ -11,11 +12,12 @@ const breadcrumb = [
 
 function ViewEmployers() {
     const { tableData } = employersData;    
+
     const dropdownOptions = [
-            "activate",
-            "inactive",
-            "on hold",
-        ];
+        'Active',
+        'Deactive',
+        'On Hold',
+    ];
     return (
         <>
             <Breadcrumb

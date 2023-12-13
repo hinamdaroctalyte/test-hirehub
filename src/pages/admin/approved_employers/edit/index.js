@@ -2,6 +2,8 @@ import React from 'react';
 import { Breadcrumb, StatsGroup } from '../../../../components/core';
 import { Core, } from '../../../../components';
 import employersData from '../../../../data/employersData.json';
+import { useDispatch, useSelector } from 'react-redux';
+
 
 const breadcrumb = [
     { label: "Dashboard", link: "/admin/dashboard" },
@@ -11,10 +13,12 @@ const breadcrumb = [
 
 function EditApprovedEmployers() {
     const { tableData } = employersData;
+    const employerDetails = useSelector((state) => state?.admin?.employerDetails);
+
     const dropdownOptions = [
-        'approved',
-        'pending',
-        'rejected',
+        'Approved',
+        'Pending',
+        'Rejected',
     ];
     return (
         <>
@@ -22,7 +26,7 @@ function EditApprovedEmployers() {
                 heading="Edit Approved Employers"
                 breadcrumb={breadcrumb}
             />
-            <Core.CompanyProfile data={tableData} dropdownOptions={dropdownOptions} pageType="edit" />
+            <Core.CompanyProfile data={tableData} selectedState={employerDetails?.isVerified} dropdownOptions={dropdownOptions} pageType="edit" />
         </>
     );
 }
