@@ -39,6 +39,17 @@ export const forgetPassword = createAsyncThunk('auth/forget-password', async (cr
     }
 });
 
+export const changePasswordByUser = createAsyncThunk('auth/change-password', async (credentials, { dispatch }) => {
+    try {
+        const data = await authService.changePassword(credentials);
+        return data
+    } catch (error) {
+        // Handle login error
+        console.log(error);
+        handleApiError(error)
+    }
+});
+
 
 const authSlice = createSlice({
     name: 'auth',

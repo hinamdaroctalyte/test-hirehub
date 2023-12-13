@@ -37,7 +37,7 @@ function App() {
         <Route path="forgot-password" element={<ForgotPasswordPage />} />
         <Route path="new-password" element={<NewPasswordPage />} />
         <Route path="register" element={<RegisterPage />} />
-        <Route path="404" element={<FourZeroFour />} />
+        {/* <Route path="404" element={<FourZeroFour />} /> */}
 
         {/* // Admin Routes */}
         <Route path="admin/*" element={<PrivateRoute roles={['admin']}><AdminLayout /></PrivateRoute>} >
@@ -79,9 +79,7 @@ function App() {
 
         <Route path="*"
           element={
-            <main style={{ padding: '1rem' }}>
-              <p>There was a problem with the link you clicked on. Please try again.</p>
-            </main>
+            <FourZeroFour />
           }
         />
       </Routes >

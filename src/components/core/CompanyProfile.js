@@ -171,14 +171,21 @@ function CompanyProfile({ data, pageType, dropdownOptions, selectedState }) {
                         </div>
                         <div className='w-[30%]'>
                             <h6 className='text-[18px] leading-[28px] font-medium'>Status</h6>
-                            <span className={`
-                            text-gray-6                             
-                            ${(employerDetails?.accountStatus)?.toLowerCase() === "active" && 'text-green-4'}
-                            ${(employerDetails?.accountStatus)?.toLowerCase() === "deactive" && 'text-red-2'}
-                             text-[14px] leading-[20px] font-medium
-                             `}>
-                                {employerDetails?.accountStatus ? employerDetails?.accountStatus : "--"}
-                            </span>
+
+                            {pageType === 'edit' ?
+                                <Core.Dropdown2 selectedState={selectedState} options={dropdownOptions} setState={setStatus} />
+                                :
+                                <span className={`
+                                            text-gray-6                             
+                                            ${(employerDetails?.accountStatus)?.toLowerCase() === "active" && 'text-green-4'}
+                                            ${(employerDetails?.accountStatus)?.toLowerCase() === "deactive" && 'text-red-2'}
+                                             text-[14px] leading-[20px] font-medium
+                                             `}>
+                                    {employerDetails?.accountStatus ? employerDetails?.accountStatus : "--"}
+                                </span>
+                            }
+
+
                         </div>
                         <div className='w-[30%]'>
                             <h6 className='text-[18px] leading-[28px] font-medium'>Hired candidate</h6>
