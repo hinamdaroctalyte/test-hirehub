@@ -44,13 +44,7 @@
         ],
         "videos": [""],
         "stats": [
-            { "title": "Company size", "value": "85,464 employees " },
-            { "title": "Followers", "value": "7,611,760 followers " },
-            { "title": "Status", "value": "Activated" },
-            { "title": "Hired candidate", "value": "23" },
-            { "title": "Published jobs count", "value": "78" },
-            { "title": "Language", "value": "English" },
-            { "title": "Website link", "value": "www.us.pg.com" }
+            { "title": "Status", "value": "Active" }
         ]    
         },
         {

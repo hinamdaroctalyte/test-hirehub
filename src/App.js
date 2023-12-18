@@ -38,7 +38,7 @@ function App() {
         <Route path="forgot-password" element={<ForgotPasswordPage />} />
         <Route path="new-password" element={<NewPasswordPage />} />
         <Route path="register" element={<RegisterPage />} />
-        <Route path="404" element={<FourZeroFour />} />
+        {/* <Route path="404" element={<FourZeroFour />} /> */}
 
         {/* // Admin Routes */}
         <Route path="admin/*" element={<PrivateRoute roles={['admin']}><AdminLayout /></PrivateRoute>} >
@@ -76,8 +76,10 @@ function App() {
         <Route path="employer/*" element={<PrivateRoute roles={['employer']}><EmployerLayout /></PrivateRoute>} >
           <Route path="dashboard" element={<PrivateRoute roles={['employer']}><EmployerDashboard /></PrivateRoute>} />
           <Route path="manage-profile" element={<PrivateRoute roles={['employer']}><ManageProfile /></PrivateRoute>} />
+          <Route path="profile" element={<PrivateRoute roles={['employer']}><ViewProfile /></PrivateRoute>} />
           <Route path="change-password" element={<PrivateRoute roles={['employer']}><ChangePassword /></PrivateRoute>} />
 
+          <Route path="manage-candidates" element={<MainCandidates />} />
           <Route path="manage-candidates/edit/:id" element={<EditCandidates />} />
           <Route path="manage-candidates/view/:id" element={<ViewCandidates />} />
           <Route path="manage-candidates/schedule/:id" element={<ScheduleCandidates />} />
@@ -86,9 +88,7 @@ function App() {
 
         <Route path="*"
           element={
-            <main style={{ padding: '1rem' }}>
-              <p>There was a problem with the link you clicked on. Please try again.</p>
-            </main>
+            <FourZeroFour />
           }
         />
       </Routes >

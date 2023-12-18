@@ -4,8 +4,8 @@ import TableB from '../../../../components/table/TableB';
 // import employersData from '../../../../data/employersData';
 import { useDispatch, useSelector } from 'react-redux';
 import { getEmployers } from '../../../../Slices/Admin/adminSlice';
-import { useStatsData} from "../../../../utilis/statsData";
-import {useNavigate} from "react-router-dom"
+import { useStatsData } from "../../../../utilis/statsData";
+import { useNavigate } from "react-router-dom"
 
 const breadcrumb = [
     { label: "Dashboard", link: "/admin/dashboard" },
@@ -19,27 +19,24 @@ const actions = {
 };
 
 function ManageEmployers() {
-    const  employersTableData  = useSelector((state) => state?.admin?.employersDataTable);
+    const employersTableData = useSelector((state) => state?.admin?.employersDataTable);
     const dispatch = useDispatch();
     const navigate = useNavigate()
     const statsData = useStatsData()
-    console.log({statsData})
- 
+    console.log({ statsData })
 
-
-
-
+    
     useEffect(() => {
         try {
 
             dispatch(getEmployers()).unwrap().then(res => {
                 console.log("Successfully fetched data", res);
-              
 
 
-                }).catch(err => {
-                    console.error(`Error Fetching Data ${err}`);
-                });
+
+            }).catch(err => {
+                console.error(`Error Fetching Data ${err}`);
+            });
         } catch (error) {
             console.error(`Error in useEffect of Dashboard ${error}`)
 
@@ -48,8 +45,7 @@ function ManageEmployers() {
 
     }, [])
 
-
-
+ 
 
     const _columns = [
         {

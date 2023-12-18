@@ -176,6 +176,7 @@ function MainCandidates() {
                 heading="Manage Candidates"
                 breadcrumb={breadcrumb}
             />
+            a
             <TableB
                 data={candidates}
                 columns={columns}

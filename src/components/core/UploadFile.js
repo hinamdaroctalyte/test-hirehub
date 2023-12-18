@@ -3,7 +3,7 @@ import { NavLink } from "react-router-dom";
 import { Icons } from '..';
 
 
-function UploadFile({ label, name, required, helperText, accept, onchange }) {
+function UploadFile({ label, name, required, helperText, accept, onChange }) {
 
     const _label = (name) => {
         switch (name) {
@@ -39,8 +39,8 @@ function UploadFile({ label, name, required, helperText, accept, onchange }) {
                             {helperText}
                         </p>
                     }
-                    <span className="sr-only">Choose profile photo</span>
-                    <input type="file" accept={accept} onChange={onchange ? onchange : console.log("go and see")} className="block w-full text-gray-8
+                    <span class="sr-only">Choose profile photo</span>
+                    <input type="file" accept={accept} required onChange={onChange} class="block w-full text-gray-8
                         file:mr-4 file:py-2 file:px-4
                         file:rounded-full file:border-0
                         file:text-sm file:font-semibold

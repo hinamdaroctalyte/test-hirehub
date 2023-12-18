@@ -3,9 +3,9 @@ import { Dropdown } from '../core';
 import Icon from '../icon';
 import { useDispatch, useSelector } from 'react-redux';
 
-
 function Header({ toggleSidebar }) {
     const user = useSelector((state) => state.auth.user);
+
     // console.log(user, "user header");
 
     return (
@@ -38,7 +38,7 @@ function Header({ toggleSidebar }) {
                     </span>
                 </div>
                 <span className='w-[1px] h-[40px] bg-gray-7'>
-                </span> 
+                </span>
                 <Dropdown />
             </div>
         </header>

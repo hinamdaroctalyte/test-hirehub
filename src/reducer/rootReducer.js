@@ -1,13 +1,14 @@
-// rootReducer.js
 import { combineReducers } from 'redux';
 import authSlice from '../Slices/Auth/authSlice';
 import adminSlice from '../Slices/Admin/adminSlice';
-// import other reducers if available
+import employerSlices from '../Slices/Employer/EmployerSlice';
+
 
 const rootReducer = combineReducers({
   auth: authSlice,
   admin: adminSlice,
-  // other slices or reducers
+  employer: employerSlices,
+ 
 });
 
 export default rootReducer;

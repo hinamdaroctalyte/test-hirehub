@@ -3,7 +3,7 @@ import { NavLink } from "react-router-dom";
 import { Icons } from '..';
 
 
-function TextAreaWithLabel({ label, name, required, helperText }) {
+function TextAreaWithLabel({ label, name, required, helperText, onChange }) {
 
     const _label = (name) => {
         switch (name) {
@@ -41,7 +41,7 @@ function TextAreaWithLabel({ label, name, required, helperText }) {
                         {helperText}
                     </p>
                 }
-                <textarea rows={5} cols={5} className="w-full text-[14px] font-regular leading-[20px] text-gray-700 bg-gray-3 border border-gray-300 rounded-lg focus:outline-none focus:border-blue-500 px-3 py-[10px]" id={name} name={name}
+                <textarea onChange={onChange} rows={5} cols={5} className="w-full text-[14px] font-regular leading-[20px] text-gray-700 bg-gray-3 border border-gray-300 rounded-lg focus:outline-none focus:border-blue-500 px-3 py-[10px]" id={name} name={name}
                     placeholder={placeholder(name)} autofocus />
             </div>
         </>

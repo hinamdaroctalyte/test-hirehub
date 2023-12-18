@@ -1,6 +1,12 @@
 import React, { useState } from 'react';
 import { Breadcrumb } from '../../../components/core';
 import { Core, Employer } from '../../../components';
+import { UpdateEmployerById } from '../../../Slices/Employer/EmployerSlice';
+import { toast, ToastContainer } from 'react-toastify';
+import { useDispatch, useSelector } from 'react-redux';
+import notificationService from '../../../utilis/notification';
+
+
 
 const breadcrumb = [
     { label: "Dashboard", link: "/admin/dashboard" },
@@ -9,7 +15,22 @@ const breadcrumb = [
 
 function ManageProfile() {
     const [step, setStep] = useState(1);
+    const dispatch = useDispatch();
+    const [formData, setFormData] = useState({
+        companyName: '',
+        noOfEmployes: '',
+        logo: '',
+        welcomeVideo: '',
+        phoneNo: '',
+        companyIndustry: '',
+        description: '',
+    });
 
+    console.log(formData, "formmmmmmmmmasd")
+    const GetInput = (data) => {
+        console.log("Data received:", data);
+        setFormData({ ...formData, ...data });
+    }
     const handleNext = () => {
         if (step < 2) {
             setStep(step + 1);
@@ -23,7 +44,39 @@ function ManageProfile() {
     };
 
     const handleFinish = () => {
-        // Handle finish logic
+        try {
+
+            console.log(formData, "formmmmmmm")
+
+            const areAllValuesEmpty = Object.values(formData).every(value => !value);
+
+            if (areAllValuesEmpty) {
+                notificationService.warn("Form should contain any value")
+            } else {
+
+                const formDataToSend = new FormData();
+                Object.entries(formData).forEach(([key, value]) => {
+                    // console.log(`${key}:`, value);
+                    formDataToSend.append(key, value);
+                });
+
+                dispatch(UpdateEmployerById(formDataToSend)).unwrap().then(res => {
+                    console.log(res, "ressssponsee");
+                    if (res.data) {
+                        notificationService.success(res.data.msg);
+                    }
+                }).catch(error => {
+                    notificationService.error(error.message)
+                })
+
+
+
+
+            }
+        } catch (error) {
+            console.error(error);
+            notificationService.error(error.message);
+        }
     };
 
     return (
@@ -33,6 +86,8 @@ function ManageProfile() {
             />
 
             <div data-hs-stepper>
+                <ToastContainer></ToastContainer>
+
                 {/* steps */}
                 {/* <ul className="relative flex flex-row gap-x-2">
                         {[1, 2, 3].map((index) => (
@@ -60,10 +115,10 @@ function ManageProfile() {
                     </ul> */}
                 {/* content */}
                 {step === 1 &&
-                    <Employer.ManageProfile.Form1 />
+                    <Employer.ManageProfile.Form1 onNext={GetInput} />
                 }
                 {step === 2 &&
-                    <Employer.ManageProfile.Form2 />
+                    <Employer.ManageProfile.Form2 onNext={GetInput} />
                 }
 
                 <div className="mt-5 flex justify-start items-center gap-x-2">

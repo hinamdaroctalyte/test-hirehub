@@ -6,11 +6,17 @@ import { NavLink, useNavigate } from 'react-router-dom';
 import { logout } from '../../Slices/Auth/authSlice';
 import { useDispatch, useSelector } from "react-redux";
 
+import { useLocation } from 'react-router-dom';
+
 export default function Dropdown() {
     const dispatch = useDispatch();
     const navigate = useNavigate();
     const user = useSelector((state) => state.auth.user);
     // console.log(user, "user header");
+
+    const location = useLocation();
+    const parts = location?.pathname.split('/');
+    const accountType = parts[1];
 
     const handleLogOut = () => {
         dispatch(logout())
@@ -45,23 +51,25 @@ export default function Dropdown() {
             >
                 <Menu.Items className="absolute right-0 mt-2 w-56 origin-top-right divide-y divide-gray-100 rounded-md bg-white shadow-lg ring-1 ring-black/5 focus:outline-none">
                     <div className="px-1 py-1 ">
-                        <Menu.Item>
-                            {({ active }) => (
-                                <NavLink to="profile">
-                                    <button
-                                        className={`${active ? 'bg-violet-500 text-white' : 'text-gray-900'
-                                            } group flex w-full items-center rounded-md px-2 py-2 text-sm`}
-                                    >
-                                        {active ? (
-                                            <Icons.BsCardText className="mr-2 h-5 w-5 text-white" />
-                                        ) : (
-                                            <Icons.BsCardText className="mr-2 h-5 w-5 text-[purple]" />
-                                        )}
-                                        View Profile
-                                    </button>
-                                </NavLink>
-                            )}
-                        </Menu.Item>
+                        {!accountType === "admin" &&
+                            <Menu.Item>
+                                {({ active }) => (
+                                    <NavLink to="profile">
+                                        <button
+                                            className={`${active ? 'bg-violet-500 text-white' : 'text-gray-900'
+                                                } group flex w-full items-center rounded-md px-2 py-2 text-sm`}
+                                        >
+                                            {active ? (
+                                                <Icons.BsCardText className="mr-2 h-5 w-5 text-white" />
+                                            ) : (
+                                                <Icons.BsCardText className="mr-2 h-5 w-5 text-[purple]" />
+                                            )}
+                                            View Profile
+                                        </button>
+                                    </NavLink>
+                                )}
+                            </Menu.Item>
+                        }
                         <Menu.Item>
                             {({ active }) => (
                                 <NavLink to="change-password">

@@ -38,6 +38,18 @@ const authService = {
             throw error;
         }
     },
+    async changePassword(credentials) {
+        try {
+
+            const response = await api.post('/auth/change-password', credentials);
+            if (response && response.data && response.status === 200) {
+                console.log("reset pass");
+                return response.data;
+            }
+        } catch (error) {
+            throw error;
+        }
+    },
 };
 
 export default authService;

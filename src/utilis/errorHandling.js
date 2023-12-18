@@ -24,8 +24,8 @@ export const handleApiError = (error) => {
   if (error.response) {
     const status = error.response.status;
     const { data } = error.response.data;
-    const errorMsg = data?.error || data
-    console.log(data?.error, "weoeoeeoeoeo");
+    console.log(data, "weoeoeeoeoeo");
+    const errorMsg =  data?.error  || data 
     throw new Error(errorMsg)
   } else if (error.request) {
     // The request was made but no response was received
