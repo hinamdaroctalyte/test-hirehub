@@ -72,7 +72,6 @@ function App() {
         </Route >
 
         {/* // Employer Routes */}
-
         <Route path="employer/*" element={<PrivateRoute roles={['employer']}><EmployerLayout /></PrivateRoute>} >
           <Route path="dashboard" element={<PrivateRoute roles={['employer']}><EmployerDashboard /></PrivateRoute>} />
           <Route path="manage-profile" element={<PrivateRoute roles={['employer']}><ManageProfile /></PrivateRoute>} />
@@ -84,6 +83,11 @@ function App() {
           <Route path="manage-candidates/view/:id" element={<ViewCandidates />} />
           <Route path="manage-candidates/schedule/:id" element={<ScheduleCandidates />} />
 
+        </Route>
+
+        {/* // Candidate Routes */}
+        <Route path="candidate/*" element={<PrivateRoute roles={['candidate']}><EmployerLayout /></PrivateRoute>} >
+          <Route path="manage-profile" element={<PrivateRoute roles={['candidate']}><ManageProfile /></PrivateRoute>} />
         </Route>
 
         <Route path="*"

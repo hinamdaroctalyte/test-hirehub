@@ -1,13 +1,15 @@
 
-import { Icons, } from '../../components';
-import logo from "../../assets/images/logo/logo.png"
-import { NavLink, useLocation } from 'react-router-dom';
+import { Icons } from '../../components';
 import Icon from '../icon';
+import logo from "../../assets/images/logo/logo.png"
+import { NavLink, useLocation, useNavigate } from 'react-router-dom';
+import { useDispatch } from "react-redux";
+import { logout } from '../../Slices/Auth/authSlice';
 
 const NavItem = ({ value, slug }) => {
     const pathParts = slug.split('/');
     const _slug = pathParts[pathParts.length - 1];
-    console.log("_slug",_slug)
+
     return (
         <li className='pb-2'>
             <NavLink
@@ -21,10 +23,13 @@ const NavItem = ({ value, slug }) => {
     );
 };
 function Sidebar({ isSidebarOpen, toggleSidebar, menu }) {
-
-
     const location = useLocation();
-
+    const dispatch = useDispatch();
+    const navigate = useNavigate();
+    const handleLogOut = () => {
+        dispatch(logout())
+        navigate("/")
+    }
     return (
         <aside
             className={`${isSidebarOpen ? 'translate-x-0' : ''} 
@@ -50,16 +55,16 @@ function Sidebar({ isSidebarOpen, toggleSidebar, menu }) {
                     })}
                 </ul>
             </div>
-            <a className='block h-[80px] px-4 pt-2 pb-4'>
-                <NavLink
-                    to={'/login'}
-                    className='flex justify-start items-center gap-x-2 text-gray-6 hover:text-white text-[14px] hover:bg-gradient-to-r hover:from-purple-4 hover:to-purple-3 transition-all rounded-[8px] px-3 py-[10px]'
+            <a className='block w-full h-[80px] px-4 pt-2 pb-4'>
+                <button
+                    onClick={handleLogOut}
+                    className='flex justify-start items-center gap-x-2 w-full text-gray-6 hover:text-white text-[14px] hover:bg-gradient-to-r hover:from-purple-4 hover:to-purple-3 transition-all rounded-[8px] px-3 py-[10px]'
                 >
                     <span className='text-[18px]'>
                         <Icon name="Logout" />
                     </span>
                     <span>Logout</span>
-                </NavLink>
+                </button>
             </a>
         </aside>
     )

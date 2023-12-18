@@ -31,11 +31,11 @@ export default function Dropdown() {
                         <span className="absolute bottom-0 end-0 block h-2.5 w-2.5 rounded-full ring-2 ring-white bg-green-1"></span>
                     </div>
                     <div className='flex flex-col items-start'>
-                        <span className='text-black-1 text-[14px] leading-[20px] font-medium'>{user?.name}</span>
+                        <span className='text-black-1 text-[14px] leading-[20px] capitalize font-medium'>{user?.name}</span>
                         <span className='text-gray-6 text-[12px] leading-[18px]'>{user?.Role}</span>
                     </div>
                     <Icons.GoChevronDown
-                        className="ml-1 h-5 w-5 text-gray-1 hover:text-violet-100"
+                        className="ml-1 h-5 w-5 text-gray-1"
                         aria-hidden="true"
                     />
                 </Menu.Button>

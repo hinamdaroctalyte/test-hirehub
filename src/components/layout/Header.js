@@ -15,7 +15,7 @@ function Header({ toggleSidebar }) {
                     onClick={toggleSidebar}>
                     <Icon name="BurgerMenu" />
                 </span>
-                <h6 className='text-gray-6 text-[20px] leading-[20px] font-semibold'>Welcome, {user?.name}</h6>
+                <h6 className='text-gray-6 text-[20px] leading-[20px] capitalize font-semibold'>Welcome, {user?.name}</h6>
             </div>
             <div className='flex justify-end items-center gap-x-7'>
                 <span className='text-gray-6 text-[19px] cursor-pointer'>
