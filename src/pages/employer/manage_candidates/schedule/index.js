@@ -9,7 +9,7 @@ const breadcrumb = [
     { label: "Edit" },
 ];
 
-function EditCandidates() {
+function ScheduleCandidates() {
     const { tableData } = employersData;
 
     const dropdownOptions = [
@@ -17,6 +17,7 @@ function EditCandidates() {
         'inactive',
         'on hold',
     ];
+    console.log("dropdownOptions", dropdownOptions)
 
     return (
         <>
@@ -24,9 +25,10 @@ function EditCandidates() {
                 heading="Edit Employers"
                 breadcrumb={breadcrumb}
             />
+            ScheduleCandidates
             <Core.CompanyProfile data={tableData} dropdownOptions={dropdownOptions} pageType="edit" />
         </>
     );
 }
 
-export default EditCandidates;
+export default ScheduleCandidates;

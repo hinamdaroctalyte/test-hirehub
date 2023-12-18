@@ -10,7 +10,7 @@ export default function Dropdown() {
     const dispatch = useDispatch();
     const navigate = useNavigate();
     const user = useSelector((state) => state.auth.user);
-    console.log(user, "user header");
+    // console.log(user, "user header");
 
     const handleLogOut = () => {
         dispatch(logout())

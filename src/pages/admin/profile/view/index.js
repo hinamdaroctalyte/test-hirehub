@@ -1,7 +1,7 @@
 import React from 'react';
-import { Breadcrumb, } from '../../../../components/core';
 import { Core, } from '../../../../components';
 import adminData from '../../../../data/adminData.json';
+import { Breadcrumb, } from '../../../../components/core';
 
 const breadcrumb = [
     { label: "Dashboard", link: "/admin/dashboard" },
@@ -9,12 +9,7 @@ const breadcrumb = [
 ];
 
 function ViewProfile() {
-    const { profile } = adminData;
-    const dropdownOptions = [
-        "activate",
-        "inactive",
-        "on hold",
-    ];
+    const { profile } = adminData; 
     return (
         <>
             <Breadcrumb

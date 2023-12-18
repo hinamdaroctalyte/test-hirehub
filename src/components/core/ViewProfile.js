@@ -1,11 +1,8 @@
 
-import React, { useState } from 'react';
+import React from 'react';
 import { Core } from '..';
-import imgUrgentlyRequired from "../../assets/images/urgently-required.png";
-import { useParams } from 'react-router-dom';
 
 function ViewProfile({ data }) {
-    console.log("data", data)
     return (
         <Core.Card className={`py-[30px] px-[40px]`}>
             <h5 className='text-black-2 text-[24px] leading-[32px] font-medium mb-4'>View Profile</h5>
@@ -65,7 +62,6 @@ function ViewProfile({ data }) {
                     {data?.description}
                 </span>
             </div>
-
         </Core.Card>
     )
 }

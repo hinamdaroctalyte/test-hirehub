@@ -77,6 +77,11 @@ function App() {
           <Route path="dashboard" element={<PrivateRoute roles={['employer']}><EmployerDashboard /></PrivateRoute>} />
           <Route path="manage-profile" element={<PrivateRoute roles={['employer']}><ManageProfile /></PrivateRoute>} />
           <Route path="change-password" element={<PrivateRoute roles={['employer']}><ChangePassword /></PrivateRoute>} />
+
+          <Route path="manage-candidates/edit/:id" element={<EditCandidates />} />
+          <Route path="manage-candidates/view/:id" element={<ViewCandidates />} />
+          <Route path="manage-candidates/schedule/:id" element={<ScheduleCandidates />} />
+
         </Route>
 
         <Route path="*"

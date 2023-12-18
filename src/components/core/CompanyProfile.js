@@ -10,13 +10,8 @@ import notificationService from '../../utilis/notification';
 import { ToastContainer } from 'react-toastify';
 import { useNavigate } from "react-router-dom"
 
-
-
-
 function CompanyProfile({ data, pageType, dropdownOptions, selectedState }) {
     const [status, setStatus] = useState("");
-
-
     const employerDetails = useSelector((state) => state?.admin?.employerDetails);
     const reload = useSelector((state) => state?.admin?.reload);
     const dispatch = useDispatch();

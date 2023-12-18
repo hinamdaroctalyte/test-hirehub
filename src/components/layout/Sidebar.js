@@ -7,6 +7,7 @@ import Icon from '../icon';
 const NavItem = ({ value, slug }) => {
     const pathParts = slug.split('/');
     const _slug = pathParts[pathParts.length - 1];
+    console.log("_slug",_slug)
     return (
         <li className='pb-2'>
             <NavLink

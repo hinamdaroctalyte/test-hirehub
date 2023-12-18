@@ -5,28 +5,27 @@ import employersData from '../../../../data/employersData.json';
 
 const breadcrumb = [
     { label: "Dashboard", link: "/admin/dashboard" },
-    { label: "Manage Employers", link: "/admin/manage-employers" },
-    { label: "Edit" },
+    { label: "Manage Candidates", link: "/admin/manage-candidates" },
+    { label: "Details" },
 ];
 
-function EditCandidates() {
+function ViewCandidates() {
     const { tableData } = employersData;
-
     const dropdownOptions = [
-        'activate',
-        'inactive',
-        'on hold',
+        "activate",
+        "inactive",
+        "on hold",
     ];
-
     return (
         <>
             <Breadcrumb
-                heading="Edit Employers"
+                heading="Candidates Details"
                 breadcrumb={breadcrumb}
             />
-            <Core.CompanyProfile data={tableData} dropdownOptions={dropdownOptions} pageType="edit" />
+            {/* <Core.CompanyProfile data={tableData} dropdownOptions={dropdownOptions} pageType="view" /> */}
+            <Core.UserProfile data={tableData} dropdownOptions={dropdownOptions} pageType="view" />
         </>
     );
 }
 
-export default EditCandidates;
+export default ViewCandidates;
