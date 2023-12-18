@@ -1,15 +1,12 @@
 
 
-export const redirectToDashboard = (role, navigate) => {
-  console.log("startttttttttttttttt");
- 
-
+export const redirectToDashboard = (role, navigate) => { 
   switch (role) {
     case 'admin':
       navigate('/admin/dashboard');
       break;
     case 'candidate':
-      navigate('/candidate/dashboard');
+      navigate('/candidate/manage-profile');
       break;
     case 'employer':
       console.log("employerer");

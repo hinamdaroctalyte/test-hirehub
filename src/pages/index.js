@@ -29,12 +29,11 @@ import ViewCandidates from "./admin/manage_candidates/view";
 import EditCandidates from "./admin/manage_candidates/edit";
 import ViewProfile from "./admin/profile/view";
 import ScheduleCandidates from "./admin/manage_candidates/schedule";
-
-
-
 // ------------ Employer ------------
 import EmployerDashboard from "./employer/dashboard";
 import ManageProfile from "./employer/manage_profile";
+// ------------ Candidate ------------
+import ManageProfileCandidate from "./candidate/manage_profile";
 
 export {
     FourZeroFour,
@@ -72,4 +71,7 @@ export {
     // ------------ Employer ------------
     EmployerDashboard,
     ManageProfile,
+
+    // ------------ Candidate ------------
+    ManageProfileCandidate,
 } 
