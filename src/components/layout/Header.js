@@ -21,17 +21,17 @@ function Header({ toggleSidebar }) {
                 <span className='text-gray-6 text-[19px] cursor-pointer'>
                     <Icon name="Search" />
                 </span>
-                <div class="relative cursor-pointer">
-                    <div class="top-[-11px] absolute left-[13px]">
-                        <p class="flex h-1 min-w-1 items-center justify-center text-white text-[10px] rounded-full bg-red-500 px-[5px] py-2">3</p>
+                <div className="relative cursor-pointer">
+                    <div className="top-[-11px] absolute left-[13px]">
+                        <p className="flex h-1 min-w-1 items-center justify-center text-white text-[10px] rounded-full bg-red-500 px-[5px] py-2">3</p>
                     </div>
                     <span className='text-gray-6 text-[19px]'>
                         <Icon name="Bell2" />
                     </span>
                 </div>
-                <div class="relative cursor-pointer">
-                    <div class="top-[-11px] absolute left-[13px]">
-                        <p class="flex h-1 min-w-1 items-center justify-center text-white text-[10px] rounded-full bg-red-500 px-[5px] py-2">64</p>
+                <div className="relative cursor-pointer">
+                    <div className="top-[-11px] absolute left-[13px]">
+                        <p className="flex h-1 min-w-1 items-center justify-center text-white text-[10px] rounded-full bg-red-500 px-[5px] py-2">64</p>
                     </div>
                     <span className='text-gray-6 text-[19px]'>
                         <Icon name="Envelope" />

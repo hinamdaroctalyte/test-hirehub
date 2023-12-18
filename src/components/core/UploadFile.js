@@ -29,18 +29,18 @@ function UploadFile({ label, name, required, helperText, accept, onchange }) {
                     </label>
                 }
             </div>
-            <div class="flex items-center space-x-6 mb-4">
-                {/* <div class="shrink-0">
-                    <img class="h-10 w-10 object-cover rounded-md" src="https://images.unsplash.com/photo-1580489944761-15a19d654956?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1361&q=80" alt="Current profile photo" />
+            <div className="flex items-center space-x-6 mb-4">
+                {/* <div className="shrink-0">
+                    <img className="h-10 w-10 object-cover rounded-md" src="https://images.unsplash.com/photo-1580489944761-15a19d654956?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1361&q=80" alt="Current profile photo" />
                 </div> */}
-                <label class="block">
+                <label className="block">
                     {helperText &&
                         <p className='text-gray-12 text-[14px] leading-[16px] mb-1.5'>
                             {helperText}
                         </p>
                     }
-                    <span class="sr-only">Choose profile photo</span>
-                    <input type="file" accept={accept} onChange={onchange ? onchange : console.log("go and see")} class="block w-full text-gray-8
+                    <span className="sr-only">Choose profile photo</span>
+                    <input type="file" accept={accept} onChange={onchange ? onchange : console.log("go and see")} className="block w-full text-gray-8
                         file:mr-4 file:py-2 file:px-4
                         file:rounded-full file:border-0
                         file:text-sm file:font-semibold

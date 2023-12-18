@@ -2,19 +2,15 @@ import { Menu, Transition } from '@headlessui/react'
 import { Fragment, } from 'react'
 import { Icons } from '..'
 import avatar from "../../assets/images/avatars/8.png"
-import { NavLink, useNavigate } from 'react-router-dom';  
+import { NavLink, useNavigate } from 'react-router-dom';
 import { logout } from '../../Slices/Auth/authSlice';
-import { useDispatch ,useSelector} from "react-redux";
-
-
+import { useDispatch, useSelector } from "react-redux";
 
 export default function Dropdown() {
     const dispatch = useDispatch();
     const navigate = useNavigate();
     const user = useSelector((state) => state.auth.user);
     console.log(user, "user header");
-
-
 
     const handleLogOut = () => {
         dispatch(logout())
@@ -24,9 +20,9 @@ export default function Dropdown() {
         <Menu as="div" className="relative inline-block text-left -ml-3">
             <div>
                 <Menu.Button className="inline-flex w-full justify-center items-center gap-x-2 rounded-md hover:bg-black/10 px-2 py-1">
-                    <div class="relative inline-block">
-                        <img class="inline-block h-[32px] w-[32px] rounded-full" src={avatar} alt="Image Description" />
-                        <span class="absolute bottom-0 end-0 block h-2.5 w-2.5 rounded-full ring-2 ring-white bg-green-1"></span>
+                    <div className="relative inline-block">
+                        <img className="inline-block h-[32px] w-[32px] rounded-full" src={avatar} alt="Image Description" />
+                        <span className="absolute bottom-0 end-0 block h-2.5 w-2.5 rounded-full ring-2 ring-white bg-green-1"></span>
                     </div>
                     <div className='flex flex-col items-start'>
                         <span className='text-black-1 text-[14px] leading-[20px] font-medium'>{user?.name}</span>
@@ -51,22 +47,24 @@ export default function Dropdown() {
                     <div className="px-1 py-1 ">
                         <Menu.Item>
                             {({ active }) => (
-                                <button
-                                    className={`${active ? 'bg-violet-500 text-white' : 'text-gray-900'
-                                        } group flex w-full items-center rounded-md px-2 py-2 text-sm`}
-                                >
-                                    {active ? (
-                                        <Icons.BsCardText className="mr-2 h-5 w-5 text-white" />
-                                    ) : (
-                                        <Icons.BsCardText className="mr-2 h-5 w-5 text-[purple]" />
-                                    )}
-                                    View Profile
-                                </button>
+                                <NavLink to="profile">
+                                    <button
+                                        className={`${active ? 'bg-violet-500 text-white' : 'text-gray-900'
+                                            } group flex w-full items-center rounded-md px-2 py-2 text-sm`}
+                                    >
+                                        {active ? (
+                                            <Icons.BsCardText className="mr-2 h-5 w-5 text-white" />
+                                        ) : (
+                                            <Icons.BsCardText className="mr-2 h-5 w-5 text-[purple]" />
+                                        )}
+                                        View Profile
+                                    </button>
+                                </NavLink>
                             )}
                         </Menu.Item>
                         <Menu.Item>
                             {({ active }) => (
-                                <NavLink to="change-password"> 
+                                <NavLink to="change-password">
                                     <button
                                         className={`${active ? 'bg-violet-500 text-white' : 'text-gray-900'
                                             } group flex w-full items-center rounded-md px-2 py-2 text-sm`}

@@ -75,7 +75,7 @@ function ManageEmployers() {
     //                 <>
     //                     {name?.img ?
     //                         <div className='flex justify-start items-center gap-x-2 min-w-[140px]'>
-    //                             <img class="inline-block h-[30px] w-[30px] rounded-full" src={name?.img} alt="profile image" />
+    //                             <img className="inline-block h-[30px] w-[30px] rounded-full" src={name?.img} alt="profile image" />
     //                             <span className='whitespace-nowrap'>{name?.name}</span>
     //                         </div> :
     //                         <span>{name}</span>

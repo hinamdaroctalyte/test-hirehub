@@ -152,11 +152,11 @@ function TableB({
         'Hire',
     ]; 
     return (
-        <div class="flex flex-col bg-white rounded-[8px] overflow-hidden shadow-md">
-            <div class="-m-1.5 overflow-x-auto">
-                <div class="p-1.5 min-w-full inline-block align-middle">
-                    <div class="overflow-hidden ">
-                        <div class="bg-white flex justify-between items-center py-3 px-5 ">
+        <div className="flex flex-col bg-white rounded-[8px] overflow-hidden shadow-md">
+            <div className="-m-1.5 overflow-x-auto">
+                <div className="p-1.5 min-w-full inline-block align-middle">
+                    <div className="overflow-hidden ">
+                        <div className="bg-white flex justify-between items-center py-3 px-5 ">
                             <span className='text-black-2 text-[18px] leading-[28px] font-medium'>Filters</span>
                             <div className='flex justify-end items-center gap-1'>
                                 {filterBy?.map(value => {
@@ -224,7 +224,7 @@ function TableB({
                                 </div>
                             </div>
                         </div>
-                        <div class="overflow-hidden">
+                        <div className="overflow-hidden">
                             <Table
                                 columns={newColumn}
                                 dataSource={data}
@@ -232,24 +232,24 @@ function TableB({
                                 onChange={handleTableChange} // Handle pagination change
                             />
                         </div>
-                        <div class="flex justify-between items-center border-t py-5 px-4">
+                        <div className="flex justify-between items-center border-t py-5 px-4">
                             {/* <span className='text-gray-6 text-[14px] leading-[20px] font-semibold'>
                                 Showing 1-10 from 100
                             </span> */}
                             {/* <Pagination defaultCurrent={6} total={500} /> */}
                             {/* itemBg={"#000"} itemInputBg={"#fcfcfc"} itemLinkBg={"#f6cf6c"} itemSize="100" */}
-                            {/* <nav class="flex items-center space-x-1">
-                                <button type="button" class="w-[32px] h-[32px] flex items-center gap-x-2 text-sm rounded-[8px] text-purple-4 bg-purple-7 disabled:opacity-50 disabled:pointer-events-none dark:text-white dark:hover:bg-white/10 dark:focus:outline-none dark:focus:ring-1 dark:focus:ring-gray-600 p-2.5 ">
+                            {/* <nav className="flex items-center space-x-1">
+                                <button type="button" className="w-[32px] h-[32px] flex items-center gap-x-2 text-sm rounded-[8px] text-purple-4 bg-purple-7 disabled:opacity-50 disabled:pointer-events-none dark:text-white dark:hover:bg-white/10 dark:focus:outline-none dark:focus:ring-1 dark:focus:ring-gray-600 p-2.5 ">
                                     <span aria-hidden="true">
                                         <Icon name="ChevronLeft" size="10" />
                                     </span>
-                                    <span class="sr-only">Previous</span>
+                                    <span className="sr-only">Previous</span>
                                 </button>
-                                <button type="button" class="w-[32px] h-[32px] flex justify-center items-center text-purple-4 text-[14px] leading-[20px] font-semibold bg-purple-7 py-2.5 rounded-[8px] disabled:opacity-50 disabled:pointer-events-none dark:text-white dark:hover:bg-white/10" aria-current="page">1</button>
-                                <button type="button" class="w-[32px] h-[32px] flex justify-center items-center text-purple-4 text-[14px] leading-[20px] font-semibold bg-purple-7 py-2.5 rounded-[8px] disabled:opacity-50 disabled:pointer-events-none dark:text-white dark:hover:bg-white/10">2</button>
-                                <button type="button" class="w-[32px] h-[32px] flex justify-center items-center text-purple-4 text-[14px] leading-[20px] font-semibold bg-purple-7 py-2.5 rounded-[8px] disabled:opacity-50 disabled:pointer-events-none dark:text-white dark:hover:bg-white/10">3</button>
-                                <button type="button" class="w-[32px] h-[32px] flex items-center gap-x-2 text-purple-4 text-[14px] leading-[20px] font-semibold bg-purple-7 rounded-[8px] disabled:opacity-50 disabled:pointer-events-none dark:text-white dark:hover:bg-white/10 dark:focus:outline-none dark:focus:ring-1 dark:focus:ring-gray-600 p-2.5 ">
-                                    <span class="sr-only">Next</span>
+                                <button type="button" className="w-[32px] h-[32px] flex justify-center items-center text-purple-4 text-[14px] leading-[20px] font-semibold bg-purple-7 py-2.5 rounded-[8px] disabled:opacity-50 disabled:pointer-events-none dark:text-white dark:hover:bg-white/10" aria-current="page">1</button>
+                                <button type="button" className="w-[32px] h-[32px] flex justify-center items-center text-purple-4 text-[14px] leading-[20px] font-semibold bg-purple-7 py-2.5 rounded-[8px] disabled:opacity-50 disabled:pointer-events-none dark:text-white dark:hover:bg-white/10">2</button>
+                                <button type="button" className="w-[32px] h-[32px] flex justify-center items-center text-purple-4 text-[14px] leading-[20px] font-semibold bg-purple-7 py-2.5 rounded-[8px] disabled:opacity-50 disabled:pointer-events-none dark:text-white dark:hover:bg-white/10">3</button>
+                                <button type="button" className="w-[32px] h-[32px] flex items-center gap-x-2 text-purple-4 text-[14px] leading-[20px] font-semibold bg-purple-7 rounded-[8px] disabled:opacity-50 disabled:pointer-events-none dark:text-white dark:hover:bg-white/10 dark:focus:outline-none dark:focus:ring-1 dark:focus:ring-gray-600 p-2.5 ">
+                                    <span className="sr-only">Next</span>
                                     <span aria-hidden="true">
                                         <Icon name="ChevronRight" size="10" />
 

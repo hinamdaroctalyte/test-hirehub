@@ -27,7 +27,10 @@ import EditEmployers from "./admin/manage_employers/edit";
 import MainCandidates from "./admin/manage_candidates/main";
 import ViewCandidates from "./admin/manage_candidates/view";
 import EditCandidates from "./admin/manage_candidates/edit";
+import ViewProfile from "./admin/profile/view";
 import ScheduleCandidates from "./admin/manage_candidates/schedule";
+
+
 
 // ------------ Employer ------------
 import EmployerDashboard from "./employer/dashboard";
@@ -63,6 +66,7 @@ export {
     MainCandidates,
     EditCandidates,
     ViewCandidates,
+    ViewProfile,
     ScheduleCandidates,
 
     // ------------ Employer ------------

@@ -11,6 +11,7 @@ import StatsGroup from "./stats_group/StatsGroup";
 import TextAreaWithLabel from "./TextAreaWithLabel";
 import UploadFile from "./UploadFile";
 import UserProfile from "./UserProfile";
+import ViewProfile from "./ViewProfile";
 import VideoPlayer from "./VideoPlayer";
 
 export {
@@ -27,5 +28,6 @@ export {
     TextAreaWithLabel,
     UploadFile,
     UserProfile,
+    ViewProfile,
     VideoPlayer,
 }

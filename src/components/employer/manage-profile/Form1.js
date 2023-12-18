@@ -39,27 +39,27 @@ function Form1() {
     return (
         <Core.Card w840 border>
             <h5 className='text-black-2 text-[24px] leading-[32px] font-medium mb-2'>Create an Employer Account</h5>
-            <div class="mb-4">
+            <div className="mb-4">
                 <Core.InputWithLabel name={"YourCompanysName"} label required />
             </div>
-            <div class="mb-4">
+            <div className="mb-4">
                 <Core.SelectWithLabel name={"numberofEmployees"} label
                     options={numberOfEmployeesOptions}
                 />
             </div>
-            <div class="mb-4">
+            <div className="mb-4">
                 <Core.UploadFile name={"logo"} label helperText={"A company logo helps candidates connect the job opportunity with your brand. Recommended specs are 400x400 pixels."}
                     accept="image/*"
                     // onchange={uploadImg}
                 />
             </div>
-            <div class="mb-4">
+            <div className="mb-4">
                 <Core.UploadFile name={"welcomeVideo"} label helperText={"A company logo helps candidates connect the job opportunity with your brand. Recommended specs are 400x400 pixels."}
 
                     accept="video/*"
                 />
             </div>
-            <div class="mb-4">
+            <div className="mb-4">
                 <Core.InputWithLabel name={"YourPhoneNumber"} label helperText="We will use this number to text you important notifications" />
             </div>
         </Core.Card>
