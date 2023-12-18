@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 
-function SelectWithLabel({ label, name, options, required, helperText }) {
+function SelectWithLabel({ label, name, options, required, helperText, onChange }) {
     const _label = (name) => {
         switch (name) {
             case "userType":
@@ -24,7 +24,7 @@ function SelectWithLabel({ label, name, options, required, helperText }) {
                     {helperText}
                 </p>
             }
-            <select id={name} className="w-full text-[14px] font-regular leading-[20px] text-gray-700 font-medium bg-gray-3 border border-gray-300 rounded-lg focus:outline-none focus:border-blue-500 px-3 py-[10px]">
+            <select id={name} onChange={onChange} className="w-full text-[14px] font-regular leading-[20px] text-gray-700 font-medium bg-gray-3 border border-gray-300 rounded-lg focus:outline-none focus:border-blue-500 px-3 py-[10px]">
                 <option value="">Select an option...</option>
                 {options.map((value) =>
                     <option key={value * 1} value={value?.value}>{value?.name}</option>
