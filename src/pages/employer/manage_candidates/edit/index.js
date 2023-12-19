@@ -2,6 +2,7 @@ import React from 'react';
 import { Breadcrumb, } from '../../../../components/core';
 import { Core, } from '../../../../components';
 import employersData from '../../../../data/employersData.json';
+import { useSelector } from 'react-redux';
 
 const breadcrumb = [
     { label: "Dashboard", link: "/admin/dashboard" },
@@ -11,6 +12,8 @@ const breadcrumb = [
 
 function EditCandidates() {
     const { tableData } = employersData;
+    const  AppliedJobCandidate  = useSelector((state) => state?.manageCandidate?.jobs);
+
 
     const dropdownOptions = [
         'activate',
@@ -24,7 +27,7 @@ function EditCandidates() {
                 heading="Edit Employers"
                 breadcrumb={breadcrumb}
             />
-            <Core.CompanyProfile data={tableData} dropdownOptions={dropdownOptions} pageType="edit" />
+            <Core.UserProfile data={AppliedJobCandidate} dropdownOptions={dropdownOptions} pageType="edit" />
         </>
     );
 }

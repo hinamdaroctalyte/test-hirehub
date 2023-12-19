@@ -9,10 +9,16 @@ import { useDispatch, useSelector } from 'react-redux';
 function UserProfile({ data, pageType, dropdownOptions }) {
     const [status, setStatus] = useState("");
     const { id, } = useParams();
-    const  AppliedJobCandidate  = useSelector((state) => state?.manageCandidate?.jobs);
-    const extractedData = data?.find(item => item.id === "1");
+    
+    //Manage Candidate from employer
+   
+    //Manage Candidate from admin
+
+    const extractedData = data?.find(item => item.candidate.userId === id);
     console.log("dropdownOptions", dropdownOptions)
     console.log("status", status)
+    console.log({extractedData})
+    console.log({data})
     return (
         <Core.Card className={`pt-[30px] ${pageType === "edit" ? 'pb-[70px]' : 'pb-[35px]'} px-[60px]`}>
             <div className='flex justify-between border-b-[3px] pb-7'>
