@@ -28,11 +28,6 @@ function ManageProfileCandidate() {
                             </p>
                         </div>
                         <div>
-
-
-
-
-
                         </div>
                     </div>
                 </Core.Card>
