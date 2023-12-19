@@ -2,8 +2,8 @@ import { Menu, Transition } from '@headlessui/react';
 import { Fragment, useState } from 'react';
 import { Icons } from '..';
 
-export default function Dropdown2({ options, setState, className, menuWidth, defaultTitle, selectedState }) {
-    const [selectedOption, setSelectedOption] = useState(selectedState); // Set the default selected option
+export default function Dropdown2({ options, setState, className, menuWidth, defaultTitle, selectedState,status }) {
+    const [selectedOption, setSelectedOption] = useState(status); // Set the default selected option
     const handleOptionClick = (value) => {
         setSelectedOption(value);
         setState(value);

@@ -1,7 +1,7 @@
 import React from 'react';
 import { Breadcrumb, } from '../../../../components/core';
 import { Core, } from '../../../../components';
-import employersData from '../../../../data/employersData.json';
+// import employersData from '../../../../data/employersData.json';
 import { useSelector } from 'react-redux';
 
 const breadcrumb = [
@@ -11,7 +11,7 @@ const breadcrumb = [
 ];
 
 function ViewCandidates() {
-    const { tableData } = employersData;
+    // const { tableData } = employersData;
     const  AppliedJobCandidate  = useSelector((state) => state?.manageCandidate?.jobs);
 
     const dropdownOptions = [

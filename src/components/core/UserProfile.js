@@ -1,145 +1,329 @@
-
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import { Core } from '..';
-import imgUrgentlyRequired from "../../assets/images/urgently-required.png";
+import logo1 from "../../assets/images/company-logos/logo1.png";
+import logo2 from "../../assets/images/company-logos/logo2.png";
+import logo14 from "../../assets/images/company-logos/14.png";
 import { useParams } from 'react-router-dom';
 import { useDispatch, useSelector } from 'react-redux';
-
+import Icon from '../icon';
+import { Field } from 'formik/dist';
+import { calculateTimePeriod } from '../../utilis/calculateTimePeriod';
 
 function UserProfile({ data, pageType, dropdownOptions }) {
-    const [status, setStatus] = useState("");
     const { id, } = useParams();
-    
-    //Manage Candidate from employer
-   
-    //Manage Candidate from admin
-
     const extractedData = data?.find(item => item.candidate.userId === id);
-    console.log("dropdownOptions", dropdownOptions)
-    console.log("status", status)
-    console.log({extractedData})
-    console.log({data})
+    const [resumePrivacy, setResumePrivacy] = useState('');
+    useEffect(() => {
+        const data = extractedData?.candidate?.resumePrivacySetting;
+        if (data) {
+            setResumePrivacy(data);
+        }
+    }, [extractedData]);
+    const [status, setStatus] = useState(extractedData?.status);
+    useEffect(() => {
+        setStatus(extractedData?.status);
+    }, [extractedData]);
+    // console.log('extractedData', extractedData)
     return (
-        <Core.Card className={`pt-[30px] ${pageType === "edit" ? 'pb-[70px]' : 'pb-[35px]'} px-[60px]`}>
-            <div className='flex justify-between border-b-[3px] pb-7'>
-                <div className='w-[200px]'>
-                    <div className='flex justify-center items-center w-[130px] h-[130px] bg-gray-7 rounded-[20px]'>
-                        <img src={extractedData?.companyName?.img} alt="company logo" />
+        <Core.Card className={`pt-[20px] pb-[45px] px-[30px]`}>
+            <div className='flex justify-end gap-x-4'>
+                <span className='text-gray-6 text-[14px] leading-[20px] py-1'>
+                    <div className="flex justify-start items-center gap-x-2 w-100">
+                        <input className="w-5 h-5 rounded-[20px]" type="checkbox" id="meets-all-requirements" name="terms" />
+                        <label className="text-gray-1" for="terms-conditions">
+                            Meets all requirements
+                        </label>
+                    </div>
+                </span>
+                {pageType === "view" &&
+                    <span className='flex justify-start gap-x-2 text-gray-6 text-[11px] leading-[20px] border-r-[2px] border-gray-12 pr-5 py-1'>
+                        Handmade Pouch-Resume
+                        <Icon name="FileAttachment" />
+                    </span>
+                }
+                {pageType === "view" &&
+                    <span className='text-gray-6 text-[16px] leading-[20px] capitalize font-semibold pl-1 py-1'>
+                        Candidates Status:<span className='text-purple-1'> {extractedData?.stage}</span>
+                    </span>
+                }
+                {pageType === "edit" &&
+                    <div className='relative flex flex-col justify-end gap-x-3'>
+                        <span className='text-gray-6 text-[16px] leading-[20px] capitalize font-semibold pl-1 py-1'>
+                            Candidates Status:
+                        </span>
+                        <span className="absolute right-3 top-8 ">
+                            <Core.Dropdown2
+                                status={status}
+                                setState={setStatus}
+                                options={dropdownOptions} />
+                        </span>
+                    </div>
+                }
+            </div>
+            <div className='flex justify-between pb-7 -mt-4'>
+                <div className='w-[110px]'>
+                    <div className='flex justify-center items-center w-[90px] h-[90px] bg-gray-7 rounded-full overflow-hidden'>
+                        <img src={'https://dp.profilepics.in/profile_pictures/boys-profile-pics/boys-profile-pics-dp-for-whatsapp-facebook-1775.jpg'} alt="company logo" />
                     </div>
                 </div>
                 <div className='w-full'>
                     <div className='w-full h-full flex justify-between items-end'>
                         <div>
-                            <h6 className='text-[22px] leading-[20px] font-semibold mb-3'>{extractedData?.companyName?.name}</h6>
-                            <p className='text-gray-6 text-[14px] leading-[20px] max-w-[280px]'>{extractedData?.status}</p>
-                        </div>
-                        <div className={`${pageType === "view" && "self-start"}`}>
-                            {pageType === "view" && <img src={imgUrgentlyRequired} alt="company logo" />}
-                            {pageType === "edit" && <Core.Button>Save Changes</Core.Button>}
+                            <h6 className='text-[22px] leading-[20px] capitalize font-semibold mb-2'>{extractedData?.name}</h6>
+                            <p className='text-gray-6 text-[14px] leading-[20px] max-w-[70%]'>Design Lead | Author of the "Design Manual" and the "Ultimate Guide to Web Design" | Teaching 300,000+ Designers Worldwide</p>
                         </div>
                     </div>
                 </div>
             </div>
-            <div className='flex justify-between pt-7'>
-                <div className='w-[200px]'></div>
-                <div className='w-full'>
-                    <div className='flex justify-between items-start'>
-                        <h6 className='text-[18px] leading-[28px] font-medium mb-2'>Overview</h6>
-                        <span className='text-gray-13 text-[14px] leading-[20px]'>250 / 250</span>
-                    </div>
-                    {extractedData?.overview.map(value => {
-                        return (
-                            <p key={value * 5} className='text-gray-6 text-[14px] leading-[20px] font-medium mb-4'>
-                                {value}
-                            </p>
-                        )
-                    })}
-                    <h6 className='text-[18px] leading-[28px] font-medium'>Video</h6>
-                    <div className='overflow-hidden w-[700px] max-w-[700px]'>
-                        <div className='max-w-[700px] overflow-x-scroll pt-3'>
-                            <div className='w-[max-content] flex justify-start items-start gap-x-3'>
-                                {/* {extractedData?.videos.map()} */}
-                                <div className='max-w-[336px] h-full max-h-[190px] rounded-[8px] overflow-hidden'>
-                                    {/* <Core.VideoPlayer src={video1} /> */}
+            <div className='w-full'>
+                <h6 className='text-[18px] leading-[28px] font-medium mb-2'>Summery</h6>
+                <p className='text-gray-6 text-[14px] leading-[20px] font-medium mb-4'>
+                    {extractedData?.candidate?.summary?.description}
+                </p>
+                {/* <p className='text-gray-6 text-[14px] leading-[20px] font-medium mb-4'>
+                    In my role as a Product Design Lead, I take charge of the entire process of creating products and memorable experiences, including UX, UI, discovering and defining a problem, empathically wh
+                </p> */}
+                <span className='block w-full border-gray-11 border-t-[1px] my-5'></span>
+
+                <h6 className='text-[18px] leading-[28px] font-medium mb-2'>Projects</h6>
+
+                {extractedData?.candidate?.projects.map((value, index) => {
+                    return (
+                        <p key={index * 3} className='text-gray-6 text-[14px] leading-[20px] font-medium mb-4'>
+                            {value.description}
+                        </p>
+                    )
+                })}
+                {/* <p className='text-gray-6 text-[14px] leading-[20px] font-medium mb-4'>
+                    Rightime is an inbox app, which was made for sales managers. It helps to send your letter in the right time whenever the recipient is active in social networks and ready to get the mail, so the chances that the letter will be read are increased a lot. As an UI/UX designer I created two version of the app - for iphone and apple watch. I've been involved in the: prototyping, UX (wireframes), UI (user interfaces).
+                    Rightime is an inbox app, which was made for sales managers. It helps to send your letter in the
+                </p> */}
+
+                <span className='block w-full border-gray-11 border-t-[1px] my-5'></span>
+                {/* Experience */}
+                <h6 className='text-[18px] leading-[28px] font-medium mb-2'>Experience</h6>
+
+                {extractedData?.candidate?.experience.map((value, index) => {
+                    return (
+                        <div key={index * 4} className='flex justify-between gap-x-3'>
+                            <div className='flex justify-center items-center w-[58px] h-[58px] bg-gray-7 rounded-[10px] overflow-hidden'>
+                                <img src={logo1} alt="company logo" />
+                            </div>
+                            <div className='w-full'>
+                                <div className='w-full h-full flex justify-between items-end'>
+                                    <div>
+                                        <h6 className='text-[16px] leading-[20px] font-semibold'>{value.title}</h6>
+                                        <p className='text-black-3 text-[12px] leading-[20px] font-medium'>{value.company}</p>
+                                        {/* <p className='text-gray-6 text-[12px] leading-[20px]'>Nov 2015 - Present · 7 yrs 7 mos</p> */}
+                                        <p className='text-gray-6 text-[12px] leading-[20px]'>{calculateTimePeriod(value.startDate, "present")}</p>
+                                        <p className='text-gray-6 text-[14px] leading-[20px] mt-4'>
+                                            {value.description}
+                                        </p>
+                                    </div>
                                 </div>
-                                {/* <div className='max-w-[336px] h-full max-h-[190px] rounded-[8px] overflow-hidden'>
-                        <Core.VideoPlayer src={video2} />
-                    </div> */}
-                                {/* <div className='max-w-[336px] h-full max-h-[190px] rounded-[8px] overflow-hidden'>
-                        <Core.VideoPlayer src={video3} />
-                    </div> */}
-                                {/* <div className='max-w-[336px] h-full max-h-[190px] rounded-[8px] overflow-hidden'>
-                        <Core.VideoPlayer src={video1} />
-                    </div> */}
+                            </div>
+                        </div>
+                    )
+                })}
+                {/* <div className='flex justify-between gap-x-3'>
+                    <div className='flex justify-center items-center w-[58px] h-[58px] bg-gray-7 rounded-[10px] overflow-hidden'>
+                        <img src={logo1} alt="company logo" />
+                    </div>
+                    <div className='w-full'>
+                        <div className='w-full h-full flex justify-between items-end'>
+                            <div>
+                                <h6 className='text-[16px] leading-[20px] font-semibold'>Art Director</h6>
+                                <p className='text-black-3 text-[12px] leading-[20px] font-medium'>Sochnik Design Thinking School</p>
+                                <p className='text-gray-6 text-[12px] leading-[20px]'>Nov 2015 - Present · 7 yrs 7 mos</p>
+                                <p className='text-gray-6 text-[14px] leading-[20px] mt-4'>
+                                    Over the last couple of years I've worked on 10+ projects across different fields among which are MVPs for start-ups, cosmetics & beauty industry, e-commerce, art & architecture, photography and others.
+                                </p>
                             </div>
                         </div>
                     </div>
-                    <div className='flex justify-start items-start flex-wrap gap-x-2 gap-y-8 pt-10 pb-8'>
-                        {extractedData?.stats.map((value, index) => {
-                            return (
-                                <>
-                                    <div key={value * 6} className='w-[30%]'>
-                                        <h6 className='text-[18px] leading-[28px] font-medium'>{value?.title}</h6>
-                                        {pageType === 'edit' && value?.title === "Status" ?
-                                            <Core.Dropdown2 options={dropdownOptions} setState={setStatus} className="w-[227px]" />
-                                            :
-                                            <span className={`
-                                            text-gray-6
-                                            ${(value?.value).toLowerCase() === "activated" && 'text-green-4'}
-                                            ${(value?.value).toLowerCase() === "deactivated" && 'text-red-2'}
-                                             text-[14px] leading-[20px] font-medium`}>
-                                                {value?.value}
-                                            </span>
-                                        }
+                </div> */}
+                <span className='block w-full border-gray-11 border-t-[1px] my-5'></span>
+                {/* Education */}
+                <h6 className='text-[18px] leading-[28px] font-medium mb-2'>Education</h6>
+                {extractedData?.candidate?.education.map((value, index) => {
+                    return (
+                        <div key={index * 5} className='flex justify-between gap-x-3'>
+                            <div className='flex justify-center items-center w-[58px] h-[58px] bg-gray-7 rounded-[10px] overflow-hidden'>
+                                <img src={logo2} alt="company logo" />
+                            </div>
+                            <div className='w-full'>
+                                <div className='w-full h-full flex justify-between items-end'>
+                                    <div>
+                                        <h6 className='text-[16px] leading-[20px] font-semibold'>{value.degree}</h6>
+                                        <p className='text-black-3 text-[12px] leading-[20px] font-medium'>{value.school}</p>
+                                        <p className='text-gray-6 text-[12px] leading-[20px]'>{calculateTimePeriod(value.startDate, "present")}</p>
+                                        <p className='text-gray-6 text-[14px] leading-[20px] mt-4'>
+                                            {value?.description}
+                                        </p>
                                     </div>
-                                    {index === 4 && <div className='w-[30%]'></div>}
-                                </>
+                                </div>
+                            </div>
+                        </div>
+                    )
+                })}
+                <span className='block w-full border-gray-11 border-t-[1px] my-5'></span>
+                {/* Skill */}
+                <h6 className='text-[18px] leading-[28px] font-medium mb-2'>Skill</h6>
+                {/* <div className='flex justify-between gap-x-3'>
+                    <div className='flex justify-center items-center w-[58px] h-[58px] bg-gray-7 rounded-[10px] overflow-hidden'>
+                        <img src={logo14} alt="company logo" />
+                    </div>
+                    <div className='w-full'>
+                        <div className='w-full h-full flex justify-between items-end'>
+                            <div>
+                                <h6 className='text-[16px] leading-[20px] font-semibold'>Kharkiv National University of Construction and Architecture</h6>
+                                <p className='text-black-3 text-[12px] leading-[20px] font-medium'>Master of Architecture (MArch), Architecture and Design of Urban Spaces</p>
+                                <p className='text-gray-6 text-[12px] leading-[20px]'>2009 - 2015</p>
+                            </div>
+                        </div>
+                    </div>
+                </div> */}
+                <div className='flex justify-start gap-x-3 gap-y-2'>
+                    {extractedData?.candidate?.skills.map((value, index) => {
+                        return (
+                            <p key={index * 6} className='text-black-3 text-[14px] leading-[20px] bg-gray-4 rounded-full font-medium px-3 py-2'>{value.addNewSkills}</p>
+                        )
+                    })}
+                </div>
+                <span className='block w-full border-gray-11 border-t-[1px] my-5'></span>
+                {/* Language */}
+                <h6 className='text-[18px] leading-[28px] font-medium mb-2'>Language</h6>
+                {/* <div className='w-full mt-3'>
+                    <h6 className='text-[16px] leading-[20px] font-semibold'>English</h6>
+                    <p className='text-black-3 text-[12px] leading-[20px] font-medium'>Professional working proficiency</p>
+                </div>
+                <div className='w-full mt-2'>
+                    <h6 className='text-[16px] leading-[20px] font-semibold'>Русский</h6>
+                    <p className='text-black-3 text-[12px] leading-[20px]'>Native or bilingual proficiency</p>
+                </div> */}
+
+                {extractedData?.candidate?.languages.map((value, index) => {
+                    return (
+                        <div key={index * 7} className={`w-full ${index === 0 ? 'mt-3' : 'mt-2'}`}>
+                            <h6 className='text-[16px] leading-[20px] font-semibold'>{value?.addNewLanguage}</h6>
+                            <p className='text-black-3 text-[12px] leading-[20px]'>{value?.proficiency}</p>
+                        </div>
+                    )
+                })}
+
+
+                <span className='block w-full border-gray-11 border-t-[1px] my-5'></span>
+                {/* Job Preferences */}
+                <h6 className='text-[18px] leading-[28px] font-medium mb-2'>Job Preferences</h6>
+                <p className='text-gray-6 text-[14px] leading-[25px]'>
+                    Help us match you with your next job
+                </p>
+                {
+                    (!extractedData?.candidate?.jobPreference.desiredJobTitle.length &&
+                        extractedData?.candidate?.jobPreference.desiredSalary === "" &&
+                        extractedData?.candidate?.jobPreference.relocation === "" &&
+                        !extractedData?.candidate?.jobPreference.skills.length)
+                    &&
+                    <p className='text-gray-6 text-[14px] leading-[25px]'>
+                        No job preference found
+                    </p>
+                }
+                {extractedData?.candidate?.jobPreference.desiredJobTitle.length &&
+                    <div className='w-full mt-3'>
+                        <h6 className='text-[16px] leading-[20px] font-semibold'>Desired Job Title</h6>
+                        {extractedData?.candidate?.jobPreference.desiredJobTitle.map((value, index) => {
+                            return (
+                                <p key={index * 8} className='text-black-3 text-[12px] leading-[20px] font-medium'>{value}
+                                </p>
                             )
                         })}
-                        {/* <div className='w-[30%]'>
-                            <h6 className='text-[18px] leading-[28px] font-medium'>Company size</h6>
-                            <span className='text-gray-6 text-[14px] leading-[20px] font-medium'>85,464 employees</span>
-                        </div>
-                        <div className='w-[30%]'>
-                            <h6 className='text-[18px] leading-[28px] font-medium'>Followers</h6>
-                            <span className='text-gray-6 text-[14px] leading-[20px] font-medium'>7,611,760 followers</span>
-                        </div>
-                        <div className='w-[30%]'>
-                            <h6 className='text-[18px] leading-[28px] font-medium'>Status</h6>
-                            dddd
-                        </div>
-                        <div className='w-[30%]'>
-                            <h6 className='text-[18px] leading-[28px] font-medium'>Hired candidate</h6>
-                            <span className='text-gray-6 text-[14px] leading-[20px] font-medium'>23</span>
-                        </div>
-                        <div className='w-[30%]'>
-                            <h6 className='text-[18px] leading-[28px] font-medium'>Published jobs count</h6>
-                            <span className='text-gray-6 text-[14px] leading-[20px] font-medium'>78</span>
-                        </div>
-                        <div className='w-[30%]'>
-
-                        </div>
-                        <div className='w-[30%]'>
-                            <h6 className='text-[18px] leading-[28px] font-medium'>Language</h6>
-                            <span className='text-gray-6 text-[14px] leading-[20px] font-medium'>English</span>
-                        </div>
-                        <div className='w-[30%]'>
-                            <h6 className='text-[18px] leading-[28px] font-medium'>Website link</h6>
-                            <span className='text-gray-6 text-[14px] leading-[20px] font-medium'>www.us.pg.com</span>
-                        </div> */}
-
                     </div>
-                    {pageType === "edit" &&
-                        <div className='flex justify-start gap-x-3'>
-                            <Core.Button
-                                // onClick={handleNext}
-                                type="narrow">Save Chagnes</Core.Button>
-                            <Core.Button
-                                // onClick={handleBack} 
-                                type="narrow" color="white">Cancel</Core.Button>
-                        </div>
-                    }
+                }
+                {extractedData?.candidate?.jobPreference.desiredSalary !== "" &&
+                    <div className='w-full mt-2'>
+                        <h6 className='text-[16px] leading-[20px] font-semibold'>Desired Salary (USD)</h6>
+                        <p className='text-black-3 text-[12px] leading-[20px]'>USD {extractedData?.candidate?.jobPreference?.desiredSalary}</p>
+                    </div>
+                }
+
+                {extractedData?.candidate?.jobPreference.skills.length &&
+                    <div className='w-full mt-2'>
+                        <h6 className='text-[16px] leading-[20px] font-semibold'>Desired Skills</h6>
+                        {extractedData?.candidate?.jobPreference.skills.map((value, index) => {
+                            return (
+                                <span key={index * 9} className='text-black-3 text-[12px] leading-[20px]'>
+                                    {value}{index !== (extractedData?.candidate?.jobPreference.skills.length - 1) && ", "}
+                                </span>
+                            )
+                        })}
+                    </div>
+                }
+                {extractedData?.candidate?.jobPreference.onlyNearMeonlyNearMe !== "" &&
+                    <div className='w-full mt-2'>
+                        <h6 className='text-[16px] leading-[20px] font-semibold'>Desired Cities</h6>
+                        {extractedData?.candidate?.jobPreference?.relocation?.anywhere !== true && extractedData?.candidate?.jobPreference?.relocation?.onlyNearMe.locations.map((value, index) => {
+                            return (
+                                <span key={index * 9} className='text-black-3 text-[12px] leading-[20px]'>
+                                    {value}{index !== (extractedData?.candidate?.jobPreference?.relocation?.onlyNearMe?.locations.length - 1) && ", "}
+                                </span>
+                            )
+                        })}
+                        {extractedData?.candidate?.jobPreference?.relocation?.anywhere === true &&
+                            <span className='text-black-3 text-[12px] leading-[20px]'>
+                                Anywhere
+                            </span>
+                        }
+                    </div>
+                }
+
+                <span className='block w-full border-gray-11 border-t-[1px] my-5'></span>
+                {/* Resume Privacy Settings */}
+                <h6 className='text-[18px] leading-[28px] font-medium mb-2'>Resume Privacy Settings</h6>
+                {extractedData?.candidate?.resumePrivacySetting}
+
+                <div className='flex flex-col justify-start gap-y-3 mt-4'>
+                    <div className="flex justify-start items-start gap-x-2 w-100">
+                        <input
+                            className="w-5 h-5 rounded-[20px]"
+                            type="radio"
+                            id="public"
+                            name="resume-privacy-settings"
+                            checked={resumePrivacy === 'Public'}
+                            readOnly
+                        />
+                        <label className="text-gray-1 w-full" htmlFor="public">
+                            <h6 className='text-black-2 text-[16px] leading-[20px] font-semibold'>Public</h6>
+                            <p className='text-black-3 text-[12px] leading-[20px]'>Your resume will be visible to every registered Rozee employer.</p>
+                        </label>
+                    </div>
+                    <div className="flex justify-start items-start gap-x-2 w-100">
+                        <input
+                            className="w-5 h-5 rounded-[20px]"
+                            type="radio"
+                            id="private"
+                            name="resume-privacy-settings"
+                            checked={resumePrivacy === 'Private'}
+                            readOnly
+                        />
+                        <label className="text-gray-1 w-full" htmlFor="private">
+                            <h6 className='text-black-2 text-[16px] leading-[20px] font-semibold'>Private</h6>
+                            <p className='text-black-3 text-[12px] leading-[20px]'>Your resume will not be visible to anyone except you. However, you will be able to attach it when applying for a job.</p>
+                        </label>
+                    </div>
                 </div>
+
+
+
+                {pageType === "edit" &&
+                    <div className='flex justify-start gap-x-3 mt-8'>
+                        <Core.Button
+                            // onClick={handleNext}
+                            type="narrow">Save Chagnes</Core.Button>
+                        <Core.Button
+                            // onClick={handleBack} 
+                            type="narrow" color="white">Cancel</Core.Button>
+                    </div>
+                }
             </div>
         </Core.Card>
     )
