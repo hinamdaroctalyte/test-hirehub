@@ -177,6 +177,7 @@ function MainCandidates() {
                 heading="Manage Candidates"
                 breadcrumb={breadcrumb}
             />
+         
             <TableB
                 // actionButton={{
                 //     name: "Add Department",

@@ -35,6 +35,9 @@ import ScheduleCandidates from "./admin/manage_candidates/schedule";
 // ------------ Employer ------------
 import EmployerDashboard from "./employer/dashboard";
 import ManageProfile from "./employer/manage_profile";
+import MainCandidatesEmployer from "./employer/manage_candidates/main";
+import ViewCandidatesEmployer from "./employer/manage_candidates/view";
+import EditCandidatesEmployer from "./employer/manage_candidates/edit";
 
 export {
     FourZeroFour,
@@ -72,4 +75,7 @@ export {
     // ------------ Employer ------------
     EmployerDashboard,
     ManageProfile,
+    MainCandidatesEmployer,
+    ViewCandidatesEmployer,
+    EditCandidatesEmployer
 } 

@@ -26,6 +26,9 @@ import {
   NewPasswordPage,
   FourZeroFour,
   ViewProfile,
+  MainCandidatesEmployer,
+  EditCandidatesEmployer,
+  ViewCandidatesEmployer,
 } from "./pages/index";
 import { AdminLayout, EmployerLayout } from "./components";
 import PrivateRoute from "./utilis/PrivateRoute";
@@ -71,6 +74,7 @@ function App() {
 
         </Route >
 
+          
         {/* // Employer Routes */}
         <Route path="employer/*" element={<PrivateRoute roles={['employer']}><EmployerLayout /></PrivateRoute>} >
           <Route path="dashboard" element={<PrivateRoute roles={['employer']}><EmployerDashboard /></PrivateRoute>} />
@@ -78,9 +82,9 @@ function App() {
           <Route path="profile" element={<PrivateRoute roles={['employer']}><ViewProfile /></PrivateRoute>} />
           <Route path="change-password" element={<PrivateRoute roles={['employer']}><ChangePassword /></PrivateRoute>} />
 
-          <Route path="manage-candidates" element={<MainCandidates />} />
-          <Route path="manage-candidates/edit/:id" element={<EditCandidates />} />
-          <Route path="manage-candidates/view/:id" element={<ViewCandidates />} />
+          <Route path="manage-candidates" element={<MainCandidatesEmployer />} />
+          <Route path="manage-candidates/edit/:id" element={<EditCandidatesEmployer />} />
+          <Route path="manage-candidates/view/:id" element={<ViewCandidatesEmployer />} />
           <Route path="manage-candidates/schedule/:id" element={<ScheduleCandidates />} />
 
         </Route>

@@ -9,7 +9,7 @@ export const redirectToDashboard = (role, navigate) => {
       navigate('/admin/dashboard');
       break;
     case 'candidate':
-      navigate('/candidate/dashboard');
+      navigate('/candidate/manage-profile');
       break;
     case 'employer':
       console.log("employerer");

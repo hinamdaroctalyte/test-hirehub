@@ -3,11 +3,14 @@ import React, { useState } from 'react';
 import { Core } from '..';
 import imgUrgentlyRequired from "../../assets/images/urgently-required.png";
 import { useParams } from 'react-router-dom';
+import { useDispatch, useSelector } from 'react-redux';
+
 
 function UserProfile({ data, pageType, dropdownOptions }) {
     const [status, setStatus] = useState("");
     const { id, } = useParams();
-    const extractedData = data?.find(item => item.id === id);
+    const  AppliedJobCandidate  = useSelector((state) => state?.manageCandidate?.jobs);
+    const extractedData = data?.find(item => item.id === "1");
     console.log("dropdownOptions", dropdownOptions)
     console.log("status", status)
     return (
