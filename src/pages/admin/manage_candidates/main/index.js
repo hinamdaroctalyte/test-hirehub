@@ -1,8 +1,13 @@
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import { Table } from '../../../../components';
 import { Breadcrumb, StatsGroup } from '../../../../components/core';
 import avatar1 from "../../../../assets/images/avatars/2.png";
 import TableB from '../../../../components/table/TableB';
+import { getAllAppliedJob } from '../../../../Slices/Admin/ManageCandidate';
+import { useDispatch, useSelector } from 'react-redux';
+import { useNavigate } from "react-router-dom"
+
+
 
 // const columns = ["name", "jobTitle", "employer", "eligibility", "experience", "salary", "stage", "status", "action"];
 const columns = [
@@ -17,8 +22,8 @@ const columns = [
         dataIndex: 'jobTitle',
     }, {
         title: 'Employer',
-        key: 'employer',
-        dataIndex: 'employer',
+        key: 'employerName',
+        dataIndex: 'employerName',
     }, {
         title: 'Eligibility',
         key: 'eligibility',
@@ -152,15 +157,42 @@ function MainCandidates() {
     const [appliedDate, setAppliedDate] = useState("");
     const [candidateStage, setCandidateStage] = useState("");
     const [userStatus, setUserStatus] = useState("");
+    const dispatch = useDispatch();
+    const navigate = useNavigate();
+    const  AppliedAllJobs  = useSelector((state) => state?.manageCandidateAdmin?.jobs);
+
+    console.log({AppliedAllJobs})
+
+
+
+    useEffect(() => {
+        try {
+
+            dispatch(getAllAppliedJob()).unwrap().then(res => {
+                console.log("Successfully fetched data", res);
+
+
+
+            }).catch(err => {
+                console.error(`Error Fetching Data ${err}`);
+            });
+        } catch (error) {
+            console.error(`Error in useEffect of Dashboard ${error}`)
+
+        }
+    },[])
+
 
     const onViewClick = (id) => {
-        window.location.href = `/admin/manage-candidates/view/${id}`;
+        navigate(`/admin/manage-candidates/view/${id}`);
+        
     };
     const onEditClick = (id) => {
-        window.location.href = `/admin/manage-candidates/edit/${id}`;
+       
+        navigate(`/admin/manage-candidates/edit/${id}`);
     };
     const onMessageClick = (id) => {
-        window.location.href = `/admin/manage-candidates/schedule/${id}`;
+        navigate(`/admin/manage-candidates/schedule/${id}`);
     };
 
     console.log("name", name);
@@ -177,14 +209,14 @@ function MainCandidates() {
                 heading="Manage Candidates"
                 breadcrumb={breadcrumb}
             />
-         
+
             <TableB
                 // actionButton={{
                 //     name: "Add Department",
                 //     link: "/departments/add",
                 // }}
                 // id="employees-listing"
-                data={candidates}
+                data={AppliedAllJobs}
                 columns={columns}
                 filterBy={[
                     "SearchByName",

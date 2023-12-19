@@ -79,7 +79,7 @@ function CompanyProfile({ data, pageType, dropdownOptions, selectedState }) {
             <div className='flex justify-between border-b-[3px] pb-7'>
                 <div className='w-[200px]'>
                     <div className='flex justify-center items-center w-[130px] h-[130px] bg-gray-7 rounded-[20px]'>
-                        {/* <img src={extractedData?.companyName?.img} alt="company logo" /> */}
+                        <img src={employerDetails?.logo} alt="company logo" width={150} height={150} />
                     </div>
                 </div>
                 <div className='w-full'>
