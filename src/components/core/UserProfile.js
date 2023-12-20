@@ -20,11 +20,39 @@ function UserProfile({ data, pageType, dropdownOptions, selectedState }) {
         }
     }, [extractedData]);
     
-    const [status, setStatus] = useState(extractedData?.status);
-    useEffect(() => {
-        setStatus(extractedData?.stage);
-    }, [extractedData]);
-    console.log('extractedData', extractedData)
+    const [status, setStatus] = useState(extractedData?.stage);
+
+
+
+    const handleNext = () => {
+        console.log(status, "statusssssssssssss")
+        // try {
+        //     if (!status) return;
+        //     console.log({ id })
+        //     const statusCheck = status === "Pending" || status === "Approved" || status === "Rejected"
+        //         ? { isVerified: status }
+        //         : { status: status }
+        //     console.log({ statusCheck })
+
+        //     dispatch(employerStatusChange({ id, statusCheck })).unwrap().then(res => {
+        //         console.log("reSSSSSSSSS", res);
+        //         if (res) {
+        //             notificationService.success(res.data.msg)
+        //             setTimeout(() => {
+        //                 navigate("/admin/manage-employers")
+        //             }, 2000)
+        //         }
+
+        //     }).catch(err => {
+        //         console.error(`Error Fetching Data ${err}`);
+        //         notificationService.error(err)
+        //     })
+        // } catch (error) {
+        //     console.error(`Error in useEffect of Dashboard ${error}`)
+        //     notificationService.error(error)
+
+        // }
+    }
     return (
         <Core.Card className={`pt-[20px] pb-[45px] px-[30px]`}>
             <div className='flex justify-end gap-x-4'>
@@ -319,7 +347,7 @@ function UserProfile({ data, pageType, dropdownOptions, selectedState }) {
                 {pageType === "edit" &&
                     <div className='flex justify-start gap-x-3 mt-8'>
                         <Core.Button
-                            // onClick={handleNext}
+                            onClick={handleNext}
                             type="narrow">Save Chagnes</Core.Button>
                         <Core.Button
                             // onClick={handleBack} 
