@@ -5,7 +5,6 @@ import avatar from "../../assets/images/avatars/8.png"
 import { NavLink, useNavigate } from 'react-router-dom';
 import { logout } from '../../Slices/Auth/authSlice';
 import { useDispatch, useSelector } from "react-redux";
-
 import { useLocation } from 'react-router-dom';
 
 export default function Dropdown() {
@@ -32,7 +31,7 @@ export default function Dropdown() {
                     </div>
                     <div className='flex flex-col items-start'>
                         <span className='text-black-1 text-[14px] leading-[20px] capitalize font-medium'>{user?.name}</span>
-                        <span className='text-gray-6 text-[12px] leading-[18px]'>{user?.Role}</span>
+                        <span className='text-gray-6 text-[11px] leading-[18px] capitalize opacity-80'>{user?.Role}</span>
                     </div>
                     <Icons.GoChevronDown
                         className="ml-1 h-5 w-5 text-gray-1"

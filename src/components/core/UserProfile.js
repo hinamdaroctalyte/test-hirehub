@@ -2,17 +2,15 @@ import React, { useState, useEffect } from 'react';
 import { Core } from '..';
 import logo1 from "../../assets/images/company-logos/logo1.png";
 import logo2 from "../../assets/images/company-logos/logo2.png";
-import logo14 from "../../assets/images/company-logos/14.png";
 import { useParams } from 'react-router-dom';
 import Icon from '../icon';
-import { Field } from 'formik/dist';
 import { calculateTimePeriod } from '../../utilis/calculateTimePeriod';
+import { useLocation } from 'react-router-dom';
 
-
-
-
-
-function UserProfile({ data, pageType, dropdownOptions, selectedState, status, setState, handleNext}) {
+function UserProfile({ data, pageType, dropdownOptions, selectedState, handleNext }) {
+    const location = useLocation();
+    const parts = location?.pathname.split('/');
+    const accountType = parts[1];
     const { id, } = useParams();
     const extractedData = data?.find(item => item.candidate.userId === id);
     const [resumePrivacy, setResumePrivacy] = useState('');
@@ -25,22 +23,46 @@ function UserProfile({ data, pageType, dropdownOptions, selectedState, status, s
             setResumePrivacy(data);
         }
     }, [extractedData]);
-    
+    const [status, setStatus] = useState(extractedData?.status);
+    useEffect(() => {
+        setStatus(extractedData?.stage);
+    }, [extractedData]);
+    const [eligibilityStatus, setEligibilityStatus] = useState(
+        extractedData?.eligibility === 'Yes' ? 'checked' : 'unchecked'
+    );
+    useEffect(() => {
+        // Update eligibilityStatus state whenever extractedData changes
+        setEligibilityStatus(
+            extractedData?.eligibility === 'Yes' ? 'checked' : 'unchecked'
+        );
+    }, [extractedData]);
+    const handleCheckboxChange = (event) => {
+        const newValue = event.target.checked ? 'checked' : 'unchecked';
+        setEligibilityStatus(newValue);
+    };
 
-
-
-  
+    console.log("extractedData", extractedData)
     return (
         <Core.Card className={`pt-[20px] pb-[45px] px-[30px]`}>
             <div className='flex justify-end gap-x-4'>
-                <span className='text-gray-6 text-[14px] leading-[20px] py-1'>
-                    <div className="flex justify-start items-center gap-x-2 w-100">
-                        <input className="w-5 h-5 rounded-[20px]" type="checkbox" id="meets-all-requirements" name="terms" />
-                        <label className="text-gray-1" for="terms-conditions">
-                            Meets all requirements
-                        </label>
-                    </div>
-                </span>
+                {!(accountType === "admin" && pageType === "edit") &&
+                    <span className='text-gray-6 text-[14px] leading-[20px] py-1'>
+                        <div className="flex justify-start items-center gap-x-2 w-100">
+                            <input
+                                className="w-5 h-5 rounded-[20px]"
+                                type="checkbox"
+                                id="meets-all-requirements"
+                                name="terms"
+                                disabled={pageType === "view" ? true : false}
+                                checked={eligibilityStatus === 'checked'}
+                                onChange={handleCheckboxChange}
+                            />
+                            <label className="text-gray-1" htmlFor="terms-conditions">
+                                Meets all requirements
+                            </label>
+                        </div>
+                    </span>
+                }
                 {pageType === "view" &&
                     <span className='flex justify-start gap-x-2 text-gray-6 text-[11px] leading-[20px] border-r-[2px] border-gray-12 pr-5 py-1'>
                         Handmade Pouch-Resume
@@ -49,7 +71,7 @@ function UserProfile({ data, pageType, dropdownOptions, selectedState, status, s
                 }
                 {pageType === "view" &&
                     <span className='text-gray-6 text-[16px] leading-[20px] capitalize font-semibold pl-1 py-1'>
-                        Candidates Status:<span className='text-purple-1'> {extractedData?.stage}</span>
+                        {/* Candidates Status:<span className='text-purple-1'> {extractedData?.stage}</span> */}
                     </span>
                 }
                 {pageType === "edit" &&
@@ -59,22 +81,23 @@ function UserProfile({ data, pageType, dropdownOptions, selectedState, status, s
                         </span>
                         <span className="absolute right-3 top-8 ">
                             <Core.Dropdown2
-                                selectedState={extractedData?.stage}
+                                // selectedState={extractedData.stage}
                                 status={status}
-                                setState
-                                options={dropdownOptions} />
+                                setState={setStatus}
+                                options={dropdownOptions}
+                                className={"min-w-[160px]"} />
                         </span>
                     </div>
                 }
             </div>
-            <div className='flex justify-between pb-7 -mt-4'>
-                <div className='w-[110px]'>
-                    <div className='flex justify-center items-center w-[90px] h-[90px] bg-gray-7 rounded-full overflow-hidden'>
+            <div className=' flex justify-between pb-5 -mt-1'>
+                <div className='relative w-[110px]'>
+                    <div className='absolute -top-6 flex justify-center items-center w-[90px] h-[90px] bg-gray-7 rounded-full overflow-hidden'>
                         <img src={extractedData?.candidate?.personalInformation?.avatar && 'https://dp.profilepics.in/profile_pictures/boys-profile-pics/boys-profile-pics-dp-for-whatsapp-facebook-1775.jpg'} alt="company logo" />
                     </div>
                 </div>
                 <div className='w-full'>
-                    <div className='w-full h-full flex justify-between items-end'>
+                    <div className='w-full h-full flex justify-between items-en d'>
                         <div>
                             <h6 className='text-[22px] leading-[20px] capitalize font-semibold mb-2'>{extractedData?.name}</h6>
                             <p className='text-gray-6 text-[14px] leading-[20px] max-w-[70%]'>Design Lead | Author of the "Design Manual" and the "Ultimate Guide to Web Design" | Teaching 300,000+ Designers Worldwide</p>

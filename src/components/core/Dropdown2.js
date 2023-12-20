@@ -3,8 +3,8 @@ import { Fragment, useState } from 'react';
 import { Icons } from '..';
 
 export default function Dropdown2({ options, setState, className, menuWidth, defaultTitle, selectedState,status }) {
-    console.log({selectedState})
-    const [selectedOption, setSelectedOption] = useState(""); // Set the default selected option
+    // console.log({selectedState})
+    const [selectedOption, setSelectedOption] = useState(status); // Set the default selected option
     const handleOptionClick = (value) => {
         setSelectedOption(value);
         
