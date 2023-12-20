@@ -16,7 +16,7 @@ function CompanyProfile({ data, pageType, dropdownOptions, selectedState }) {
     const reload = useSelector((state) => state?.admin?.reload);
     const dispatch = useDispatch();
     const { id } = useParams();
-    const navigate = useNavigate()
+    const navigate = useNavigate();
     // const extractedData = employerDetails?.find(item => item.id === "1");
 
     useEffect(() => {

@@ -16,10 +16,10 @@ const ManageCandidateAdmin = {
             throw error;
         }
     },
-    async changeStatusAppliedJobByAdmin(id, status) {
+    async changeStatusAppliedJobByAdmin(id, statusCheck) {
         try {
-            console.log("change status applied employer", id, status);
-            const response = await api.post(`admin/change-manage-candidates-status?id=${id}`, status);
+            console.log("change status applied employer", id, statusCheck);
+            const response = await api.post(`admin/change-manage-candidates-status?id=${id}`, statusCheck);
             if (response && response.data && response.status === 200) {
                 console.log("viewww employererererer, res", response);
                 return response.data;

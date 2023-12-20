@@ -24,11 +24,11 @@ export const getAllAppliedJob = createAsyncThunk('admin/get-applied-jobs-by-all'
 });
 
 
-export const changeAppliedJobStatusAdmin = createAsyncThunk('admin/change-status-applied-jobs-by-all', async ({id, status}) => {
+export const changeAppliedJobStatusAdmin = createAsyncThunk('admin/change-status-applied-jobs-by-all', async ({id, statusCheck}) => {
 
     try {
-        console.log("change status job sliceeeee", id, status)
-        const data = await ManageCandidateAdmin.changeStatusAppliedJobByAdmin(id, status)
+        console.log("change status job sliceeeee", id, statusCheck)
+        const data = await ManageCandidateAdmin.changeStatusAppliedJobByAdmin(id, statusCheck)
         console.log(data, "dataaaaa")
         return data
     } catch (error) {

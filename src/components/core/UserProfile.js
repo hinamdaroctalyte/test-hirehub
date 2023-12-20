@@ -4,15 +4,21 @@ import logo1 from "../../assets/images/company-logos/logo1.png";
 import logo2 from "../../assets/images/company-logos/logo2.png";
 import logo14 from "../../assets/images/company-logos/14.png";
 import { useParams } from 'react-router-dom';
-import { useDispatch, useSelector } from 'react-redux';
 import Icon from '../icon';
 import { Field } from 'formik/dist';
 import { calculateTimePeriod } from '../../utilis/calculateTimePeriod';
 
-function UserProfile({ data, pageType, dropdownOptions, selectedState }) {
+
+
+
+
+function UserProfile({ data, pageType, dropdownOptions, selectedState, status, setState, handleNext}) {
     const { id, } = useParams();
     const extractedData = data?.find(item => item.candidate.userId === id);
     const [resumePrivacy, setResumePrivacy] = useState('');
+   
+
+
     useEffect(() => {
         const data = extractedData?.candidate?.resumePrivacySetting;
         if (data) {
@@ -20,39 +26,10 @@ function UserProfile({ data, pageType, dropdownOptions, selectedState }) {
         }
     }, [extractedData]);
     
-    const [status, setStatus] = useState(extractedData?.stage);
 
 
 
-    const handleNext = () => {
-        console.log(status, "statusssssssssssss")
-        // try {
-        //     if (!status) return;
-        //     console.log({ id })
-        //     const statusCheck = status === "Pending" || status === "Approved" || status === "Rejected"
-        //         ? { isVerified: status }
-        //         : { status: status }
-        //     console.log({ statusCheck })
-
-        //     dispatch(employerStatusChange({ id, statusCheck })).unwrap().then(res => {
-        //         console.log("reSSSSSSSSS", res);
-        //         if (res) {
-        //             notificationService.success(res.data.msg)
-        //             setTimeout(() => {
-        //                 navigate("/admin/manage-employers")
-        //             }, 2000)
-        //         }
-
-        //     }).catch(err => {
-        //         console.error(`Error Fetching Data ${err}`);
-        //         notificationService.error(err)
-        //     })
-        // } catch (error) {
-        //     console.error(`Error in useEffect of Dashboard ${error}`)
-        //     notificationService.error(error)
-
-        // }
-    }
+  
     return (
         <Core.Card className={`pt-[20px] pb-[45px] px-[30px]`}>
             <div className='flex justify-end gap-x-4'>
@@ -82,9 +59,9 @@ function UserProfile({ data, pageType, dropdownOptions, selectedState }) {
                         </span>
                         <span className="absolute right-3 top-8 ">
                             <Core.Dropdown2
-                                selectedState={extractedData.stage}
+                                selectedState={extractedData?.stage}
                                 status={status}
-                                setState={setStatus}
+                                setState
                                 options={dropdownOptions} />
                         </span>
                     </div>
@@ -93,7 +70,7 @@ function UserProfile({ data, pageType, dropdownOptions, selectedState }) {
             <div className='flex justify-between pb-7 -mt-4'>
                 <div className='w-[110px]'>
                     <div className='flex justify-center items-center w-[90px] h-[90px] bg-gray-7 rounded-full overflow-hidden'>
-                        <img src={extractedData.candidate.personalInformation.avatar && 'https://dp.profilepics.in/profile_pictures/boys-profile-pics/boys-profile-pics-dp-for-whatsapp-facebook-1775.jpg'} alt="company logo" />
+                        <img src={extractedData?.candidate?.personalInformation?.avatar && 'https://dp.profilepics.in/profile_pictures/boys-profile-pics/boys-profile-pics-dp-for-whatsapp-facebook-1775.jpg'} alt="company logo" />
                     </div>
                 </div>
                 <div className='w-full'>
