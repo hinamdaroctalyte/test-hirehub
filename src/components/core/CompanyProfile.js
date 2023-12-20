@@ -17,7 +17,7 @@ function CompanyProfile({ data, pageType, dropdownOptions, selectedState }) {
     const dispatch = useDispatch();
     const { id } = useParams();
     const navigate = useNavigate()
-    const extractedData = employerDetails?.find(item => item.id === "1");
+    // const extractedData = employerDetails?.find(item => item.id === "1");
 
     useEffect(() => {
         try {
@@ -54,7 +54,7 @@ function CompanyProfile({ data, pageType, dropdownOptions, selectedState }) {
                     notificationService.success(res.data.msg)
                     setTimeout(() => {
                         navigate("/admin/manage-employers")
-                    }, 3000)
+                    }, 2000)
                 }
 
             }).catch(err => {

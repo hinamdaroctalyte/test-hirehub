@@ -9,7 +9,7 @@ import Icon from '../icon';
 import { Field } from 'formik/dist';
 import { calculateTimePeriod } from '../../utilis/calculateTimePeriod';
 
-function UserProfile({ data, pageType, dropdownOptions }) {
+function UserProfile({ data, pageType, dropdownOptions, selectedState }) {
     const { id, } = useParams();
     const extractedData = data?.find(item => item.candidate.userId === id);
     const [resumePrivacy, setResumePrivacy] = useState('');
@@ -19,11 +19,12 @@ function UserProfile({ data, pageType, dropdownOptions }) {
             setResumePrivacy(data);
         }
     }, [extractedData]);
+    
     const [status, setStatus] = useState(extractedData?.status);
     useEffect(() => {
-        setStatus(extractedData?.status);
+        setStatus(extractedData?.stage);
     }, [extractedData]);
-    // console.log('extractedData', extractedData)
+    console.log('extractedData', extractedData)
     return (
         <Core.Card className={`pt-[20px] pb-[45px] px-[30px]`}>
             <div className='flex justify-end gap-x-4'>
@@ -53,6 +54,7 @@ function UserProfile({ data, pageType, dropdownOptions }) {
                         </span>
                         <span className="absolute right-3 top-8 ">
                             <Core.Dropdown2
+                                selectedState={extractedData.stage}
                                 status={status}
                                 setState={setStatus}
                                 options={dropdownOptions} />
@@ -63,7 +65,7 @@ function UserProfile({ data, pageType, dropdownOptions }) {
             <div className='flex justify-between pb-7 -mt-4'>
                 <div className='w-[110px]'>
                     <div className='flex justify-center items-center w-[90px] h-[90px] bg-gray-7 rounded-full overflow-hidden'>
-                        <img src={'https://dp.profilepics.in/profile_pictures/boys-profile-pics/boys-profile-pics-dp-for-whatsapp-facebook-1775.jpg'} alt="company logo" />
+                        <img src={extractedData.candidate.personalInformation.avatar && 'https://dp.profilepics.in/profile_pictures/boys-profile-pics/boys-profile-pics-dp-for-whatsapp-facebook-1775.jpg'} alt="company logo" />
                     </div>
                 </div>
                 <div className='w-full'>

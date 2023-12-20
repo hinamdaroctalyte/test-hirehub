@@ -14,6 +14,8 @@ function ViewCandidates() {
     // const { tableData } = employersData;
     const  AppliedJobCandidate  = useSelector((state) => state?.manageCandidate?.jobs);
 
+    // console.log({AppliedJobCandidate})
+
     const dropdownOptions = [
         "activate",
         "inactive",

@@ -30,12 +30,14 @@ const columns = [
         title: 'Stage',
         key: 'stage',
         dataIndex: 'stage',
-        sorter: true,
-    }, {
-        title: 'Status',
-        key: 'status',
-        dataIndex: 'status',
-    }, {
+        sorter: true
+    },
+    // }, {
+    //     title: 'Status',
+    //     key: 'status',
+    //     dataIndex: 'status',
+    // }, {
+    {
         title: 'Action',
         key: 'action',
         dataIndex: 'action',
@@ -149,9 +151,9 @@ function MainCandidates() {
     const [userStatus, setUserStatus] = useState("");
     const navigate = useNavigate();
     const dispatch = useDispatch()
-    const  AppliedJobCandidate  = useSelector((state) => state?.manageCandidate?.jobs);
+    const AppliedJobCandidate = useSelector((state) => state?.manageCandidate?.jobs);
 
-    console.log({AppliedJobCandidate})
+    console.log({ AppliedJobCandidate })
 
 
 
@@ -201,7 +203,7 @@ function MainCandidates() {
                 heading="Manage Candidates"
                 breadcrumb={breadcrumb}
             />
-            
+
             <TableB
                 data={AppliedJobCandidate}
                 columns={columns}

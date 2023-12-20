@@ -40,13 +40,13 @@ const columns = [
         title: 'Stage',
         key: 'stage',
         dataIndex: 'stage',
-        sorter: true,
-    }, {
-        title: 'Status',
-        key: 'status',
-        dataIndex: 'status',
-    }, {
-        title: 'Action',
+        sorter: true},
+    // }, {
+    //     title: 'Status',
+    //     key: 'status',
+    //     dataIndex: 'status',
+    // }, {
+        {title: 'Action',
         key: 'action',
         dataIndex: 'action',
     },

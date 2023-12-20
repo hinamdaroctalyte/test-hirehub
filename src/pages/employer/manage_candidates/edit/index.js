@@ -15,9 +15,10 @@ function EditCandidates() {
     const  AppliedJobCandidate  = useSelector((state) => state?.manageCandidate?.jobs);
 
     const dropdownOptions = [
-        'activate',
-        'inactive',
-        'on hold',
+        'screening',
+        'new application',
+        'hire',
+        "selection"
     ];
 
     return (
@@ -26,7 +27,7 @@ function EditCandidates() {
                 heading="Edit Candidates"
                 breadcrumb={breadcrumb}
             />
-            <Core.UserProfile data={AppliedJobCandidate} dropdownOptions={dropdownOptions} pageType="edit" />
+            <Core.UserProfile data={AppliedJobCandidate} selectedState={AppliedJobCandidate.stage} dropdownOptions={dropdownOptions} pageType="edit" />
         </>
     );
 }

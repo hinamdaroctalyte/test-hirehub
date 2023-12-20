@@ -16,9 +16,10 @@ function EditCandidates() {
 
 
     const dropdownOptions = [
-        'activate',
-        'inactive',
-        'on hold',
+        'screening',
+        'new application',
+        'hire',
+        "selection"
     ];
 
     return (
