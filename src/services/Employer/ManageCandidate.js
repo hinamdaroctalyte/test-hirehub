@@ -16,6 +16,18 @@ const ManageCandidate = {
             throw error;
         }
     },
+    async changeStatusAppliedJobByEmployer(id, statusCheck) {
+        try {
+            console.log("change status applied employer", id, statusCheck);
+            const response = await api.post(`/change-status-applied-jobs-by-candidate?id=${id}`, statusCheck);
+            if (response && response.data && response.status === 200) {
+                console.log("viewww employererererer, res", response);
+                return response.data;
+            }
+        } catch (error) {
+            throw error;
+        }
+    }
    
 };
 

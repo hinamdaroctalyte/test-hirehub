@@ -94,7 +94,8 @@ const manageCandidateAdmin = createSlice({
                     JobTitle,
                     employerName,
                     experience,
-                    salary
+                    salary,
+                    eligibility: "Yes"
 
                 })
 
