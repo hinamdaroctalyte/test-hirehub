@@ -74,7 +74,8 @@ const manageCandidate = createSlice({
                     salary,
                     name,
                     experience,
-                    candidate
+                    candidate,
+                    eligibility: "Yes"
 
                 });
 
