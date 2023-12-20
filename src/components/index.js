@@ -9,6 +9,9 @@ import Table from "./table/Table";
 // ------------ Employer ------------
 import EmployerLayout from "./layout/EmployerLayout";
 
+// ------------ Candidate ------------
+import CandidateLayout from "./layout/CandidateLayout";
+
 export * as Core from "./core";
 export * as Icons from "./icons";
 export * as Icon from "./icon";
@@ -25,4 +28,6 @@ export {
     Table,
     // ------------ Employer ------------
     EmployerLayout,
+    // ------------ Candidate ------------
+    CandidateLayout
 }

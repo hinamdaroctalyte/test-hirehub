@@ -1,7 +1,8 @@
 import React from 'react';
 import { Breadcrumb, } from '../../../../components/core';
 import { Core, } from '../../../../components';
-import employersData from '../../../../data/employersData.json';
+// import employersData from '../../../../data/employersData.json';
+import { useSelector } from 'react-redux';
 
 const breadcrumb = [
     { label: "Dashboard", link: "/admin/dashboard" },
@@ -10,7 +11,9 @@ const breadcrumb = [
 ];
 
 function ViewCandidates() {
-    const { tableData } = employersData;
+    // const { tableData } = employersData;
+    const  AppliedJobCandidate  = useSelector((state) => state?.manageCandidate?.jobs);
+
     const dropdownOptions = [
         "activate",
         "inactive",
@@ -23,7 +26,7 @@ function ViewCandidates() {
                 breadcrumb={breadcrumb}
             />
             {/* <Core.CompanyProfile data={tableData} dropdownOptions={dropdownOptions} pageType="view" /> */}
-            <Core.UserProfile data={tableData} dropdownOptions={dropdownOptions} pageType="view" />
+            <Core.UserProfile data={AppliedJobCandidate} dropdownOptions={dropdownOptions} pageType="view" />
         </>
     );
 }

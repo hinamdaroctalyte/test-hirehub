@@ -29,12 +29,11 @@ import ViewCandidates from "./admin/manage_candidates/view";
 import EditCandidates from "./admin/manage_candidates/edit";
 import ViewProfile from "./admin/profile/view";
 import ScheduleCandidates from "./admin/manage_candidates/schedule";
-
-
-
 // ------------ Employer ------------
 import EmployerDashboard from "./employer/dashboard";
 import ManageProfile from "./employer/manage_profile";
+// ------------ Candidate ------------
+import ManageProfileCandidate from "./candidate/manage_profile";
 import MainCandidatesEmployer from "./employer/manage_candidates/main";
 import ViewCandidatesEmployer from "./employer/manage_candidates/view";
 import EditCandidatesEmployer from "./employer/manage_candidates/edit";
@@ -75,6 +74,9 @@ export {
     // ------------ Employer ------------
     EmployerDashboard,
     ManageProfile,
+
+    // ------------ Candidate ------------
+    ManageProfileCandidate,
     MainCandidatesEmployer,
     ViewCandidatesEmployer,
     EditCandidatesEmployer

@@ -26,11 +26,12 @@ import {
   NewPasswordPage,
   FourZeroFour,
   ViewProfile,
+  ManageProfileCandidate,
   MainCandidatesEmployer,
   EditCandidatesEmployer,
   ViewCandidatesEmployer,
 } from "./pages/index";
-import { AdminLayout, EmployerLayout } from "./components";
+import { AdminLayout, CandidateLayout, EmployerLayout } from "./components";
 import PrivateRoute from "./utilis/PrivateRoute";
 
 function App() {
@@ -90,8 +91,8 @@ function App() {
         </Route>
 
         {/* // Candidate Routes */}
-        <Route path="candidate/*" element={<PrivateRoute roles={['candidate']}><EmployerLayout /></PrivateRoute>} >
-          <Route path="manage-profile" element={<PrivateRoute roles={['candidate']}><ManageProfile /></PrivateRoute>} />
+        <Route path="candidate/*" element={<PrivateRoute roles={['candidate']}><CandidateLayout /></PrivateRoute>} >
+          <Route path="manage-profile" element={<PrivateRoute roles={['candidate']}><ManageProfileCandidate /></PrivateRoute>} />
         </Route>
 
         <Route path="*"
