@@ -1,7 +1,7 @@
 
 
 export const redirectToDashboard = (role, navigate) => {
-  console.log("startttttttttttttttt");
+  console.log("startttttttttttttttt", role);
  
 
   switch (role) {

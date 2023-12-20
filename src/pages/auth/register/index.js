@@ -6,9 +6,11 @@ import { Checkbox, Radio } from 'antd';
 import { Formik, Form, Field, ErrorMessage } from 'formik';
 import * as Yup from 'yup';
 import { register } from '../../../Slices/Auth/authSlice';
+import { useNavigate } from 'react-router-dom';
 import { toast, ToastContainer  } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
 import { useDispatch, useSelector } from 'react-redux';
+import { redirectToDashboard } from '../../../utilis/RedirectionToDashboard';
 
 
 const validationSchema = Yup.object().shape({
@@ -34,6 +36,9 @@ const initialValues = {
 
 const RegisterPage = () => {
     const dispatch = useDispatch();
+    const navigate = useNavigate();
+    const user = useSelector((state) => state.auth.user);
+
 
     const onSubmit = (values) => {
         try {
@@ -44,7 +49,10 @@ const RegisterPage = () => {
                 role: values.userType
             })).unwrap().then(res => {
                console.log(res, "ressssponsee");
-               if(res){
+               if(res.data){
+                const user = res?.data?.user;
+                console.log(user, "userrrr")
+                redirectToDashboard(user?.role, navigate);
                 toast.success("Registration Successful");
                }
             }).catch(error => {

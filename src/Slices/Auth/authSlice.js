@@ -90,9 +90,16 @@ const authSlice = createSlice({
                 localStorage.removeItem("user")
                 state.error = action.error.message;
             });
-            builder.addCase(register.fulfilled, (state, payload) => {
-                state.error = null
+            builder.addCase(register.fulfilled, (state, {payload}) => {
+         
                 console.log(payload, "payloadddddddddd from registerrrr");
+                localStorage.setItem("user", JSON.stringify(payload?.data?.user));
+                const data = payload?.data?.user
+                console.log(data, "payloaddddd");
+                state.user = data
+                state.role = data?.Role
+                state.isAuthenticated = true
+                state.error = null
             })
             builder.addCase(forgetPassword.fulfilled, (state, payload) => {
                 console.log(payload, "payloadd from forgot password");
