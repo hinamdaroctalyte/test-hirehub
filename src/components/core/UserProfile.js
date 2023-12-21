@@ -7,23 +7,24 @@ import Icon from '../icon';
 import { calculateTimePeriod } from '../../utilis/calculateTimePeriod';
 import { useLocation } from 'react-router-dom';
 
-function UserProfile({ data, pageType, dropdownOptions, selectedState }) {
+function UserProfile({ data : extractedData, pageType, dropdownOptions, selectedState, handleNext, setStatus, status }) {
     const location = useLocation();
     const parts = location?.pathname.split('/');
     const accountType = parts[1];
-    const { id, } = useParams();
-    const extractedData = data?.find(item => item.candidate.userId === id);
+    
     const [resumePrivacy, setResumePrivacy] = useState('');
+   
+
+
     useEffect(() => {
         const data = extractedData?.candidate?.resumePrivacySetting;
         if (data) {
             setResumePrivacy(data);
         }
     }, [extractedData]);
-    const [status, setStatus] = useState(extractedData?.status);
-    useEffect(() => {
-        setStatus(extractedData?.stage);
-    }, [extractedData]);
+
+    console.log("starttttt useeffect after", status);
+
     const [eligibilityStatus, setEligibilityStatus] = useState(
         extractedData?.eligibility === 'Yes' ? 'checked' : 'unchecked'
     );
@@ -71,7 +72,7 @@ function UserProfile({ data, pageType, dropdownOptions, selectedState }) {
                 }
                 {pageType === "view" &&
                     <span className='text-gray-6 text-[16px] leading-[20px] capitalize font-semibold pl-1 py-1'>
-                        {/* Candidates Status:<span className='text-purple-1'> {extractedData?.stage}</span> */}
+                        Candidates Status:<span className='text-purple-1'> {extractedData?.stage}</span>
                     </span>
                 }
                 {pageType === "edit" &&
@@ -81,7 +82,7 @@ function UserProfile({ data, pageType, dropdownOptions, selectedState }) {
                         </span>
                         <span className="absolute right-3 top-8 ">
                             <Core.Dropdown2
-                                // selectedState={extractedData.stage}
+                                selectedState={extractedData?.stage}
                                 status={status}
                                 setState={setStatus}
                                 options={dropdownOptions}
@@ -345,7 +346,7 @@ function UserProfile({ data, pageType, dropdownOptions, selectedState }) {
                 {pageType === "edit" &&
                     <div className='flex justify-start gap-x-3 mt-8'>
                         <Core.Button
-                            // onClick={handleNext}
+                            onClick={handleNext}
                             type="narrow">Save Chagnes</Core.Button>
                         <Core.Button
                             // onClick={handleBack} 

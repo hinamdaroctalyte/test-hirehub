@@ -91,7 +91,9 @@ const adminSlice = createSlice({
                     account: employer?.accountStatus,
                     isVerified: employer?.isVerified,
                     companyName: employer?.companyName,
-                    email: userEmail
+                    email: userEmail,
+                 
+
 
 
                 });

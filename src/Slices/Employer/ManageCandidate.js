@@ -23,6 +23,20 @@ export const getAppliedJobByCandidate = createAsyncThunk('employer/get-applied-j
 });
 
 
+export const changeAppliedJobStatusEmployer = createAsyncThunk('employer/change-status-applied-jobs-employer', async ({id, statusCheck}) => {
+
+    try {
+        console.log("change status job sliceeeee", id, statusCheck)
+        const data = await ManageCandidate.changeStatusAppliedJobByEmployer(id, statusCheck)
+        console.log(data, "dataaaaa")
+        return data
+    } catch (error) {
+        // Handle login error
+        console.log(error);
+        handleApiError(error)
+    }
+});
+
 
 
 
@@ -65,7 +79,8 @@ const manageCandidate = createSlice({
 
 
                 newAppliedJobs.push({
-                    id: jobs.candidateId,
+                    id: jobs._id,
+                    candidateId: jobs.candidateId,
                     employerId: jobs.employerId,
                     jobId: jobs.jobId,
                     status: jobs.applicationStatus,
@@ -85,6 +100,9 @@ const manageCandidate = createSlice({
 
 
 
+        })
+        builder.addCase(changeAppliedJobStatusEmployer.fulfilled, (state, {payload}) => {
+            state.reload = true
         })
      
 

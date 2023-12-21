@@ -3,6 +3,8 @@ import { createAsyncThunk, createSlice } from '@reduxjs/toolkit';
 
 import { handleApiError } from '../../utilis/errorHandling';
 import authService from '../../services/Auth/authServices';
+// import {history} from "react-router-dom"
+import { redirect } from "react-router-dom";
 
 
 
@@ -50,6 +52,18 @@ export const changePasswordByUser = createAsyncThunk('auth/change-password', asy
     }
 });
 
+export const recoverPasswordOutside = createAsyncThunk('auth/recover-password', async ({token, password}) => {
+    try {
+        const data = await authService.recoverPassword(token, password);
+        return data
+    } catch (error) {
+        // Handle login error
+        console.log(error);
+        handleApiError(error)
+    }
+});
+
+
 
 const authSlice = createSlice({
     name: 'auth',
@@ -90,18 +104,21 @@ const authSlice = createSlice({
                 localStorage.removeItem("user")
                 state.error = action.error.message;
             });
-            builder.addCase(register.fulfilled, (state, {payload}) => {
+            builder.addCase(register.fulfilled, (state, action) => {
          
-                console.log(payload, "payloadddddddddd from registerrrr");
-                localStorage.setItem("user", JSON.stringify(payload?.data?.user));
-                const data = payload?.data?.user
+                localStorage.setItem("user", JSON.stringify(action.payload.data.user))
+                const data = action.payload.data
                 console.log(data, "payloaddddd");
-                state.user = data
-                state.role = data?.Role
+                state.user = data?.user
+                state.role = data?.user?.role
                 state.isAuthenticated = true
                 state.error = null
+                
             })
             builder.addCase(forgetPassword.fulfilled, (state, payload) => {
+                console.log(payload, "payloadd from forgot password");
+            })
+            builder.addCase(recoverPasswordOutside.fulfilled, (state, payload) => {
                 console.log(payload, "payloadd from forgot password");
             })
             

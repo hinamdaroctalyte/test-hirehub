@@ -50,6 +50,18 @@ const authService = {
             throw error;
         }
     },
+    async recoverPassword(token, password) {
+        try {
+
+            const response = await api.post(`/auth/reset-password/${token}`, { password });
+            if (response && response.data && response.status === 200) {
+                console.log("recover pass");
+                return response.data;
+            }
+        } catch (error) {
+            throw error;
+        }
+    },
 };
 
 export default authService;
