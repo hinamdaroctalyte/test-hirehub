@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useEffect } from 'react';
 import { NavLink } from 'react-router-dom';
 import { AuthLayout, Core } from '../../../components';
 import image from '../../../assets/images/logo/logo.png';
@@ -11,6 +11,7 @@ import { toast, ToastContainer  } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
 import { useDispatch, useSelector } from 'react-redux';
 import { redirectToDashboard } from '../../../utilis/RedirectionToDashboard';
+import notificationService from '../../../utilis/notification';
 
 
 const validationSchema = Yup.object().shape({
@@ -39,6 +40,13 @@ const RegisterPage = () => {
     const navigate = useNavigate();
     const user = useSelector((state) => state.auth.user);
 
+    useEffect(() => {
+        // Check if the user is already authenticated
+        if (user) {
+            redirectToDashboard(user?.Role, navigate);
+        }
+    }, []);
+
 
     const onSubmit = (values) => {
         try {
@@ -49,18 +57,17 @@ const RegisterPage = () => {
                 role: values.userType
             })).unwrap().then(res => {
                console.log(res, "ressssponsee");
-               if(res.data){
-                const user = res?.data?.user;
-                console.log(user, "userrrr")
-                redirectToDashboard(user?.role, navigate);
-                toast.success("Registration Successful");
-               }
+        
+               const user = res.data.user;
+               redirectToDashboard(user?.role, navigate);;
+                notificationService.success("Registration Successful");
+            
             }).catch(error => {
-                toast.error(error.message)
+                notificationService.error(error.message)
             })
         } catch (error) {
             console.error(error);
-            toast.error(error.message);
+            notificationService.error(error.message);
         }
     };
 

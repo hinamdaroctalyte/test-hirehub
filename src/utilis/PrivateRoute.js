@@ -11,13 +11,11 @@ const PrivateRoute = ({ children, roles }) => {
     const user = useSelector((state) => state?.auth?.user);
     console.log({user, isAuthenticated});
     const navigate = useNavigate();
+    const role = user?.role || user?.Role
 
-    useEffect(() => {
-        // Check if the user is already authenticated
-        if (user) {
-          redirectToDashboard(user?.Role, navigate);
-        }
-      }, []);
+    console.log(role, "roleeeeemann")
+
+   
 
 
 
@@ -25,7 +23,7 @@ const PrivateRoute = ({ children, roles }) => {
         return <Navigate to="/" replace />;
     }
 
-    if (roles && roles.length > 0 && !roles.includes(user?.Role)) {
+    if (roles && roles.length > 0 && !roles.includes(role)) {
         return <Navigate to="/unauthorized" replace />;
     }
 

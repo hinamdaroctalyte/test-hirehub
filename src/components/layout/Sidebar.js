@@ -48,7 +48,8 @@ function Sidebar({ isSidebarOpen, toggleSidebar, menu }) {
                     </span>
                 </div>
                 <ul className="max-h-[610px] overflow-y-scroll scrollbar p-4">
-                    {menu.map((value) => {
+                    {menu && menu?.map((value) => {
+                        console.log(value, "valueeeeeeeeeeeeeee")
                         return (
                             <NavItem key={value * 2} value={value} slug={location?.pathname} />
                         )

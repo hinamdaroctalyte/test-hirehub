@@ -1,4 +1,4 @@
-import { BrowserRouter, Routes, Route, Navigate } from "react-router-dom";
+import { BrowserRouter, Routes, Route } from "react-router-dom";
 import {
   AdminDashboard,
   ChangePassword,
@@ -34,13 +34,15 @@ import {
 import { AdminLayout, CandidateLayout, EmployerLayout } from "./components";
 import PrivateRoute from "./utilis/PrivateRoute";
 
+
 function App() {
+
   return (
     <BrowserRouter>
       <Routes>
         <Route path="/" index element={<LoginPage />} />
         <Route path="forgot-password" element={<ForgotPasswordPage />} />
-        <Route path="new-password" element={<NewPasswordPage />} />
+        <Route path="new-password/:token" element={<NewPasswordPage />} />
         <Route path="register" element={<RegisterPage />} />
         {/* <Route path="404" element={<FourZeroFour />} /> */}
 
@@ -79,7 +81,7 @@ function App() {
         {/* // Employer Routes */}
         <Route path="employer/*" element={<PrivateRoute roles={['employer']}><EmployerLayout /></PrivateRoute>} >
           <Route path="dashboard" element={<PrivateRoute roles={['employer']}><EmployerDashboard /></PrivateRoute>} />
-          <Route path="manage-profile" element={<PrivateRoute roles={['employer']}><ManageProfile /></PrivateRoute>} />
+          <Route path="manage-profile" element={<PrivateRoute roles={['employer']}><ManageProfile/></PrivateRoute>} />
           <Route path="profile" element={<PrivateRoute roles={['employer']}><ViewProfile /></PrivateRoute>} />
           <Route path="change-password" element={<PrivateRoute roles={['employer']}><ChangePassword /></PrivateRoute>} />
 
