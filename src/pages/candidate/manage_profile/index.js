@@ -6,8 +6,9 @@ import logo1 from "../../../assets/images/company-logos/logo1.png";
 import logo2 from "../../../assets/images/company-logos/logo2.png";
 import video from "../../../assets/videos/1.mp4";
 import { calculateTimePeriod } from '../../../utilis/calculateTimePeriod';
-import { Progress } from 'antd';
+import { Button, Progress } from 'antd';
 import { NavLink } from 'react-router-dom';
+import PopupModal from '../../../components/core/PopupModal';
 
 function ManageProfileCandidate() {
     const experience = [
@@ -53,6 +54,14 @@ function ManageProfileCandidate() {
         setResumePrivacySetting(e.target.value);
     };
 
+
+
+    const [isModalOpen, setIsModalOpen] = useState(false);
+
+    const showModal = () => {
+        setIsModalOpen(true);
+    };
+
     return (
         <div className='flex justify-between gap-x-6 w-full'>
             <div className='w-auto'>
@@ -91,11 +100,19 @@ function ManageProfileCandidate() {
                             </div>
                         </div>
                     </Core.Card>
+
+
+
+                    <PopupModal isModalOpen={isModalOpen}
+                        setIsModalOpen={setIsModalOpen} />
+
                     {/* Summery */}
                     <Core.Card className={"min-h-[140px] pb-8"}>
                         <div className='flex justify-between items-start'>
                             <h5 className='text-black-1 text-[18px] leading-[28px] font-semibold'>Summery</h5>
-                            <span className="flex justify-center items-center w-[35px] h-[35px] cursor-pointer bg-gray-7 rounded-full hover:bg-gray-11 active:bg-gray-12 transition-all">
+                            <span className="flex justify-center items-center w-[35px] h-[35px] cursor-pointer bg-gray-7 rounded-full hover:bg-gray-11 active:bg-gray-12 transition-all"
+                                onClick={showModal}
+                            >
                                 <span className='text-gray-6'><Icon name="PencilWithLine" /></span>
                             </span>
                         </div>
