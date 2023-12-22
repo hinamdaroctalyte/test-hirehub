@@ -9,7 +9,7 @@ function ViewProfile({ data }) {
             <h5 className='text-black-2 text-[24px] leading-[32px] font-medium mb-4'>View Profile</h5>
             <div className="mb-8">
                 <h6 className={`block text-[14px] font-medium text-gray-2 tracking-wide mb-1 capitalize`}>
-                    Your company's name<span className='text-[red]'>*</span>
+                    Your company's name
                 </h6>
                 <span className={`block text-[14px] font-medium text-gray-8 tracking-wide mb-2 capitalize`}>
                     {data?.companyName}
@@ -27,8 +27,12 @@ function ViewProfile({ data }) {
                 <h6 className={`block text-[14px] font-medium text-gray-2 tracking-wide mb-1 capitalize`}>
                     Logo
                 </h6>
-                <span className={`block max-w-[90px] text-[14px] font-medium text-gray-8 tracking-wide mb-2 capitalize`}>
-                    <img src={data?.logo} alt="Company Logo" width={150} height={150} />
+                <span className={`block mb-2 capitalize`}>
+                    {data?.logo ?
+                        <img src={data?.logo} className='max-w-[90px]' alt="Company Logo" width={150} height={150} />
+                        :
+                        <h2 className='w-[170px] text-gray-2 text-[20px] text-center rounded-[10px] opacity-70 bg-gray-5 px-1 py-3'>No Logo</h2>
+                    }
                 </span>
             </div>
             <div className="mb-8">
@@ -38,11 +42,9 @@ function ViewProfile({ data }) {
                 <div className={`block max-w-[300px] rounded-[10px] overflow-hidden mb-2`}>
                     {data?.welcomeVideo ?
                         <Core.VideoPlayer src={data?.welcomeVideo} />
-                        :
-                        <span className={`block max-w-[180px] text-[14px] font-medium text-gray-8 tracking-wide mb-2 capitalize opacity-80`}>
-                            No Video
-                        </span>
-                    }
+                        : 
+                        <h2 className='w-[280px] text-gray-2 text-[20px] text-center rounded-[10px] opacity-70 bg-gray-5 px-2 py-12'>No Video</h2>
+                    }                   
                     {/* <img src={data?.welcomeVideo} alt="Welcome Video" /> */}
                 </div>
             </div>
@@ -56,7 +58,7 @@ function ViewProfile({ data }) {
             </div>
             <div className="mb-8">
                 <h6 className={`block text-[14px] font-medium text-gray-2 tracking-wide mb-1 capitalize`}>
-                    Your company's industry<span className='text-[red]'>*</span>
+                    Your company's industry
                 </h6>
                 <span className={`block text-[14px] font-medium text-gray-8 tracking-wide mb-2 capitalize`}>
                     {data?.companyIndustry}

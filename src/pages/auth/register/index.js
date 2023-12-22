@@ -74,7 +74,7 @@ const RegisterPage = () => {
     return (
         <AuthLayout>
             <ToastContainer></ToastContainer>
-            <img src={image} className='w-[360px]' />
+            <img src={image} alt="Logo" className='w-[360px]' />
             <h1 className='text-black-3 text-[32px] leading-[43px] tracking-[0.5px] font-regular'>
                 Welcome to Hirehub, <br />
                 Sign up to Continue

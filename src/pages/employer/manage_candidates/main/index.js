@@ -189,13 +189,13 @@ function MainCandidates() {
 
     };
 
-    console.log("name", name);
-    console.log("title", title);
-    console.log("employer", employer);
-    console.log("eligibility", eligibility);
-    console.log("appliedDate", appliedDate);
-    console.log("candidateStage", candidateStage);
-    console.log("userStatus", userStatus);
+    // console.log("name", name);
+    // console.log("title", title);
+    // console.log("employer", employer);
+    // console.log("eligibility", eligibility);
+    // console.log("appliedDate", appliedDate);
+    // console.log("candidateStage", candidateStage);
+    // console.log("userStatus", userStatus);
 
     return (
         <>

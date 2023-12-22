@@ -7,6 +7,15 @@ import { logout } from '../../Slices/Auth/authSlice';
 import { useDispatch, useSelector } from "react-redux";
 import { useLocation } from 'react-router-dom';
 
+import { UserOutlined } from '@ant-design/icons';
+import React from 'react';
+import { Avatar, Badge, Space } from 'antd';
+
+
+
+
+
+
 export default function Dropdown() {
     const dispatch = useDispatch();
     const navigate = useNavigate();
@@ -21,14 +30,19 @@ export default function Dropdown() {
         dispatch(logout())
         navigate("/")
     }
+
+    const firstLetter = user?.name ? user.name.trim().charAt(0).toUpperCase() : '';
+
     return (
         <Menu as="div" className="relative inline-block text-left -ml-3">
             <div>
                 <Menu.Button className="inline-flex w-full justify-center items-center gap-x-2 rounded-md hover:bg-black/10 px-2 py-1">
+                    {/*                     
                     <div className="relative inline-block">
                         <img className="inline-block h-[32px] w-[32px] rounded-full" src={avatar} alt="Image Description" />
                         <span className="absolute bottom-0 end-0 block h-2.5 w-2.5 rounded-full ring-2 ring-white bg-green-1"></span>
-                    </div>
+                    </div> */}
+                    <Badge dot><Avatar src={avatar}>{firstLetter}</Avatar></Badge>
                     <div className='flex flex-col items-start'>
                         <span className='text-black-1 text-[14px] leading-[20px] capitalize font-medium'>{user?.name}</span>
                         <span className='text-gray-6 text-[11px] leading-[18px] capitalize opacity-80'>{user?.Role}</span>

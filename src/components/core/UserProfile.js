@@ -6,14 +6,15 @@ import { useParams } from 'react-router-dom';
 import Icon from '../icon';
 import { calculateTimePeriod } from '../../utilis/calculateTimePeriod';
 import { useLocation } from 'react-router-dom';
+import { Avatar, Badge } from 'antd';
 
-function UserProfile({ data : extractedData, pageType, dropdownOptions, selectedState, handleNext, setStatus, status }) {
+function UserProfile({ data: extractedData, pageType, dropdownOptions, selectedState, handleNext, setStatus, status }) {
     const location = useLocation();
     const parts = location?.pathname.split('/');
     const accountType = parts[1];
-    
+
     const [resumePrivacy, setResumePrivacy] = useState('');
-   
+
 
 
     useEffect(() => {
@@ -23,7 +24,7 @@ function UserProfile({ data : extractedData, pageType, dropdownOptions, selected
         }
     }, [extractedData]);
 
-    console.log("starttttt useeffect after", status);
+    // console.log("starttttt useeffect after", status);
 
     const [eligibilityStatus, setEligibilityStatus] = useState(
         extractedData?.eligibility === 'Yes' ? 'checked' : 'unchecked'
@@ -42,7 +43,10 @@ function UserProfile({ data : extractedData, pageType, dropdownOptions, selected
     const handlePrivacyChange = (e) => {
         setResumePrivacySetting(e.target.value);
     };
-    // console.log("extractedData?.candidate", extractedData?.candidate)
+    console.log("extractedData?.name", extractedData?.name)
+
+    const firstLetter = extractedData?.name ? extractedData?.name.trim().charAt(0).toUpperCase() : '';
+    console.log("firstLetter", firstLetter)
     return (
         <Core.Card className={`pt-[20px] pb-[45px] px-[30px]`}>
             <div className='flex justify-end gap-x-4'>
@@ -72,7 +76,7 @@ function UserProfile({ data : extractedData, pageType, dropdownOptions, selected
                 }
                 {pageType === "view" &&
                     <span className='text-gray-6 text-[16px] leading-[20px] capitalize font-semibold pl-1 py-1'>
-                        Candidates Status:<span className='text-purple-1'> {extractedData?.stage}</span>
+                        Candidates Status:<span className='text-purple-1'>{extractedData?.stage}</span>
                     </span>
                 }
                 {pageType === "edit" &&
@@ -94,7 +98,8 @@ function UserProfile({ data : extractedData, pageType, dropdownOptions, selected
             <div className=' flex justify-between pb-5 -mt-1'>
                 <div className='relative w-[110px]'>
                     <div className='absolute -top-6 flex justify-center items-center w-[90px] h-[90px] bg-gray-7 rounded-full overflow-hidden'>
-                        <img src={extractedData?.candidate?.personalInformation?.avatar && 'https://dp.profilepics.in/profile_pictures/boys-profile-pics/boys-profile-pics-dp-for-whatsapp-facebook-1775.jpg'} alt="company logo" />
+                        {/* <Avatar size={90} src={<img src={extractedData?.candidate?.personalInformation?.avatar} alt="avatar" />}>{firstLetter}</Avatar> */}
+                        <Avatar size={90} src={<img src={"https://dp.profilepics.in/profile_pictures/boys-profile-pics/boys-profile-pics-dp-for-whatsapp-facebook-1775.jpg"} alt="avatar" />}>{firstLetter}</Avatar>
                     </div>
                 </div>
                 <div className='w-full'>

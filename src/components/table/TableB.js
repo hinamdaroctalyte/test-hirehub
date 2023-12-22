@@ -1,7 +1,7 @@
-import React, { useState } from 'react';
+import React from 'react';
 import Icon from '../icon';
 import { Button, InputWithLabel, Badge } from '../core';
-import { Pagination, Table, Space, Flex } from 'antd';
+import { Avatar, Table, Flex } from 'antd';
 import '../../assets/css/table.css'
 import { Core } from '..';
 
@@ -40,16 +40,17 @@ function TableB({
             // If sorter is explicitly false, don't define a sorter function
             columnSorter = undefined;
         }
-
         return {
             ...value,
             render: (val, id) => {
+                const firstLetter = val?.name ? val.name.trim().charAt(0).toUpperCase() : '';
                 if (value.dataIndex === "name" || value.dataIndex === "employerName" || value.dataIndex === "companyName") {
                     return (
                         <>
                             {val?.img ?
                                 <div className='flex justify-start items-center gap-x-2 min-w-[140px]'>
                                     <img className="inline-block h-[30px] w-[30px] rounded-full" src={val?.img} alt="profile image" />
+                                    <Avatar src={val?.img}>{firstLetter}</Avatar>
                                     <span className='whitespace-nowrap font-semibold'>{val?.name}</span>
                                 </div> :
                                 <span>{val}</span>
@@ -150,7 +151,7 @@ function TableB({
         'Selection',
         'Job Offer',
         'Hire',
-    ]; 
+    ];
     return (
         <div className="flex flex-col bg-white rounded-[8px] overflow-hidden shadow-md">
             <div className="-m-1.5 overflow-x-auto">

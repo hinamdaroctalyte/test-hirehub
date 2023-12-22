@@ -43,6 +43,15 @@ function ManageProfile() {
         }
     };
 
+    const isAnyEmpty =
+        formData.companyName !== "" ||
+        formData.companyIndustry !== "" ||
+        formData.description !== "" ||
+        formData.logo !== "" ||
+        formData.noOfEmployes !== "" ||
+        formData.phoneNo !== "" ||
+        formData.welcomeVideo !== "";
+
     const handleFinish = () => {
         try {
 
@@ -130,11 +139,13 @@ function ManageProfile() {
                     }
                     {step !== 2 &&
                         <Core.Button
+                            // isDisabled={!isAnyEmpty}
                             onClick={handleNext}
                             type="narrow">Save and Continue</Core.Button>
                     }
                     {step === 2 &&
                         <Core.Button
+                            isDisabled={!isAnyEmpty}
                             onClick={handleFinish}
                             type="narrow">Save</Core.Button>
                     }

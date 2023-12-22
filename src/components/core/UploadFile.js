@@ -39,8 +39,8 @@ function UploadFile({ label, name, required, helperText, accept, onChange }) {
                             {helperText}
                         </p>
                     }
-                    <span class="sr-only">Choose profile photo</span>
-                    <input type="file" accept={accept} required onChange={onChange} class="block w-full text-gray-8
+                    <span className="sr-only">Choose profile photo</span>
+                    <input type="file" accept={accept} required onChange={onChange} className="block w-full text-gray-8
                         file:mr-4 file:py-2 file:px-4
                         file:rounded-full file:border-0
                         file:text-sm file:font-semibold
