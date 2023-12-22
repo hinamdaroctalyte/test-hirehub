@@ -38,8 +38,11 @@ function UserProfile({ data : extractedData, pageType, dropdownOptions, selected
         const newValue = event.target.checked ? 'checked' : 'unchecked';
         setEligibilityStatus(newValue);
     };
-
-    console.log("extractedData", extractedData)
+    const [resumePrivacySetting, setResumePrivacySetting] = useState('Public');
+    const handlePrivacyChange = (e) => {
+        setResumePrivacySetting(e.target.value);
+    };
+    // console.log("extractedData?.candidate", extractedData?.candidate)
     return (
         <Core.Card className={`pt-[20px] pb-[45px] px-[30px]`}>
             <div className='flex justify-end gap-x-4'>
@@ -317,7 +320,7 @@ function UserProfile({ data : extractedData, pageType, dropdownOptions, selected
                             id="public"
                             name="resume-privacy-settings"
                             checked={resumePrivacy === 'Public'}
-                            readOnly
+                            onChange={handlePrivacyChange}
                         />
                         <label className="text-gray-1 w-full" htmlFor="public">
                             <h6 className='text-black-2 text-[16px] leading-[20px] font-semibold'>Public</h6>
@@ -331,7 +334,7 @@ function UserProfile({ data : extractedData, pageType, dropdownOptions, selected
                             id="private"
                             name="resume-privacy-settings"
                             checked={resumePrivacy === 'Private'}
-                            readOnly
+                            onChange={handlePrivacyChange}
                         />
                         <label className="text-gray-1 w-full" htmlFor="private">
                             <h6 className='text-black-2 text-[16px] leading-[20px] font-semibold'>Private</h6>
@@ -339,8 +342,6 @@ function UserProfile({ data : extractedData, pageType, dropdownOptions, selected
                         </label>
                     </div>
                 </div>
-
-
 
                 {pageType === "edit" &&
                     <div className='flex justify-start gap-x-3 mt-8'>
