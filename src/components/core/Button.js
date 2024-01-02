@@ -1,10 +1,12 @@
 import React from 'react';
 import Icon from '../icon';
 
-function Button({ children, onClick, submit, type, color, icon, className, sm }) {
+function Button({ children, onClick, submit, type, color, icon, className, sm, isDisabled }) {
+    console.log("isDisabled",isDisabled)
     return (
         <button
             onClick={onClick}
+            disabled={isDisabled ? true : false}
             className={`
             ${type === "narrow" ? "" : 'w-full'}
             text-[14px] leading-[20px] tracking-[0.5px] font-semibold
@@ -19,6 +21,8 @@ function Button({ children, onClick, submit, type, color, icon, className, sm })
                 ${sm ? 'py-[9px]' : 'py-[10px]'}                
                  px-5
                 ${className}
+
+                ${isDisabled && "opacity-50"}
              `}
             type={submit && "submit"}
         >

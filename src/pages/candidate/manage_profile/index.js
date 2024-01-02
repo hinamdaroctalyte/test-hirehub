@@ -6,8 +6,9 @@ import logo1 from "../../../assets/images/company-logos/logo1.png";
 import logo2 from "../../../assets/images/company-logos/logo2.png";
 import video from "../../../assets/videos/1.mp4";
 import { calculateTimePeriod } from '../../../utilis/calculateTimePeriod';
-import { Progress } from 'antd';
+import { Avatar, Button, Progress } from 'antd';
 import { NavLink } from 'react-router-dom';
+import PopupModal from '../../../components/core/PopupModal';
 
 function ManageProfileCandidate() {
     const experience = [
@@ -53,6 +54,16 @@ function ManageProfileCandidate() {
         setResumePrivacySetting(e.target.value);
     };
 
+
+
+    const [isModalOpen, setIsModalOpen] = useState(false);
+
+    const showModal = () => {
+        setIsModalOpen(true);
+    };
+    let name = 'John Francois'
+    const firstLetter = name ? name.trim().charAt(0).toUpperCase() : '';
+
     return (
         <div className='flex justify-between gap-x-6 w-full'>
             <div className='w-auto'>
@@ -70,9 +81,10 @@ function ManageProfileCandidate() {
                                 <span className='text-gray-6 text-[18px] font-semibold pl-2'>
                                     50%
                                 </span>
-                                <div class="relative rounded-full overflow-hidd en w-[120px] h-[120px] px-[0.30rem] pt-[0.25rem] pb-[0.30rem]">
-                                    <img src={avatar1} alt="Avatar" class="relative z-[1] w-full h-full object-cover rounded-full" />
-                                    <div class="absolute top-0 right-0 -z-1 w-[50%] h-[100%] rounded-tl-[5px] rounded-tr-[100px] rounded-bl-[5px] rounded-br-[100px] bg-green-5 border-[7px] border-green-5"></div>
+                                <div className="relative rounded-full overflow-hidd en w-[120px] h-[120px] px-[0.30rem] pt-[0.25rem] pb-[0.30rem]">
+                                    {/* <img src={avatar1} alt="Avatar" className="relative z-[1] w-full h-full object-cover rounded-full" /> */}
+                                    <Avatar size={112} src={avatar1} className="relative z-[1] w-full h-full object-cove r overflow-hidden rounded-full">{firstLetter}</Avatar>
+                                    <div className="absolute top-0 right-0 -z-1 w-[50%] h-[100%] rounded-tl-[5px] rounded-tr-[100px] rounded-bl-[5px] rounded-br-[100px] bg-green-5 border-[7px] border-green-5"></div>
                                 </div>
                             </div>
                             <div className='w-[80%]'>
@@ -91,11 +103,19 @@ function ManageProfileCandidate() {
                             </div>
                         </div>
                     </Core.Card>
+
+
+
+                    <PopupModal isModalOpen={isModalOpen}
+                        setIsModalOpen={setIsModalOpen} />
+
                     {/* Summery */}
                     <Core.Card className={"min-h-[140px] pb-8"}>
                         <div className='flex justify-between items-start'>
                             <h5 className='text-black-1 text-[18px] leading-[28px] font-semibold'>Summery</h5>
-                            <span className="flex justify-center items-center w-[35px] h-[35px] cursor-pointer bg-gray-7 rounded-full hover:bg-gray-11 active:bg-gray-12 transition-all">
+                            <span className="flex justify-center items-center w-[35px] h-[35px] cursor-pointer bg-gray-7 rounded-full hover:bg-gray-11 active:bg-gray-12 transition-all"
+                                onClick={showModal}
+                            >
                                 <span className='text-gray-6'><Icon name="PencilWithLine" /></span>
                             </span>
                         </div>
@@ -131,8 +151,8 @@ function ManageProfileCandidate() {
                             {experience.map((value, index) => {
                                 return (
                                     <div key={index * 4} className='flex justify-between gap-x-3'>
-                                        <div className='flex justify-center items-center w-[58px] h-[58px] bg-gray-7 rounded-[10px] overflow-hidden'>
-                                            <img src={logo1} alt="company logo" />
+                                        <div className='flex justify-center items-center min-w-[58px] h-[58px] bg-gray-7 rounded-[10px] overflow-hidden'>
+                                            <Avatar shape="square" size={60} src={logo1}>!</Avatar> 
                                         </div>
                                         <div className='w-full'>
                                             <div className='w-full h-full flex justify-between items-end'>
@@ -163,8 +183,8 @@ function ManageProfileCandidate() {
                             {education.map((value, index) => {
                                 return (
                                     <div key={index * 5} className='flex justify-between gap-x-3'>
-                                        <div className='flex justify-center items-center w-[58px] h-[58px] bg-gray-7 rounded-[10px] overflow-hidden'>
-                                            <img src={logo2} alt="company logo" />
+                                        <div className='flex justify-center items-center min-w-[58px] h-[58px] bg-gray-7 rounded-[10px] overflow-hidden'>
+                                        <Avatar shape="square" size={60} src={logo2}>!</Avatar> 
                                         </div>
                                         <div className='w-full'>
                                             <div className='w-full h-full flex justify-between items-end'>
@@ -349,7 +369,7 @@ function ManageProfileCandidate() {
                         </div>
                         <Icon name="Options" />
                     </div>
-                    <Core.VideoPlayer src={video} className="max-h-[140px] rounded-[10px] overflow-hidden" />
+                    <Core.VideoPlayer src={video} className="max-h-[150px] rounded-[10px] overflow-hidden" />
                 </Core.Card>
                 <button
                     className={`flex justify-center items-center gap-x-2 w-full text-white bg-gradient-to-r from-purple-4 to-purple-3  hover:text-white text-[14px] hover:bg-gradient-to-r hover:from-purple-4 hover:to-purple-3 transition-all rounded-[8px] px-3 py-[10px]`}

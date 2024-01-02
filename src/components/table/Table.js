@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import Icon from '../icon';
 import { Button, InputWithLabel, Badge } from '../core';
-import { Pagination } from 'antd';
+import { Avatar, Pagination } from 'antd';
 
 function Table({
     columns,
@@ -34,7 +34,8 @@ function Table({
         }
     };
     const renderTableCell = (td, col) => {
-        // console.log("td--", td)
+    const firstLetter = td?.name ? td.name.trim().charAt(0).toUpperCase() : '';
+    // console.log("td--", td)
         if (typeof td === "string") td = td.toLowerCase();
         switch (col) {
             case "payment":
@@ -45,7 +46,8 @@ function Table({
             case "name":
                 if (td?.img) {
                     return <div className='flex justify-start items-center gap-x-2 min-w-[140px]'>
-                        <img className="inline-block h-[30px] w-[30px] rounded-full" src={td?.img} alt="profile image" />
+                        {/* <img className="inline-block h-[30px] w-[30px] rounded-full" src={td?.img} alt="profile image" /> */}
+                        <Avatar src={td?.img}>{firstLetter}</Avatar>
                         <span className='whitespace-nowrap'>{td?.name}</span>
                     </div>;
                 }

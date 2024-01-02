@@ -49,7 +49,7 @@ function ForgotPasswordPage() {
             <ToastContainer></ToastContainer>
             <Formik initialValues={initialValues} validationSchema={validationSchema} onSubmit={handleSubmit}>
                 <Form className="flex flex-col gap-y-9 max-w-[600px] mb-3">
-                    <img src={image} className='w-[360px]' />
+                    <img src={image} alt="Logo" className='w-[360px]' />
                     <h1 className='text-black-3 text-[42px] leading-[57px] tracking-[0.5px] font-regular'>
                         Forget Password?
                     </h1>

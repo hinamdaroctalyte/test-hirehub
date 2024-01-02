@@ -9,7 +9,7 @@ const adminServices = {
             console.log("starttt from servie employer");
             const response = await api.get('/admin/manage-employers');
             if (response && response.data && response.status === 200) {
-                console.log("starttttttttttt");
+                // console.log("starttttttttttt");
                 return response.data;
             }
         } catch (error) {

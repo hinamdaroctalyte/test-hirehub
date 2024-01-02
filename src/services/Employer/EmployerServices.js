@@ -9,7 +9,7 @@ const employerServices = {
             console.log("starttt from servie employer");
             const response = await api.get('/get-employer-by-id');
             if (response && response.data && response.status === 200) {
-                console.log("starttttttttttt");
+                // console.log("starttttttttttt");
                 return response.data;
             }
         } catch (error) {
@@ -28,7 +28,7 @@ const employerServices = {
                 },
             });
             if (response && response.data && response.status === 200) {
-                console.log("starttttttttttt");
+                // console.log("starttttttttttt");
                 return response.data;
             }
         } catch (error) {

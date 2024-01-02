@@ -42,13 +42,11 @@ function Form1({ onNext }) {
                 <Core.InputWithLabel
                     name={"YourCompanysName"}
                     label="Company Name"
-                    required
                     onChange={(value) => handleChange("companyName", value)}
                 />
             </div>
             <div className="mb-4">
                 <Core.SelectWithLabel
-                    required
                     name={"numberofEmployees"}
                     label="Number of Employees"
                     options={numberOfEmployeesOptions}
@@ -57,7 +55,6 @@ function Form1({ onNext }) {
             </div>
             <div className="mb-4">
                 <Core.UploadFile
-                    required
                     name={"logo"}
                     label="Company Logo"
                     helperText="A company logo helps candidates connect the job opportunity with your brand. Recommended specs are 400x400 pixels."
@@ -71,12 +68,11 @@ function Form1({ onNext }) {
                     label="Welcome Video"
                     helperText="A company logo helps candidates connect the job opportunity with your brand. Recommended specs are 400x400 pixels."
                     accept="video/*"
-                    onChange={(event) => handleFileChange ("welcomeVideo", event)}
+                    onChange={(event) => handleFileChange("welcomeVideo", event)}
                 />
             </div>
             <div className="mb-4">
                 <Core.InputWithLabel
-                    required
                     name={"YourPhoneNumber"}
                     label="Your Phone Number"
                     helperText="We will use this number to text you important notifications"
