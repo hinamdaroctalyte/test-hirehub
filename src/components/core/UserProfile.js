@@ -7,13 +7,13 @@ import Icon from '../icon';
 import { calculateTimePeriod } from '../../utilis/calculateTimePeriod';
 import { useLocation } from 'react-router-dom';
 
-function UserProfile({ data : extractedData, pageType, dropdownOptions, selectedState, handleNext, setStatus, status }) {
+function UserProfile({ data: extractedData, pageType, dropdownOptions, selectedState, handleNext, setStatus, status }) {
     const location = useLocation();
     const parts = location?.pathname.split('/');
     const accountType = parts[1];
-    
+
     const [resumePrivacy, setResumePrivacy] = useState('');
-   
+
 
 
     useEffect(() => {
